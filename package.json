@@ -1,0 +1,12 @@
+{
+  "name": "finora-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix finora run dev",
+    "build": "npm --prefix finora run build",
+    "preview": "npm --prefix finora run preview"
+  },
+  "dependencies": {
+    "firebase": "^12.19.0"
+  }
+}

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/loan.css">
   <link rel="stylesheet" href="css/loans.css">
+  <link rel="stylesheet" href="css/loan-scanner.css">
 </head>
 <body>
 
@@ -190,6 +191,171 @@
                 </div>
               </section>
 
+              <!-- AI SALARY FINDER & LOAN LENDER RECOMMENDATION -->
+              <section class="loan-scanner-container" id="loanOcrSection">
+                <div class="loan-header">
+                  <div class="loan-title-group">
+                    <h2>💰 AI Salary Finder & Loan Lender Recommendation</h2>
+                    <p>Upload your salary slip, Form 16 or bank statement to find pre-approved limits and lowest interest rate lenders.</p>
+                  </div>
+                  <div class="loan-ai-pill">✨ Income OCR & FOIR Engine Active</div>
+                </div>
+
+                <!-- Intake Section -->
+                <div class="loan-intake-section">
+                  <div class="loan-upload-zone" onclick="document.getElementById('loanFileInputHTML').click()">
+                    <div style="font-size: 2.2rem; margin-bottom: 8px;">📑</div>
+                    <div style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px;">Upload Salary Slip / Form 16 / Bank Statement</div>
+                    <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 12px;">Supports PDF, images, or salary statements</div>
+                    <input type="file" id="loanFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
+                    <button type="button" class="btn-apply-loan" style="width: auto; padding: 6px 14px; font-size: 0.8rem;">📁 Select Salary File</button>
+                  </div>
+
+                  <div class="loan-presets-card">
+                    <div style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">Or test with Sample Income Profiles:</div>
+                    <div class="loan-preset-list">
+                      <button class="loan-preset-item active" data-preset-key="tech-lead">
+                        <div style="font-size: 1.3rem;">💻</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Staff Software Engineer (Tier-1 MNC)</div>
+                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹1,42,000 / mo • Google India</div>
+                        </div>
+                      </button>
+                      <button class="loan-preset-item" data-preset-key="analyst">
+                        <div style="font-size: 1.3rem;">📊</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Financial Analyst (Big-4 Corporate)</div>
+                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹64,500 / mo • KPMG Advisory</div>
+                        </div>
+                      </button>
+                      <button class="loan-preset-item" data-preset-key="business">
+                        <div style="font-size: 1.3rem;">🏢</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Digital Agency Owner (Self-Employed)</div>
+                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹2,15,000 / mo • Audited 3-Yr ITR</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- OCR Loader -->
+                <div id="loanOcrLoader" style="display: none; text-align: center; padding: 20px; background: rgba(30,41,59,0.7); border-radius: 12px; margin-bottom: 20px;">
+                  <div style="color: #34d399; font-weight: 600; margin-bottom: 4px;">Analyzing Salary Document with AI OCR...</div>
+                  <div style="color: #94a3b8; font-size: 0.85rem;">Extracting net pay, employer categorization, debt obligations and matching loan offers...</div>
+                </div>
+
+                <!-- Extracted Card -->
+                <div class="loan-extracted-card" id="loanExtractedCard">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+                    <strong style="color: #10b981;">✅ Verified Financial Profile: <span id="loanExtName" style="color: #fff;">Brightlin Bright</span></strong>
+                    <span id="loanExtEmployer" style="font-size: 0.8rem; color: #cbd5e1;">Google India (Tier-1 MNC)</span>
+                  </div>
+                  <div class="loan-extracted-grid">
+                    <div class="loan-field-box">
+                      <div class="loan-field-label">Net In-Hand Salary</div>
+                      <div class="loan-field-value" id="loanExtNetSalary" style="color: #34d399;">₹1,42,000 / mo</div>
+                    </div>
+                    <div class="loan-field-box">
+                      <div class="loan-field-label">Gross Monthly Pay</div>
+                      <div class="loan-field-value" id="loanExtGrossSalary">₹1,85,000 / mo</div>
+                    </div>
+                    <div class="loan-field-box">
+                      <div class="loan-field-label">Existing EMIs</div>
+                      <div class="loan-field-value" id="loanExtEmi" style="color: #94a3b8;">₹2,000 / mo</div>
+                    </div>
+                    <div class="loan-field-box">
+                      <div class="loan-field-label">Assessed Credit Tier</div>
+                      <div class="loan-field-value" id="loanExtCibil" style="color: #38bdf8;">790 (Super-Prime)</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+                    <strong>💡 AI Insight:</strong> <span id="loanExtNotes">Super-prime borrower with high disposable income.</span>
+                  </div>
+                </div>
+
+                <!-- Loan Purpose Selector & Sliders -->
+                <div class="loan-config-card">
+                  <div style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">
+                    🎯 Choose Your Desired Loan:
+                  </div>
+                  <div class="loan-type-buttons-group">
+                    <button class="loan-type-btn active" data-loan-type="home">🏠 Home Loan</button>
+                    <button class="loan-type-btn" data-loan-type="personal">👤 Personal Loan</button>
+                    <button class="loan-type-btn" data-loan-type="car">🚗 Car Loan</button>
+                    <button class="loan-type-btn" data-loan-type="education">🎓 Education Loan</button>
+                    <button class="loan-type-btn" data-loan-type="business">🏢 Business Loan</button>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #94a3b8; margin-bottom: 4px;">
+                        <span>Requested Loan Amount:</span>
+                        <strong style="color: #38bdf8;" id="loanAmountDisplay">₹45.0 Lakhs</strong>
+                      </div>
+                      <input type="range" id="loanAmountSlider" min="200000" max="15000000" step="100000" value="4500000" style="width: 100%; accent-color: #2563eb;">
+                    </div>
+                    <div>
+                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #94a3b8; margin-bottom: 4px;">
+                        <span>Tenure Duration:</span>
+                        <strong style="color: #10b981;" id="loanTenureDisplay">20 Years</strong>
+                      </div>
+                      <input type="range" id="loanTenureSlider" min="1" max="30" step="1" value="20" style="width: 100%; accent-color: #10b981;">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Results & Best Fit Lender -->
+                <div id="loanResultsArea">
+                  <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 14px;">🏛️ Recommended Financial Institution</h3>
+                  <div class="lender-card top-match">
+                    <div class="lender-ribbon">⭐ AI Best Pick #1</div>
+                    <div style="font-size: 0.75rem; color: #94a3b8;" id="resLenderType">Public Sector Bank</div>
+                    <h4 style="font-size: 1.3rem; color: #fff; margin: 4px 0;" id="resBestLender">State Bank of India (SBI)</h4>
+                    <div style="color: #34d399; font-weight: 700; margin-bottom: 10px;" id="resLenderMatch">🎯 98% Match Score</div>
+                    
+                    <div style="display: flex; align-items: baseline; gap: 6px; margin: 10px 0;">
+                      <span style="font-size: 1.8rem; font-weight: 800; color: #38bdf8;" id="resLenderRoi">8.40% p.a.</span>
+                      <span style="font-size: 0.8rem; color: #94a3b8;">Floating (Repo Linked)</span>
+                    </div>
+
+                    <div style="background: rgba(15,23,42,0.7); border-radius: 8px; padding: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+                      <div>
+                        <div style="font-size: 0.8rem; color: #94a3b8;">Monthly EMI:</div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: #10b981;" id="resLenderEmi">₹38,767 / mo</div>
+                      </div>
+                      <div style="text-align: right; font-size: 0.75rem; color: #94a3b8;">
+                        Disbursal Speed:<br>
+                        <strong style="color: #cbd5e1;" id="resLenderSpeed">⚡ 5-7 working days</strong>
+                      </div>
+                    </div>
+
+                    <div style="font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+                      <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #94a3b8;">Processing Fee:</span>
+                        <span id="resLenderFee">0.15% (Min ₹2,000)</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #94a3b8;">Prepayment Fee:</span>
+                        <span style="color: #38bdf8;" id="resLenderPrepay">Nil (0% on floating)</span>
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(15, 23, 42, 0.7); border-left: 3px solid #10b981; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
+                      <div style="font-size: 0.75rem; font-weight: 700; color: #10b981; margin-bottom: 4px;">Why Finora AI Recommends This:</div>
+                      <ul id="resLenderRationale" style="margin: 0; padding-left: 14px; font-size: 0.78rem; color: #cbd5e1;">
+                        <li>Lowest floating interest rate in India (8.40% linked to RBI EBLR).</li>
+                        <li>Zero prepayment penalties on floating rate loans.</li>
+                      </ul>
+                    </div>
+
+                    <button type="button" class="btn-apply-loan" onclick="alert('Congratulations! Your In-Principle Sanction request has been generated with Finora AI guidance.')">
+                      Select & Get Instant In-Principle Sanction →
+                    </button>
+                  </div>
+                </div>
+              </section>
+
               <!-- EXPLORE LOAN OPTIONS -->
               <section class="loans-section" id="exploreLoansSection" aria-labelledby="exploreHeading">
                 <div class="loans-section-header-flex">
@@ -288,5 +454,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/loan.js"></script>
 </body>
 </html>

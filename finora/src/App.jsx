@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LoanDocScanner from './components/LoanDocScanner';
 import MedicalDocScanner from './components/MedicalDocScanner';
 import VoiceAssistant from './components/VoiceAssistant';
@@ -31,14 +31,115 @@ export default function App() {
   const [activeModal, setActiveModal] = useState(null); // 'emi', 'eligibility', 'docs', null
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Finora AI Chat State
+  // Finora AI WhatsApp Chat State & Audio Effects
   const [aiDialogue, setAiDialogue] = useState([
     {
       sender: 'ai',
-      text: "Hi, I'm Finora AI 👋 What financial journey are you trying to understand?"
+      text: "Hi, I'm Finora AI 👋 What financial journey are you trying to understand?",
+      time: '12:00 PM',
+      status: 'read'
     }
   ]);
   const [aiInput, setAiInput] = useState('');
+  const [isAiTyping, setIsAiTyping] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showAttachMenu, setShowAttachMenu] = useState(false);
+  const [showWaMenu, setShowWaMenu] = useState(false);
+  const [isListeningMic, setIsListeningMic] = useState(false);
+  const chatBodyRef = useRef(null);
+  const recognitionRef = useRef(null);
+
+  // Soft Web Audio synthesizers for authentic WhatsApp feedback
+  const playWaSendSound = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(580, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(840, ctx.currentTime + 0.07);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.07);
+    } catch (_) {}
+  };
+
+  const playWaReceiveSound = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.setValueAtTime(1040, ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.14, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.2);
+    } catch (_) {}
+  };
+
+  // Auto-scroll chat body on message change
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [aiDialogue, isAiTyping]);
+
+  // Speech-to-text for WhatsApp mic
+  const toggleSpeechRecognition = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Speech recognition is not supported in this browser. Please type your message in the chat input.');
+      return;
+    }
+
+    if (isListeningMic) {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch (_) {}
+      }
+      setIsListeningMic(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = 'en-IN';
+
+      recognition.onstart = () => {
+        setIsListeningMic(true);
+      };
+
+      recognition.onresult = (event) => {
+        let text = '';
+        for (let i = 0; i < event.results.length; i++) {
+          text += event.results[i][0].transcript;
+        }
+        setAiInput(text);
+      };
+
+      recognition.onerror = () => {
+        setIsListeningMic(false);
+      };
+
+      recognition.onend = () => {
+        setIsListeningMic(false);
+      };
+
+      recognitionRef.current = recognition;
+      recognition.start();
+    } catch (e) {
+      console.warn('Speech recognition error:', e);
+      setIsListeningMic(false);
+    }
+  };
 
   // Interactive EMI Calculator State for Modal
   const [calcAmount, setCalcAmount] = useState(500000);
@@ -147,12 +248,17 @@ export default function App() {
   const emiStats = calculateModalEmi();
 
   const handleAiSend = (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     if (!aiInput.trim()) return;
     
-    const userText = aiInput;
-    setAiDialogue(prev => [...prev, { sender: 'user', text: userText }]);
+    const userText = aiInput.trim();
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setAiDialogue(prev => [...prev, { sender: 'user', text: userText, time: nowTime, status: 'read' }]);
     setAiInput('');
+    setShowEmojiPicker(false);
+    setShowAttachMenu(false);
+    playWaSendSound();
+    setIsAiTyping(true);
 
     setTimeout(() => {
       let reply = `I've organized the next steps for "${userText}". Check our AI Salary and Medical document scanners below for personalized rates!`;
@@ -165,16 +271,43 @@ export default function App() {
         reply = `Monthly EMI depends on your loan principal, ROI and tenure. Click "Review EMI" above to open our instant interactive calculator!`;
       }
 
-      setAiDialogue(prev => [...prev, { sender: 'ai', text: reply }]);
-    }, 600);
+      setAiDialogue(prev => [...prev, { sender: 'ai', text: reply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
+      setIsAiTyping(false);
+      playWaReceiveSound();
+    }, 750);
   };
 
   const handleQuickAction = (text) => {
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     setAiDialogue(prev => [
       ...prev,
-      { sender: 'user', text },
-      { sender: 'ai', text: `Analyzing "${text}"... Let's review the required documents and lowest cost options tailored to your profile.` }
+      { sender: 'user', text, time: nowTime, status: 'read' }
     ]);
+    playWaSendSound();
+    setIsAiTyping(true);
+
+    setTimeout(() => {
+      let reply = `Analyzing "${text}"... Let's review the required documents and lowest cost options tailored to your profile.`;
+      const lower = text.toLowerCase();
+      if (lower.includes('foir')) {
+        reply = "FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income that goes toward EMIs. Banks prefer FOIR under 50% for maximum loan eligibility.";
+      } else if (lower.includes('floating')) {
+        reply = "Floating loans allow zero-penalty prepayment at any time as mandated by the RBI, making them ideal if you plan to prepay early!";
+      } else if (lower.includes('co-pay')) {
+        reply = "Co-Pay is the percentage of hospital claim cost you agree to pay from your pocket, while the insurer pays the rest. Lower co-pay means higher coverage!";
+      } else if (lower.includes('waiting')) {
+        reply = "Pre-existing disease waiting periods typically range from 2 to 4 years. With Finora, we help you find policies with 1-year reduced waiting riders!";
+      } else if (lower.includes('restore')) {
+        reply = "100% Restore Benefit recharges your sum insured back to full value if exhausted during hospitalizations in the same policy year!";
+      }
+
+      setAiDialogue(prev => [
+        ...prev,
+        { sender: 'ai', text: reply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
+      ]);
+      setIsAiTyping(false);
+      playWaReceiveSound();
+    }, 650);
   };
 
   return (
@@ -1264,81 +1397,222 @@ export default function App() {
                  ================================================================ */}
             <aside className="dashboard-right-column" id="ai-companion">
               
-              {/* Card 1: Finora AI */}
-              <div className="ai-companion-card">
-                <div className="ai-card-header">
-                  <div className="ai-header-brand">
-                    <div className="ai-sparkle-dot">✦</div>
-                    <span className="ai-card-title">
-                      {currentView === 'loans' ? 'Finora Lending Copilot' :
-                       currentView === 'insurance' ? 'Finora Insurance Copilot' :
-                       currentView === 'fintech' ? 'Finora Fintech Architect' :
-                       'Finora AI'}
-                    </span>
+              {/* Card 1: Finora AI WhatsApp Chat Copilot */}
+              <div className="ai-companion-card whatsapp-chat-card">
+                
+                {/* WhatsApp Chat Header */}
+                <div className="wa-header">
+                  <div className="wa-header-left" onClick={() => setShowWaMenu(prev => !prev)}>
+                    <div className="wa-avatar-wrap">
+                      <div className="wa-avatar">
+                        <span>FA</span>
+                      </div>
+                      <span className="wa-avatar-online-dot" title="Online now"></span>
+                    </div>
+                    <div className="wa-contact-details">
+                      <span className="wa-contact-name">
+                        {currentView === 'loans' ? 'Finora Loan AI' :
+                         currentView === 'insurance' ? 'Finora Health AI' :
+                         currentView === 'fintech' ? 'Finora Tech Copilot' :
+                         'Finora AI'}
+                        <span className="wa-verified-badge" title="Official Verified Financial AI Copilot">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          </svg>
+                        </span>
+                      </span>
+                      <span className={`wa-contact-status ${isAiTyping ? 'typing' : ''}`}>
+                        {isAiTyping ? 'typing...' : 'online'}
+                      </span>
+                    </div>
                   </div>
-                  <span className="ai-status-badge">
-                    <span className="ai-status-pulse"></span>
-                    <span>Online</span>
-                  </span>
+
+                  <div className="wa-header-actions">
+                    <button 
+                      type="button" 
+                      className="wa-header-btn" 
+                      title="Voice Consultation"
+                      onClick={() => toggleSpeechRecognition()}
+                      aria-label="Voice Consultation"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                      </svg>
+                    </button>
+                    <button 
+                      type="button" 
+                      className="wa-header-btn" 
+                      title="AI Video Insights"
+                      onClick={() => alert('Finora AI Video Copilot: Interactive video breakdown is currently active for your current view.')}
+                      aria-label="AI Video Insights"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                      </svg>
+                    </button>
+                    <button 
+                      type="button" 
+                      className="wa-header-btn" 
+                      title="Chat Options"
+                      onClick={() => setShowWaMenu(prev => !prev)}
+                      aria-label="Chat Options"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                      </svg>
+                    </button>
+
+                    {/* WhatsApp Header Dropdown Menu */}
+                    {showWaMenu && (
+                      <div className="wa-dropdown-menu">
+                        <button 
+                          type="button" 
+                          className="wa-dropdown-item" 
+                          onClick={() => {
+                            setAiDialogue([
+                              {
+                                sender: 'ai',
+                                text: "Chat cleared. Hi! I'm Finora AI 👋 How can I help with loans or insurance today?",
+                                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                                status: 'read'
+                              }
+                            ]);
+                            setShowWaMenu(false);
+                          }}
+                        >
+                          🗑️ Clear Chat
+                        </button>
+                        <button 
+                          type="button" 
+                          className="wa-dropdown-item" 
+                          onClick={() => {
+                            setActiveModal('emi');
+                            setShowWaMenu(false);
+                          }}
+                        >
+                          🧮 EMI Calculator
+                        </button>
+                        <button 
+                          type="button" 
+                          className="wa-dropdown-item" 
+                          onClick={() => {
+                            setActiveModal('docs');
+                            setShowWaMenu(false);
+                          }}
+                        >
+                          📑 Document Check
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                <div className="ai-dialogue-body">
+                {/* WhatsApp Chat Stream Canvas */}
+                <div className="wa-chat-body" ref={chatBodyRef}>
+                  
+                  {/* WhatsApp End-to-End Encryption Notice */}
+                  <div className="wa-encryption-banner">
+                    <span>🔒</span>
+                    <span>Messages are end-to-end encrypted. Finora AI financial guidance is private & confidential.</span>
+                  </div>
+
+                  {/* WhatsApp Date Divider */}
+                  <div className="wa-date-pill">TODAY</div>
+
+                  {/* Message Stream */}
                   {aiDialogue.map((msg, idx) => (
-                    <div key={idx} className={msg.sender === 'ai' ? 'ai-msg-bubble' : 'user-msg-bubble'}>
-                      {msg.text}
+                    <div key={idx} className={`wa-msg-row ${msg.sender === 'ai' ? 'incoming' : 'outgoing'}`}>
+                      <div className={msg.sender === 'ai' ? 'wa-bubble-incoming' : 'wa-bubble-outgoing'}>
+                        {msg.sender === 'ai' && (
+                          <div className="wa-bubble-author">
+                            <span>Finora AI</span>
+                            <span>✦</span>
+                          </div>
+                        )}
+                        <p className="wa-bubble-text">{msg.text}</p>
+                        <div className="wa-msg-meta">
+                          <span className="wa-msg-time">{msg.time || '12:00 PM'}</span>
+                          {msg.sender === 'user' && (
+                            <span className="wa-double-check" title="Read">
+                              <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                                <path d="M11.049 0.927002L4.99998 6.97602L2.45098 4.42702L1.04998 5.82802L4.99998 9.77802L12.45 2.32802L11.049 0.927002Z" fill="#53bdeb"/>
+                                <path d="M14.55 2.32802L8.50098 8.37702L7.79398 7.67002L6.37998 9.08402L8.50098 11.205L15.951 3.72902L14.55 2.32802Z" fill="#53bdeb"/>
+                              </svg>
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   ))}
+
+                  {/* Typing indicator bubble */}
+                  {isAiTyping && (
+                    <div className="wa-msg-row incoming">
+                      <div className="wa-typing-bubble" aria-label="Finora AI is typing">
+                        <span className="wa-typing-dot"></span>
+                        <span className="wa-typing-dot"></span>
+                        <span className="wa-typing-dot"></span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="ai-chips-container">
-                  <span className="ai-chips-label">Quick Actions</span>
-                  <div className="ai-chips-list">
+                {/* WhatsApp Interactive Quick Action Chips */}
+                <div className="wa-chips-section">
+                  <span className="wa-chips-label">
+                    <span>⚡</span>
+                    <span>Quick Suggestions</span>
+                  </span>
+                  <div className="wa-chips-grid">
                     {currentView === 'loans' ? (
                       <>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('How is FOIR calculated?')}>
-                          <span>What is FOIR?</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('How is FOIR calculated?')}>
+                          <span>💬 What is FOIR?</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('Compare Floating vs Fixed rates')}>
-                          <span>Floating vs Fixed</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('Compare Floating vs Fixed rates')}>
+                          <span>⚖️ Floating vs Fixed</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => setActiveModal('emi')}>
-                          <span>Review EMI Calculator</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => setActiveModal('emi')}>
+                          <span>🧮 EMI Calculator</span>
                           <span className="chip-arrow">→</span>
                         </button>
                       </>
                     ) : currentView === 'insurance' ? (
                       <>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('What is Co-Pay in health insurance?')}>
-                          <span>What is Co-Pay?</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('What is Co-Pay in health insurance?')}>
+                          <span>🛡️ What is Co-Pay?</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('Explain pre-existing disease waiting period')}>
-                          <span>Waiting Periods</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('Explain pre-existing disease waiting period')}>
+                          <span>⏳ Waiting Periods</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('How does 100% Restore benefit work?')}>
-                          <span>Restore Benefits</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('How does 100% Restore benefit work?')}>
+                          <span>🔄 Restore Benefits</span>
                           <span className="chip-arrow">→</span>
                         </button>
                       </>
                     ) : (
                       <>
-                        <button type="button" className="ai-chip-pill" onClick={() => handleQuickAction('Explain a financial term')}>
-                          <span>Explain a financial term</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => handleQuickAction('Explain a financial term')}>
+                          <span>💬 Financial terms</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => { navigateTo('loans'); handleQuickAction('Explore loans'); }}>
-                          <span>Explore loans</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => { navigateTo('loans'); handleQuickAction('Explore loans'); }}>
+                          <span>🏦 Explore loans</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => { navigateTo('insurance'); handleQuickAction('Understand insurance'); }}>
-                          <span>Understand insurance</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => { navigateTo('insurance'); handleQuickAction('Understand insurance'); }}>
+                          <span>🏥 Health insurance</span>
                           <span className="chip-arrow">→</span>
                         </button>
-                        <button type="button" className="ai-chip-pill" onClick={() => setActiveModal('docs')}>
-                          <span>Help me prepare</span>
+                        <button type="button" className="wa-chip-btn" onClick={() => setActiveModal('docs')}>
+                          <span>📑 Prep documents</span>
                           <span className="chip-arrow">→</span>
                         </button>
                       </>
@@ -1346,25 +1620,143 @@ export default function App() {
                   </div>
                 </div>
 
-                <form className="ai-input-form" onSubmit={handleAiSend}>
-                  <input 
-                    type="text" 
-                    className="ai-chat-input" 
-                    placeholder={
-                      currentView === 'loans' ? "Ask about loans, interest rates, or eligibility..." :
-                      currentView === 'insurance' ? "Ask about waiting periods, health policies..." :
-                      "Ask Finora AI anything..."
-                    }
-                    value={aiInput}
-                    onChange={(e) => setAiInput(e.target.value)}
-                    aria-label="Ask Finora AI"
-                  />
-                  <button type="submit" className="ai-send-btn" aria-label="Send">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                {/* Emoji Quick Drawer */}
+                {showEmojiPicker && (
+                  <div className="wa-popup-drawer">
+                    <div className="wa-emoji-shelf">
+                      {['💰', '📊', '🏥', '🏦', '📑', '💳', '👍', '💡', '🚀', '🎯', '⚖️', '🔒'].map((emoji, eIdx) => (
+                        <button 
+                          key={eIdx}
+                          type="button" 
+                          className="wa-emoji-btn"
+                          onClick={() => {
+                            setAiInput(prev => prev + emoji);
+                            setShowEmojiPicker(false);
+                          }}
+                        >
+                          {emoji}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Attach Quick Drawer */}
+                {showAttachMenu && (
+                  <div className="wa-popup-drawer">
+                    <div className="wa-attach-menu">
+                      <button 
+                        type="button" 
+                        className="wa-attach-item"
+                        onClick={() => {
+                          setShowAttachMenu(false);
+                          navigateTo('loans');
+                          handleQuickAction('I want to evaluate my salary slip for loan eligibility');
+                        }}
+                      >
+                        <span className="wa-attach-icon" style={{ background: '#E0F2FE', color: '#0284C7' }}>📑</span>
+                        <span>Salary Payslip Analyzer</span>
+                      </button>
+                      <button 
+                        type="button" 
+                        className="wa-attach-item"
+                        onClick={() => {
+                          setShowAttachMenu(false);
+                          navigateTo('insurance');
+                          handleQuickAction('I want to evaluate my medical report for insurance coverage');
+                        }}
+                      >
+                        <span className="wa-attach-icon" style={{ background: '#ECFDF5', color: '#059669' }}>🏥</span>
+                        <span>Medical Diagnostic Report</span>
+                      </button>
+                      <button 
+                        type="button" 
+                        className="wa-attach-item"
+                        onClick={() => {
+                          setShowAttachMenu(false);
+                          setActiveModal('emi');
+                        }}
+                      >
+                        <span className="wa-attach-icon" style={{ background: '#FEF3C7', color: '#D97706' }}>🧮</span>
+                        <span>Quick EMI Simulator</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* WhatsApp Chat Input Footer */}
+                <form className="wa-chat-footer" onSubmit={handleAiSend}>
+                  {/* Emoji Button */}
+                  <button 
+                    type="button" 
+                    className="wa-util-btn" 
+                    title="Emoji"
+                    onClick={() => {
+                      setShowEmojiPicker(prev => !prev);
+                      setShowAttachMenu(false);
+                    }}
+                    aria-label="Insert Emoji"
+                  >
+                    😊
+                  </button>
+
+                  {/* Attachment Clip Button */}
+                  <button 
+                    type="button" 
+                    className="wa-util-btn" 
+                    title="Attach Document or Tool"
+                    onClick={() => {
+                      setShowAttachMenu(prev => !prev);
+                      setShowEmojiPicker(false);
+                    }}
+                    aria-label="Attach File"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
                     </svg>
                   </button>
+
+                  {/* Text Input Pill */}
+                  <div className="wa-input-pill-wrapper">
+                    <input 
+                      type="text" 
+                      className="wa-input-text" 
+                      placeholder={
+                        isListeningMic ? "Listening to your voice... Speak now" :
+                        currentView === 'loans' ? "Ask about loans, interest rates, FOIR..." :
+                        currentView === 'insurance' ? "Ask about waiting periods, health policies..." :
+                        "Type a message..."
+                      }
+                      value={aiInput}
+                      onChange={(e) => setAiInput(e.target.value)}
+                      aria-label="Type a message"
+                    />
+                  </div>
+
+                  {/* WhatsApp Circle Send or Mic Button */}
+                  {aiInput.trim() ? (
+                    <button type="submit" className="wa-circle-btn" aria-label="Send Message" title="Send">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                    </button>
+                  ) : (
+                    <button 
+                      type="button" 
+                      className={`wa-circle-btn ${isListeningMic ? 'listening' : ''}`}
+                      onClick={toggleSpeechRecognition}
+                      aria-label={isListeningMic ? "Stop Listening" : "Voice Message Input"}
+                      title={isListeningMic ? "Listening... Click to stop" : "Speak message"}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                      </svg>
+                    </button>
+                  )}
                 </form>
               </div>
 

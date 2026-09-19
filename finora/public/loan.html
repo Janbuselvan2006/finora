@@ -606,59 +606,104 @@
           <!-- RIGHT COMPANION COLUMN -->
           <aside class="dashboard-right-column" id="aiSection" aria-label="Finora AI Companion & Insights">
 
-            <!-- FINORA AI COPILOT CARD -->
-            <div class="finora-ai-card">
-              <div class="ai-card-header">
-                <div class="ai-header-title-wrap">
-                  <div class="ai-logo-icon">✨</div>
-                  <div>
-                    <span class="ai-header-name">Finora AI</span>
-                    <span class="ai-header-role">Credit & Lending Copilot</span>
+            <!-- FINORA AI COPILOT CARD (WHATSAPP THEME) -->
+            <div class="ai-companion-card whatsapp-chat-card">
+              <div class="wa-header">
+                <div class="wa-header-left">
+                  <div class="wa-avatar-wrap">
+                    <div class="wa-avatar"><span>FA</span></div>
+                    <span class="wa-avatar-online-dot"></span>
+                  </div>
+                  <div class="wa-contact-details">
+                    <span class="wa-contact-name">
+                      Finora Loan AI
+                      <span class="wa-verified-badge">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </span>
+                    </span>
+                    <span class="wa-contact-status">online</span>
                   </div>
                 </div>
-                <span class="ai-live-badge">Online</span>
+                <div class="wa-header-actions">
+                  <button type="button" class="wa-header-btn" title="Voice Assist" onclick="alert('Finora AI: Voice copilot ready! What loan query can I assist with?');">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="wa-header-btn" title="Options" onclick="alert('Finora AI: Encrypted borrowing assistant active.');">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <!-- AI Chat Body -->
-              <div class="ai-chat-body" id="loanAiChatBody">
-                <div class="ai-msg-bubble">
-                  <div class="ai-msg-avatar">🤖</div>
-                  <div class="ai-msg-text">
-                    Hi Brightlin! I'm your Finora AI Lending Copilot 👋. Upload your salary slip or Form 16, and I will evaluate your debt-to-income FOIR, loan eligibility, and match the lowest bank rates.
+              <div class="wa-chat-body" id="loanAiChatBody">
+                <div class="wa-encryption-banner">
+                  <span>🔒</span>
+                  <span>Messages are end-to-end encrypted. Finora AI financial guidance is private & confidential.</span>
+                </div>
+                <div class="wa-date-pill">TODAY</div>
+
+                <div class="wa-msg-row incoming">
+                  <div class="wa-bubble-incoming">
+                    <div class="wa-bubble-author"><span>Finora Loan AI</span> <span>✦</span></div>
+                    <p class="wa-bubble-text">Hi Brightlin! I'm your Finora AI Lending Copilot 👋. Upload your salary slip or Form 16, and I will evaluate your debt-to-income FOIR, loan eligibility, and match the lowest bank rates.</p>
+                    <div class="wa-msg-meta"><span class="wa-msg-time">12:00 PM</span></div>
                   </div>
                 </div>
 
-                <div class="ai-msg-bubble">
-                  <div class="ai-msg-avatar">🤖</div>
-                  <div class="ai-msg-text">
-                    💡 <strong>Pro Tip:</strong> Keeping your monthly EMI obligations below 40% of net income unlocks Super-Prime interest discounts of 0.25% at SBI and HDFC!
+                <div class="wa-msg-row incoming">
+                  <div class="wa-bubble-incoming">
+                    <div class="wa-bubble-author"><span>Finora Loan AI</span> <span>✦</span></div>
+                    <p class="wa-bubble-text">💡 <strong>Pro Tip:</strong> Keeping your monthly EMI obligations below 40% of net income unlocks Super-Prime interest discounts of 0.25% at SBI and HDFC!</p>
+                    <div class="wa-msg-meta"><span class="wa-msg-time">12:01 PM</span></div>
                   </div>
                 </div>
               </div>
 
               <!-- Quick Action Prompt Chips -->
-              <div class="ai-quick-prompts">
-                <button type="button" class="prompt-chip" onclick="document.getElementById('loanFileInputHTML').click()">
-                  📑 Scan Payslip
-                </button>
-                <button type="button" class="prompt-chip" onclick="alert('FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income that goes toward EMIs. Banks prefer FOIR under 50%.')">
-                  🧮 What is FOIR?
-                </button>
-                <button type="button" class="prompt-chip" onclick="alert('Floating loans allow zero-penalty prepayment at any time as mandated by the RBI, making them ideal for borrowers planning prepayments.')">
-                  ⚖️ Floating vs Fixed
-                </button>
+              <div class="wa-chips-section">
+                <span class="wa-chips-label"><span>⚡</span> <span>Quick Suggestions</span></span>
+                <div class="wa-chips-grid">
+                  <button type="button" class="wa-chip-btn" onclick="document.getElementById('loanFileInputHTML') ? document.getElementById('loanFileInputHTML').click() : alert('Upload salary slip via the document scanner below.');">
+                    <span>📑 Scan Payslip</span>
+                    <span class="chip-arrow">→</span>
+                  </button>
+                  <button type="button" class="wa-chip-btn" onclick="alert('FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income that goes toward EMIs. Banks prefer FOIR under 50%.')">
+                    <span>💬 What is FOIR?</span>
+                    <span class="chip-arrow">→</span>
+                  </button>
+                  <button type="button" class="wa-chip-btn" onclick="alert('Floating loans allow zero-penalty prepayment at any time as mandated by the RBI, making them ideal for borrowers planning prepayments.')">
+                    <span>⚖️ Floating vs Fixed</span>
+                    <span class="chip-arrow">→</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Chat Input -->
-              <div class="ai-input-wrapper">
-                <input type="text" class="ai-chat-input" placeholder="Ask about loans, interest rates, or eligibility..." aria-label="Ask Finora AI">
-                <button type="button" class="ai-send-btn" aria-label="Send query">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <!-- WhatsApp Chat Input -->
+              <form class="wa-chat-footer" onsubmit="event.preventDefault(); const inp=this.querySelector('.wa-input-text'); if(inp && inp.value.trim()){ const b=document.getElementById('loanAiChatBody'); if(b){ b.innerHTML += '<div class=\'wa-msg-row outgoing\'><div class=\'wa-bubble-outgoing\'><p class=\'wa-bubble-text\'>'+inp.value+'</p><div class=\'wa-msg-meta\'><span class=\'wa-msg-time\'>Just now</span><span class=\'wa-double-check\'><svg width=\'16\' height=\'11\' viewBox=\'0 0 16 11\' fill=\'none\'><path d=\'M11.049 0.927002L4.99998 6.97602L2.45098 4.42702L1.04998 5.82802L4.99998 9.77802L12.45 2.32802L11.049 0.927002Z\' fill=\'#53bdeb\'/><path d=\'M14.55 2.32802L8.50098 8.37702L7.79398 7.67002L6.37998 9.08402L8.50098 11.205L15.951 3.72902L14.55 2.32802Z\' fill=\'#53bdeb\'/></svg></span></div></div></div>'; setTimeout(()=>{ b.innerHTML += '<div class=\'wa-msg-row incoming\'><div class=\'wa-bubble-incoming\'><div class=\'wa-bubble-author\'><span>Finora Loan AI</span> <span>✦</span></div><p class=\'wa-bubble-text\'>I evaluated your query: \"'+inp.value+'\". Check your loan eligibility using our automated scanner below!</p><div class=\'wa-msg-meta\'><span class=\'wa-msg-time\'>Just now</span></div></div></div>'; b.scrollTop = b.scrollHeight; }, 600); inp.value=''; b.scrollTop = b.scrollHeight; } }">
+                <button type="button" class="wa-util-btn" title="Emoji">😊</button>
+                <button type="button" class="wa-util-btn" title="Attach Document" onclick="document.getElementById('loanFileInputHTML') ? document.getElementById('loanFileInputHTML').click() : alert('Scan payslip below.');">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                  </svg>
+                </button>
+                <div class="wa-input-pill-wrapper">
+                  <input type="text" class="wa-input-text" placeholder="Type a message..." aria-label="Ask Finora AI">
+                </div>
+                <button type="submit" class="wa-circle-btn" aria-label="Send query" title="Send">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                   </svg>
                 </button>
-              </div>
+              </form>
             </div>
 
             <!-- INSIGHTS & REPO RATE TRACKER CARD -->

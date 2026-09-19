@@ -1,0 +1,6 @@
+/* Responsive CSS */
+@media (max-width: 992px) {
+  .top-header .nav-links {
+    display: none;
+  }
+}

@@ -1,123 +1,538 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Finora Fintech — Digital Financial Services, Onboarding, Digital KYC, Payment Solutions & Smart Wealth Management.">
-  <meta name="theme-color" content="#0b1329">
+  <meta name="description" content="Finora Fintech — Modern Digital Financial Services, Paperless KYC, DigiLocker Onboarding, UPI AutoPay Mandates, and Account Aggregator Integrations.">
+  <meta name="theme-color" content="#F7F7F5">
   <title>Fintech Services — Finora | AI-Powered Financial Journeys</title>
   
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/insurance.css">
 </head>
 <body>
 
   <div class="app-container">
-    <header class="top-header" role="banner">
-      <div class="header-inner">
-        <a href="index.html" class="brand-wrapper" aria-label="Finora Home">
-          <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none">
-            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#brandGrad1)"/>
-            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#brandGrad2)" fill-opacity="0.9"/>
+    <div class="dashboard-viewport">
+
+      <!-- ==================================================================
+           LEFT FLOATING SIDEBAR DOCK (Reference Cilo Design)
+           ================================================================== -->
+      <aside class="sidebar-dock" aria-label="Finora Main Navigation">
+        <a href="dashboard.html" class="sidebar-logo-pill" aria-label="Finora Home">
+          <svg class="sidebar-brand-svg" viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#finLogoGrad1)"/>
+            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#finLogoGrad2)" fill-opacity="0.9"/>
             <defs>
-              <linearGradient id="brandGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
+              <linearGradient id="finLogoGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#2563EB"/>
                 <stop offset="1" stop-color="#1D4ED8"/>
               </linearGradient>
-              <linearGradient id="brandGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+              <linearGradient id="finLogoGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#06B6D4"/>
                 <stop offset="1" stop-color="#3B82F6"/>
               </linearGradient>
             </defs>
           </svg>
-          <div class="brand-text-group">
-            <span class="brand-name">Finora</span>
-            <span class="brand-tagline">Simpler Journeys. Brighter Futures.</span>
-          </div>
         </a>
 
-        <nav class="nav-links" aria-label="Primary Navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="loan.html" class="nav-link">Loans</a>
-          <a href="insurance.html" class="nav-link">Insurance</a>
-          <a href="fintech.html" class="nav-link active" aria-current="page">Fintech</a>
+        <nav class="sidebar-nav-container" aria-label="Platform Views">
+          <a href="index.html" class="sidebar-btn" data-tooltip="Dashboard Overview" aria-label="Home Overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+          </a>
+
+          <a href="loan.html" class="sidebar-btn" data-tooltip="Loans Journey" aria-label="Loans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="3" y1="21" x2="21" y2="21"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <polyline points="5 6 12 3 19 6"></polyline>
+              <line x1="6" y1="10" x2="6" y2="21"></line>
+              <line x1="10" y1="10" x2="10" y2="21"></line>
+              <line x1="14" y1="10" x2="14" y2="21"></line>
+              <line x1="18" y1="10" x2="18" y2="21"></line>
+            </svg>
+          </a>
+
+          <a href="insurance.html" class="sidebar-btn" data-tooltip="Insurance Journey" aria-label="Insurance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </a>
+
+          <!-- ACTIVE ON FINTECH PAGE -->
+          <a href="fintech.html" class="sidebar-btn active" data-tooltip="Fintech Services" aria-current="page" aria-label="Fintech">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </a>
+
+          <a href="#aiSection" class="sidebar-btn" data-tooltip="Finora AI" aria-label="AI Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+          </a>
         </nav>
 
-        <div class="header-actions">
-          <div class="user-profile-badge">
-            <div class="avatar-circle">BB</div>
-            <div class="user-details">
-              <span class="user-greeting">Welcome</span>
-              <span class="user-name">Brightlin</span>
-            </div>
-          </div>
+        <div class="sidebar-footer-nav" aria-label="Utility Controls">
+          <button type="button" class="sidebar-btn" data-tooltip="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <button type="button" class="sidebar-btn" data-tooltip="Help & FAQ" aria-label="Help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </button>
         </div>
-      </div>
-    </header>
-
-    <div class="app-body">
-      <aside class="sidebar" aria-label="Sidebar Navigation">
-        <nav class="sidebar-nav">
-          <a href="index.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <span>Home</span>
-          </a>
-          <a href="loan.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>Loans</span>
-          </a>
-          <a href="insurance.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <span>Insurance</span>
-          </a>
-          <a href="fintech.html" class="sidebar-link active" aria-current="page">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <span>Fintech</span>
-          </a>
-          <a href="index.html#ai-assistant" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
-            <span>AI Assistant</span>
-          </a>
-          <a href="index.html#how-it-works" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            <span>My Journey</span>
-          </a>
-        </nav>
       </aside>
 
-      <main class="main-content" role="main">
-        <div class="ins-page-container">
-          <section class="ins-hero-card">
-            <div class="ins-hero-grid">
-              <div class="ins-hero-content">
-                <div class="ins-hero-eyebrow">💳 FINTECH SERVICES & DIGITAL ONBOARDING</div>
-                <h1 class="ins-hero-heading">Digital Banking & <span class="ins-heading-highlight">Smart Payments.</span></h1>
-                <p class="ins-hero-supporting">Explore instant KYC, account setup, payment solutions, and wealth tools.</p>
-                <div class="ins-hero-btn-group">
-                  <a href="index.html" class="btn-ins-primary">Back to Home →</a>
+      <!-- MAIN FLOW VIEWPORT -->
+      <div class="dashboard-main-flow">
+
+        <!-- TOP PILL HEADER -->
+        <header class="top-pill-header" role="banner">
+          <div class="header-left-search">
+            <div class="search-pill-container">
+              <svg class="search-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" class="search-pill-input" placeholder="Search digital KYC, payment protocols, APIs, sandbox..." aria-label="Search fintech services">
+              <span class="search-shortcut-badge">⌘K</span>
+            </div>
+          </div>
+
+          <div class="header-right-actions">
+            <div class="team-avatar-pill">
+              <div class="avatar-stack">
+                <div class="avatar-img-sm" style="background:#E2E8F0;">👨‍💻</div>
+                <div class="avatar-img-sm" style="background:#CBD5E1;">👩‍💼</div>
+              </div>
+              <span class="avatar-more-count">+2</span>
+            </div>
+
+            <div class="theme-pill-toggle">
+              <button type="button" class="theme-mode-btn active" id="themeLightBtn" aria-label="Light Mode">☀️</button>
+              <button type="button" class="theme-mode-btn" id="themeDarkBtn" aria-label="Dark Mode">🌙</button>
+            </div>
+
+            <button type="button" class="header-icon-pill" aria-label="Notifications" onclick="alert('Notification: DigiLocker & UPI 2.0 Webhook latency &lt; 85ms.')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="unread-indicator"></span>
+            </button>
+
+            <div class="user-profile-pill">
+              <div class="user-avatar-circle">BB</div>
+              <span class="user-pill-name">Brightlin</span>
+            </div>
+
+            <a href="#servicesSection" class="header-action-btn-black">
+              <span>Explore APIs</span>
+              <span>→</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- DASHBOARD 2-COLUMN CONTAINER -->
+        <div class="dashboard-grid-container">
+
+          <!-- CENTER MAIN CONTENT COLUMN -->
+          <main class="dashboard-center-column" role="main">
+
+            <!-- HEADING ROW -->
+            <div class="dashboard-heading-row">
+              <div class="dashboard-heading-group">
+                <div class="dashboard-greeting-eyebrow">
+                  <span>💳</span>
+                  <span>Digital Banking & Infrastructure</span>
+                </div>
+                <h1 class="dashboard-page-title">Fintech Services</h1>
+              </div>
+
+              <div class="dashboard-heading-controls">
+                <button type="button" class="pill-icon-control" title="Developer Console">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </button>
+                <a href="#servicesSection" class="btn-black-compact">
+                  <span>+ API Playground</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 4-CARD KEY METRICS ROW -->
+            <section class="metrics-row-grid" aria-label="Key Fintech Metrics">
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Digital KYC Throughput</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">99.4% Pass</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">DigiLocker</span>
+                    <span>UIDAI Verified</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Payment Latency</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">&lt; 1.2 Sec</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-blue">UPI 2.0</span>
+                    <span>e-NACH AutoPay</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Security Architecture</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">256-Bit AES</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">Account Aggregator</span>
+                    <span>ISO 27001</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Banking Connectors</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">45+ Banks</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-amber">Real-Time</span>
+                    <span>Webhook Active</span>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <!-- 5-STEP FINTECH ONBOARDING STEPPER -->
+            <section class="journey-stepper-card" aria-label="Fintech Onboarding Progression">
+              <div class="stepper-header-row">
+                <div>
+                  <span class="stepper-title">5-Step Seamless Onboarding</span>
+                  <p class="stepper-subtext">Zero paperwork journey: from digital identity verification to active banking workflows.</p>
+                </div>
+                <span class="step-counter-pill">Step 1 of 5 Active</span>
+              </div>
+
+              <div class="stepper-steps-track">
+                <div class="stepper-step active">
+                  <div class="step-indicator">
+                    <span class="step-num">1</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Identity</span>
+                    <span class="step-desc">Aadhaar e-KYC</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">2</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Consent</span>
+                    <span class="step-desc">Account Aggregator</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">3</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Mandate</span>
+                    <span class="step-desc">UPI AutoPay</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">4</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Verify</span>
+                    <span class="step-desc">Penny Drop Test</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">5</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Activated</span>
+                    <span class="step-desc">Ready to Transact</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- FINTECH SERVICES GRID -->
+            <section class="policy-explore-section" id="servicesSection" style="margin-top: 24px;" aria-labelledby="fintechHeading">
+              <div class="explore-header-row">
+                <div>
+                  <h2 id="fintechHeading" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0 0 4px 0;">
+                    Finora Fintech Infrastructure
+                  </h2>
+                  <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
+                    Modern, secure financial building blocks designed for Indian retail customers and developers.
+                  </p>
+                </div>
+              </div>
+
+              <div class="policy-cards-grid">
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Paperless</span>
+                    <span class="policy-copay-tag">DigiLocker</span>
+                  </div>
+                  <h3 class="policy-name">🆔 Digital KYC & Onboarding</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">30 Seconds</span>
+                    <span class="policy-sum-label">Instant UIDAI Authentication</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>PAN Check</span>
+                      <strong>NSDL API Validated</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Video KYC</span>
+                      <strong>AI Geolocation & Liveness</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Compliance</span>
+                      <strong>RBI Master Circular</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="alert('Digital KYC Simulator initialized with sandbox DigiLocker flow.')">
+                    Test KYC Flow →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">High TPS</span>
+                    <span class="policy-copay-tag">UPI 2.0</span>
+                  </div>
+                  <h3 class="policy-name">💳 UPI & Smart Mandates</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">99.9% Uptime</span>
+                    <span class="policy-sum-label">AutoPay Recurring Mandates</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Settlement</span>
+                      <strong>T+0 Real-Time Credit</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Recurring</span>
+                      <strong>Up to ₹15,000 / cycle</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Security</span>
+                      <strong>Device Tokenization</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="alert('UPI Mandate Generator launched.')">
+                    Setup AutoPay →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">RBI Licensed</span>
+                    <span class="policy-copay-tag">End-to-End Encrypted</span>
+                  </div>
+                  <h3 class="policy-name">🔄 Account Aggregator (AA)</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">Zero Storage</span>
+                    <span class="policy-sum-label">Consent-Driven Financial Sharing</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Financial Info</span>
+                      <strong>Bank, MF, Insurance</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Data Privacy</span>
+                      <strong>Revocable Consent</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Verification</span>
+                      <strong>Tamper-Proof Statements</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="alert('Connecting to Sahamati Account Aggregator Sandbox...')">
+                    Simulate AA Consent →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Smart Wealth</span>
+                    <span class="policy-copay-tag">BSE Star MF</span>
+                  </div>
+                  <h3 class="policy-name">📈 Automated Wealth Management</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">Direct Plans</span>
+                    <span class="policy-sum-label">0% Commission Mutual Funds</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>SIP Automation</span>
+                      <strong>Daily / Weekly / Monthly</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Tax Harvesting</span>
+                      <strong>LTCG Exemption &lt; ₹1.25L</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Rebalancing</span>
+                      <strong>Dynamic Risk Weighting</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="alert('Finora Wealth portfolio optimizer activated.')">
+                    Explore Wealth Tools →
+                  </button>
+                </article>
+              </div>
+            </section>
+
+          </main>
+
+          <!-- RIGHT COMPANION COLUMN -->
+          <aside class="dashboard-right-column" id="aiSection" aria-label="Finora AI Companion & Insights">
+
+            <!-- FINORA AI COPILOT CARD -->
+            <div class="finora-ai-card">
+              <div class="ai-card-header">
+                <div class="ai-header-title-wrap">
+                  <div class="ai-logo-icon">✨</div>
+                  <div>
+                    <span class="ai-header-name">Finora AI</span>
+                    <span class="ai-header-role">Fintech Architect Copilot</span>
+                  </div>
+                </div>
+                <span class="ai-live-badge">Online</span>
+              </div>
+
+              <!-- AI Chat Body -->
+              <div class="ai-chat-body">
+                <div class="ai-msg-bubble">
+                  <div class="ai-msg-avatar">🤖</div>
+                  <div class="ai-msg-text">
+                    Hello Brightlin! I'm your Finora Fintech Advisor. Need assistance with DigiLocker onboarding, UPI AutoPay mandates, or Account Aggregator data pipelines?
+                  </div>
+                </div>
+
+                <div class="ai-msg-bubble">
+                  <div class="ai-msg-avatar">🤖</div>
+                  <div class="ai-msg-text">
+                    🔒 <strong>Security Guarantee:</strong> All financial data transfers strictly adhere to the RBI Account Aggregator framework with non-repudiable user cryptographic consent.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Action Prompt Chips -->
+              <div class="ai-quick-prompts">
+                <button type="button" class="prompt-chip" onclick="alert('Account Aggregator is an RBI-regulated entity allowing citizens to securely share financial data across institutions without sharing passwords or PDFs.')">
+                  🛡️ What is Account Aggregator?
+                </button>
+                <button type="button" class="prompt-chip" onclick="alert('DigiLocker e-KYC eliminates manual document tampering by directly fetching digitally signed XML documents from issuing authorities like UIDAI and Income Tax Dept.')">
+                  📄 DigiLocker Flow
+                </button>
+                <button type="button" class="prompt-chip" onclick="alert('UPI 2.0 AutoPay enables recurring debits for investments, insurance premiums, and loan EMIs without manual OTP entry each month.')">
+                  ⚡ AutoPay Mandates
+                </button>
+              </div>
+
+              <!-- Chat Input -->
+              <div class="ai-input-wrapper">
+                <input type="text" class="ai-chat-input" placeholder="Ask about fintech protocols, KYC, or payment gateways..." aria-label="Ask Finora AI">
+                <button type="button" class="ai-send-btn" aria-label="Send query">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- INSIGHTS & PROTOCOL STATUS FEED CARD -->
+            <div class="insights-feed-card">
+              <div class="insights-card-header">
+                <span class="insights-title">Fintech Service Health</span>
+                <span class="insights-badge">Operational</span>
+              </div>
+
+              <div class="insights-items-list">
+                <div class="insight-item">
+                  <span class="insight-dot dot-green"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">NPCI UPI Gateway: 100% Up</span>
+                    <span class="insight-desc">Transaction response times running at 420ms average across all banking switches.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <span class="insight-dot dot-blue"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">DigiLocker XML Verification</span>
+                    <span class="insight-desc">Aadhaar and PAN OTP validation operational with sub-second signing latency.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <span class="insight-dot dot-amber"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">Account Aggregator Protocol</span>
+                    <span class="insight-desc">32 Major Banks live for seamless instant statement fetching without PDF uploads.</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
 
-          <section class="ins-section" style="margin-top:24px;">
-            <div class="ins-options-grid">
-              <article class="ins-option-card">
-                <div class="ins-option-icon-wrap ins-icon-health">🆔</div>
-                <h3 class="ins-option-title">Digital KYC & Onboarding</h3>
-                <p class="ins-option-desc">Learn how paperless Aadhaar & PAN verification works seamlessly through DigiLocker.</p>
-              </article>
-              <article class="ins-option-card">
-                <div class="ins-option-icon-wrap ins-icon-vehicle">💳</div>
-                <h3 class="ins-option-title">UPI & Payment Gateways</h3>
-                <p class="ins-option-desc">Understand instant settlements, auto-pay mandates, and secure transaction workflows.</p>
-              </article>
-            </div>
-          </section>
+          </aside>
+
         </div>
-      </main>
+
+      </div>
     </div>
   </div>
+
+  <!-- Interactive Scripts -->
+  <script src="js/main.js"></script>
 </body>
 </html>

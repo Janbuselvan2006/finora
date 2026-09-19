@@ -1,433 +1,611 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Finora Insurance — AI-Powered Insurance Journeys. Understand coverage, demystify policy terminology, analyze documents, and navigate health, life, vehicle, and home insurance with transparent AI guidance.">
-  <meta name="theme-color" content="#0b1329">
+  <meta name="description" content="Finora Insurance — AI-Powered Insurance Journeys. Understand coverage, demystify policy terminology, analyze medical documents, and navigate insurance with transparent AI guidance.">
+  <meta name="theme-color" content="#F7F7F5">
   <title>Insurance Journey — Finora | AI-Powered Financial Journeys</title>
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/insurance.css">
   <link rel="stylesheet" href="css/medical-scanner.css">
 </head>
 <body>
 
   <div class="app-container">
+    <div class="dashboard-viewport">
 
-    <!-- GLOBAL FIXED HEADER / NAVIGATION -->
-    <header class="top-header" role="banner">
-      <div class="header-inner">
-        
-        <!-- Brand Logo & Tagline -->
-        <a href="index.html" class="brand-wrapper" aria-label="Finora Home">
-          <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#brandGrad1)"/>
-            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#brandGrad2)" fill-opacity="0.9"/>
+      <!-- ==================================================================
+           LEFT FLOATING SIDEBAR DOCK (Reference Cilo Inspired)
+           ================================================================== -->
+      <aside class="sidebar-dock" aria-label="Finora Main Navigation">
+        <a href="dashboard.html" class="sidebar-logo-pill" aria-label="Finora Home">
+          <svg class="sidebar-brand-svg" viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#insLogoGrad1)"/>
+            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#insLogoGrad2)" fill-opacity="0.9"/>
             <defs>
-              <linearGradient id="brandGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
+              <linearGradient id="insLogoGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#2563EB"/>
                 <stop offset="1" stop-color="#1D4ED8"/>
               </linearGradient>
-              <linearGradient id="brandGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+              <linearGradient id="insLogoGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#06B6D4"/>
                 <stop offset="1" stop-color="#3B82F6"/>
               </linearGradient>
             </defs>
           </svg>
-          <div class="brand-text-group">
-            <span class="brand-name">Finora</span>
-            <span class="brand-tagline">Simpler Journeys. Brighter Futures.</span>
-          </div>
         </a>
 
-        <!-- Global Navigation Links -->
-        <nav class="nav-links" aria-label="Primary Navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="loan.html" class="nav-link">Loans</a>
-          <a href="insurance.html" class="nav-link active" aria-current="page">Insurance</a>
-          <a href="fintech.html" class="nav-link">Fintech</a>
-          <a href="index.html#ai-assistant" class="nav-link">AI Assistant</a>
-        </nav>
-
-        <!-- Header Actions / Profile -->
-        <div class="header-actions">
-          <div class="header-search">
-            <div class="search-input-wrapper">
-              <svg class="search-icon" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="9" cy="9" r="6"></circle>
-                <line x1="18" y1="18" x2="13.5" y2="13.5"></line>
-              </svg>
-              <input type="search" id="globalSearchInput" class="search-input" placeholder="Search financial topics..." aria-label="Search financial topics">
-              <span class="search-shortcut" aria-hidden="true">Ctrl K</span>
-            </div>
-          </div>
-
-          <button class="btn-icon" id="notificationBtn" aria-label="Notifications (1 unread)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        <nav class="sidebar-nav-container" aria-label="Platform Views">
+          <a href="index.html" class="sidebar-btn" data-tooltip="Dashboard Overview" aria-label="Home Overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
             </svg>
-            <span class="notification-badge" aria-hidden="true"></span>
-          </button>
+          </a>
 
-          <div class="user-profile-badge" id="userProfileBadge" role="button" tabindex="0" aria-label="User Profile Brightlin">
-            <div class="avatar-circle" aria-hidden="true">BB</div>
-            <div class="user-details">
-              <span class="user-greeting">Welcome</span>
-              <span class="user-name">Brightlin</span>
-            </div>
-          </div>
-        </div>
+          <a href="loan.html" class="sidebar-btn" data-tooltip="Loans Journey" aria-label="Loans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="3" y1="21" x2="21" y2="21"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <polyline points="5 6 12 3 19 6"></polyline>
+              <line x1="6" y1="10" x2="6" y2="21"></line>
+              <line x1="10" y1="10" x2="10" y2="21"></line>
+              <line x1="14" y1="10" x2="14" y2="21"></line>
+              <line x1="18" y1="10" x2="18" y2="21"></line>
+            </svg>
+          </a>
 
-      </div>
-    </header>
+          <!-- ACTIVE ON INSURANCE PAGE -->
+          <a href="insurance.html" class="sidebar-btn active" data-tooltip="Insurance Journey" aria-current="page" aria-label="Insurance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </a>
 
-    <!-- APP BODY LAYOUT -->
-    <div class="app-body">
+          <a href="fintech.html" class="sidebar-btn" data-tooltip="Fintech Services" aria-label="Fintech">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </a>
 
-      <!-- LEFT SIDEBAR -->
-      <aside class="sidebar" aria-label="Journey Sidebar Navigation">
-        <nav class="sidebar-nav">
-          <a href="index.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <span>Home</span>
-          </a>
-          <a href="loan.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>Loans</span>
-          </a>
-          <a href="insurance.html" class="sidebar-link active" aria-current="page">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <span>Insurance</span>
-          </a>
-          <a href="fintech.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <span>Fintech</span>
-          </a>
-          <a href="index.html#ai-assistant" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
-            <span>AI Assistant</span>
-          </a>
-          <a href="index.html#how-it-works" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            <span>My Journey</span>
+          <a href="#aiSection" class="sidebar-btn" data-tooltip="Finora AI" aria-label="AI Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
           </a>
         </nav>
 
-        <div class="sidebar-quote-card">
-          <p class="sidebar-quote-text">“Protection today for a brighter tomorrow.”</p>
-          <p class="sidebar-quote-subtext">Finora Insurance — Simpler Journeys.</p>
+        <div class="sidebar-footer-nav" aria-label="Utility Controls">
+          <button type="button" class="sidebar-btn" data-tooltip="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <button type="button" class="sidebar-btn" data-tooltip="Help & FAQ" aria-label="Help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </button>
         </div>
       </aside>
 
-      <!-- MAIN CONTENT AREA -->
-      <main class="main-content" id="mainContent" role="main">
+      <!-- MAIN FLOW VIEWPORT -->
+      <div class="dashboard-main-flow">
 
-        <div class="ins-page-container">
-          
-          <!-- BREADCRUMB -->
-          <nav class="ins-breadcrumb-nav" aria-label="Breadcrumb">
-            <ol class="ins-breadcrumb-list">
-              <li class="ins-breadcrumb-item">
-                <a href="index.html" class="ins-breadcrumb-link">Home</a>
-              </li>
-              <li class="ins-breadcrumb-item">
-                <span class="ins-breadcrumb-separator" aria-hidden="true">></span>
-                <span class="ins-breadcrumb-current" aria-current="page">Insurance</span>
-              </li>
-            </ol>
-          </nav>
+        <!-- TOP PILL HEADER -->
+        <header class="top-pill-header" role="banner">
+          <div class="header-left-search">
+            <div class="search-pill-container">
+              <svg class="search-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" class="search-pill-input" placeholder="Search health plans, term rules, coverage details..." aria-label="Search insurance">
+              <span class="search-shortcut-badge">⌘K</span>
+            </div>
+          </div>
 
-          <!-- 2-COLUMN LAYOUT -->
-          <div class="ins-layout-grid">
-            
-            <!-- LEFT MAIN CONTENT COLUMN -->
-            <div class="ins-main-column">
-              
-              <!-- HERO SECTION -->
-              <section class="ins-hero-card" aria-labelledby="insHeroHeading">
-                <div class="ins-hero-glow-accent" aria-hidden="true"></div>
+          <div class="header-right-actions">
+            <div class="team-avatar-pill">
+              <div class="avatar-stack">
+                <div class="avatar-img-sm" style="background:#E2E8F0;">👨‍💼</div>
+                <div class="avatar-img-sm" style="background:#CBD5E1;">👩‍⚕️</div>
+              </div>
+              <span class="avatar-more-count">+2</span>
+            </div>
 
-                <div class="ins-hero-grid">
-                  
-                  <div class="ins-hero-content">
-                    <div class="ins-hero-eyebrow">
-                      <span>AI-POWERED INSURANCE JOURNEY</span>
-                    </div>
+            <div class="theme-pill-toggle">
+              <button type="button" class="theme-mode-btn active" id="themeLightBtn" aria-label="Light Mode">☀️</button>
+              <button type="button" class="theme-mode-btn" id="themeDarkBtn" aria-label="Dark Mode">🌙</button>
+            </div>
 
-                    <h1 id="insHeroHeading" class="ins-hero-heading">
-                      Insurance, made <span class="ins-heading-highlight">easier</span> to understand.
-                    </h1>
+            <button type="button" class="header-icon-pill" aria-label="Notifications" onclick="alert('Notification: Policy restore benefits updated.')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="unread-indicator"></span>
+            </button>
 
-                    <p class="ins-hero-supporting">
-                      Understand coverage. Explore key terms. Navigate the journey with AI guidance.
-                    </p>
+            <div class="user-profile-pill">
+              <div class="user-avatar-circle">BB</div>
+              <span class="user-pill-name">Brightlin</span>
+            </div>
 
-                    <p class="ins-hero-desc">
-                      Insurance can involve unfamiliar terminology, detailed policy information and multiple steps. Finora helps users understand the journey before they proceed.
-                    </p>
+            <a href="#medicalOcrSection" class="header-action-btn-black">
+              <span>Scan Certificate</span>
+              <span>→</span>
+            </a>
+          </div>
+        </header>
 
-                    <div class="ins-hero-btn-group">
-                      <a href="#journeySection" class="btn-ins-primary">
-                        <span>Start Insurance Journey</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
+        <!-- DASHBOARD 2-COLUMN CONTAINER -->
+        <div class="dashboard-grid-container">
 
-                  <div class="ins-hero-visual-wrapper">
-                    <div class="ins-hero-visual-container">
-                      <div class="ins-float-badge ins-float-badge-health">🛡️ Health Cover</div>
-                      <div class="ins-float-badge ins-float-badge-life">👥 Life Protection</div>
-                      <div class="ins-float-badge ins-float-badge-vehicle">🚗 Vehicle Security</div>
-                      <div class="ins-float-badge ins-float-badge-home">🏠 Home Shield</div>
-                    </div>
-                  </div>
+          <!-- CENTER MAIN CONTENT COLUMN -->
+          <main class="dashboard-center-column" role="main">
 
-              </section>
-
-              <!-- AI MEDICAL DOCUMENT OCR FINDER -->
-              <section class="med-scanner-container" id="medicalOcrSection">
-                <div class="med-header">
-                  <div class="med-title-group">
-                    <h2>📄 AI Medical Document OCR & Policy Recommendation</h2>
-                    <p>Upload a doctor certificate, discharge summary or prescription to find your best-fit insurance policy.</p>
-                  </div>
-                  <div class="med-ai-pill">✨ Gemini OCR Vision Active</div>
+            <!-- HEADING ROW -->
+            <div class="dashboard-heading-row">
+              <div class="dashboard-heading-group">
+                <div class="dashboard-greeting-eyebrow">
+                  <span>🛡️</span>
+                  <span>Protection & Wellness</span>
                 </div>
+                <h1 class="dashboard-page-title">Insurance Journey</h1>
+              </div>
 
-                <div class="med-intake-section">
-                  <div class="med-upload-zone" onclick="document.getElementById('medFileInputHTML').click()">
-                    <div style="font-size: 2.2rem; margin-bottom: 8px;">🏥</div>
-                    <div style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px;">Upload Doctor Certificate / Prescriptions</div>
-                    <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 12px;">Supports PDF, PNG, JPG or clinical notes</div>
-                    <input type="file" id="medFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
-                    <button type="button" class="btn-file-select">📁 Select Document File</button>
-                  </div>
+              <div class="dashboard-heading-controls">
+                <button type="button" class="pill-icon-control" title="Filter Policies">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                  </svg>
+                </button>
+                <a href="#medicalOcrSection" class="btn-black-compact">
+                  <span>+ AI Document Scan</span>
+                </a>
+              </div>
+            </div>
 
-                  <div class="med-presets-card">
-                    <div style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1; margin-bottom: 10px;">Or test with Sample Certificates:</div>
-                    <div class="med-preset-list">
-                      <button class="med-preset-item active" data-preset-key="diabetes">
-                        <div style="font-size: 1.3rem;">🩸</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Type 2 Diabetes & Hypertension</div>
-                          <div style="font-size: 0.75rem; color: #94a3b8;">Brightlin Bright (44 yrs) • HbA1c 7.8%</div>
-                        </div>
-                      </button>
-                      <button class="med-preset-item" data-preset-key="knee">
-                        <div style="font-size: 1.3rem;">🦴</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Knee Replacement Discharge Summary</div>
-                          <div style="font-size: 0.75rem; color: #94a3b8;">Sunita Sharma (58 yrs) • Osteoarthritis</div>
-                        </div>
-                      </button>
-                      <button class="med-preset-item" data-preset-key="cardiac">
-                        <div style="font-size: 1.3rem;">🫀</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Coronary Stent & Cardiac Report</div>
-                          <div style="font-size: 0.75rem; color: #94a3b8;">Rajesh Verma (52 yrs) • Single Vessel Stent</div>
-                        </div>
-                      </button>
-                    </div>
+            <!-- 4-CARD KEY METRICS ROW -->
+            <section class="metrics-row-grid" aria-label="Key Insurance Metrics">
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Active Coverage</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">₹25.0 Lakhs</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">100% Restore</span>
+                    <span>Zero Co-Pay</span>
                   </div>
                 </div>
+              </article>
 
-                <!-- OCR Loader -->
-                <div id="medOcrLoader" style="display: none; text-align: center; padding: 20px; background: rgba(30,41,59,0.7); border-radius: 12px; margin-bottom: 20px;">
-                  <div style="color: #06b6d4; font-weight: 600; margin-bottom: 4px;">Scanning Doctor Certificate with AI OCR...</div>
-                  <div style="color: #94a3b8; font-size: 0.85rem;">Extracting diagnosis, pre-existing conditions & calculating 7-dimension criteria match...</div>
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Claim Settlement</span>
+                  <span class="metric-arrow-badge">↗</span>
                 </div>
-
-                <!-- Extracted Card -->
-                <div class="med-extracted-card" id="medExtractedCard">
-                  <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
-                    <strong style="color: #10b981;">✅ Extracted Clinical Parameters</strong>
-                    <span id="extFacility" style="font-size: 0.8rem; color: #cbd5e1;">Apex Healthcare Super Speciality</span>
-                  </div>
-                  <div class="med-extracted-grid">
-                    <div class="med-field-box">
-                      <div class="med-field-label">Patient</div>
-                      <div class="med-field-value" id="extPatient">Brightlin Bright (44 yrs, Male)</div>
-                    </div>
-                    <div class="med-field-box">
-                      <div class="med-field-label">Primary Diagnosis</div>
-                      <div class="med-field-value" id="extDiagnosis" style="color: #38bdf8;">Type 2 Diabetes Mellitus</div>
-                    </div>
-                    <div class="med-field-box">
-                      <div class="med-field-label">Pre-Existing Conditions</div>
-                      <div id="extPeds"><span class="ped-tag">⚠️ Diabetes</span><span class="ped-tag">⚠️ Hypertension</span></div>
-                    </div>
-                    <div class="med-field-box">
-                      <div class="med-field-label">Estimated Coverage</div>
-                      <div class="med-field-value" id="extCost" style="color: #10b981;">₹6,50,000</div>
-                    </div>
-                  </div>
-                  <div style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
-                    <strong>💡 Clinical Note:</strong> <span id="extNote">Requires policy with short PED waiting period for metabolic disorders.</span>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">98.2% Ratio</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-blue">Verified</span>
+                    <span>IRDAI Compliant</span>
                   </div>
                 </div>
+              </article>
 
-                <!-- Results & Best Fit Card -->
-                <div id="medResultsArea">
-                  <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 14px;">🎯 Recommended Best Fit Policy</h3>
-                  <div class="policy-card top-match">
-                    <div class="best-match-ribbon">⭐ AI Best Match #1</div>
-                    <div style="font-size: 0.75rem; color: #94a3b8;" id="resBestProvider">Care Health Insurance</div>
-                    <h4 style="font-size: 1.2rem; color: #fff; margin: 4px 0;" id="resBestPolicy">Care Supreme Plan</h4>
-                    <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;" id="resFitScore">🎯 96% Match Score</div>
-                    
-                    <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
-                      <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #94a3b8;">Annual Premium:</span>
-                        <strong style="color: #60a5fa;" id="resPremium">₹14,500 / yr</strong>
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">PED Waiting Period</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">12 Months</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-amber">Day-1 Rider</span>
+                    <span>Metabolic diseases</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">AI Best Fit Match</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">Care Supreme</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">96% Score</span>
+                    <span>Single Private Room</span>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <!-- 5-STEP INSURANCE JOURNEY STEPPER -->
+            <section class="journey-centerpiece-card" id="insuranceJourney">
+              <div class="journey-card-header">
+                <div class="journey-header-title-group">
+                  <h2 class="journey-card-title">Your Insurance Journey</h2>
+                  <p class="journey-card-subtitle">From understanding policy terms to filing hassle-free cashless claims.</p>
+                </div>
+                <div class="journey-progress-pill">
+                  <span class="progress-dot"></span>
+                  <span>Active Step: 03 Prepare</span>
+                </div>
+              </div>
+
+              <div class="journey-stepper-track">
+                <div class="journey-step-btn">
+                  <span class="step-num-badge">01</span>
+                  <span class="step-title-text">Understand</span>
+                  <div class="step-status-bar"><div class="step-status-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="journey-step-btn">
+                  <span class="step-num-badge">02</span>
+                  <span class="step-title-text">Explore</span>
+                  <div class="step-status-bar"><div class="step-status-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="journey-step-btn active-step">
+                  <span class="step-num-badge">03</span>
+                  <span class="step-title-text">Prepare</span>
+                  <div class="step-status-bar"><div class="step-status-fill" style="width: 60%;"></div></div>
+                </div>
+                <div class="journey-step-btn">
+                  <span class="step-num-badge">04</span>
+                  <span class="step-title-text">Navigate</span>
+                  <div class="step-status-bar"><div class="step-status-fill" style="width: 0%;"></div></div>
+                </div>
+                <div class="journey-step-btn">
+                  <span class="step-num-badge">05</span>
+                  <span class="step-title-text">Complete</span>
+                  <div class="step-status-bar"><div class="step-status-fill" style="width: 0%;"></div></div>
+                </div>
+              </div>
+
+              <div class="journey-step-detail-box">
+                <div class="step-detail-text-group">
+                  <h3 class="step-detail-heading">
+                    <span>03 — AI Medical Document OCR & Condition Assessment</span>
+                  </h3>
+                  <p class="step-detail-paragraph">
+                    Upload doctor certificates or prescriptions. Finora AI scans diagnosis, evaluates pre-existing conditions (PED), and matches policies with the shortest waiting period and zero room rent sub-limits.
+                  </p>
+                  <div class="step-detail-ai-tip">
+                    <span class="tip-sparkle">✦</span>
+                    <span>AI Tip: Declaring medical history upfront ensures 100% claim settlement without disputes.</span>
+                  </div>
+                </div>
+
+                <a href="#medicalOcrSection" class="btn-journey-action-black">
+                  <span>Scan Medical Certificate</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </section>
+
+            <!-- ==============================================================
+                 AI MEDICAL DOCUMENT OCR FINDER & POLICY RECOMMENDATION
+                 ============================================================== -->
+            <section class="med-scanner-container" id="medicalOcrSection">
+              <div class="med-header">
+                <div class="med-title-group">
+                  <h2>📄 AI Medical Document OCR & Policy Recommendation</h2>
+                  <p>Upload a doctor certificate, discharge summary or prescription to find your best-fit insurance policy.</p>
+                </div>
+                <div class="med-ai-pill">✨ Gemini OCR Vision Active</div>
+              </div>
+
+              <!-- Intake Section -->
+              <div class="med-intake-section">
+                <div class="med-upload-zone" onclick="document.getElementById('medFileInputHTML').click()">
+                  <div style="font-size: 2.2rem; margin-bottom: 8px;">🏥</div>
+                  <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Upload Doctor Certificate / Prescriptions</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px;">Supports PDF, PNG, JPG or clinical notes</div>
+                  <input type="file" id="medFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
+                  <button type="button" class="btn-file-select">📁 Select Document File</button>
+                </div>
+
+                <div class="med-presets-card">
+                  <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 10px;">Or test with Sample Certificates:</div>
+                  <div class="med-preset-list">
+                    <button class="med-preset-item active" data-preset-key="diabetes">
+                      <div class="med-preset-icon">🩸</div>
+                      <div class="med-preset-info">
+                        <div class="med-preset-name">Type 2 Diabetes & Hypertension</div>
+                        <div class="med-preset-sub">Brightlin Bright (44 yrs) • HbA1c 7.8%</div>
                       </div>
-                      <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #94a3b8;">PED Waiting Period:</span>
-                        <span style="color: #34d399;" id="resPedWait">24 Months (12m with rider)</span>
+                    </button>
+                    <button class="med-preset-item" data-preset-key="knee">
+                      <div class="med-preset-icon">🦴</div>
+                      <div class="med-preset-info">
+                        <div class="med-preset-name">Knee Replacement Discharge Summary</div>
+                        <div class="med-preset-sub">Sunita Sharma (58 yrs) • Osteoarthritis</div>
                       </div>
-                      <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #94a3b8;">Room Rent Limit:</span>
-                        <span id="resRoomRent">No Capping (Single Private Room)</span>
+                    </button>
+                    <button class="med-preset-item" data-preset-key="cardiac">
+                      <div class="med-preset-icon">🫀</div>
+                      <div class="med-preset-info">
+                        <div class="med-preset-name">Coronary Stent & Cardiac Report</div>
+                        <div class="med-preset-sub">Rajesh Verma (52 yrs) • Single Vessel Stent</div>
                       </div>
-                    </div>
-
-                    <div style="background: rgba(15, 23, 42, 0.7); border-left: 3px solid #38bdf8; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
-                      <div style="font-size: 0.75rem; font-weight: 700; color: #38bdf8; margin-bottom: 4px;">Why Finora AI Recommends This:</div>
-                      <ul id="resRationale" style="margin: 0; padding-left: 14px; font-size: 0.78rem; color: #cbd5e1;">
-                        <li>PED rider reduces waiting period for Diabetes/BP down to 12 months.</li>
-                        <li>No room rent limit allows single private room stays.</li>
-                      </ul>
-                    </div>
-
-                    <button type="button" class="btn-select-policy" onclick="alert('Policy selection registered! Your Finora AI application has been initiated.')">
-                      Select & Apply for Policy →
                     </button>
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <!-- EXPLORE INSURANCE JOURNEYS -->
-              <section class="ins-section" id="exploreSection" aria-labelledby="exploreHeading">
-                <div class="ins-section-header-flex">
-                  <div class="ins-section-title-wrap">
-                    <h2 id="exploreHeading" class="ins-section-title">Explore Insurance Journeys</h2>
-                    <p class="ins-section-subhead">Different needs can involve different types of insurance. Start by understanding the journey.</p>
+              <!-- OCR Loader -->
+              <div id="medOcrLoader" style="display: none; text-align: center; padding: 20px; background: var(--bg-surface-subtle); border-radius: 12px; margin-bottom: 20px;">
+                <div style="color: var(--accent-blue); font-weight: 600; margin-bottom: 4px;">Scanning Doctor Certificate with AI OCR...</div>
+                <div style="color: var(--text-muted); font-size: 0.85rem;">Extracting diagnosis, pre-existing conditions & calculating 7-dimension criteria match...</div>
+              </div>
+
+              <!-- Extracted Card -->
+              <div class="med-extracted-card" id="medExtractedCard">
+                <div class="med-extracted-header">
+                  <strong style="color: var(--accent-emerald);">✅ Extracted Clinical Parameters</strong>
+                  <span id="extFacility" style="font-size: 0.8rem; color: var(--text-secondary);">Apex Healthcare Super Speciality</span>
+                </div>
+                <div class="med-extracted-grid">
+                  <div class="med-field-box">
+                    <div class="med-field-label">Patient</div>
+                    <div class="med-field-value" id="extPatient">Brightlin Bright (44 yrs, Male)</div>
+                  </div>
+                  <div class="med-field-box">
+                    <div class="med-field-label">Primary Diagnosis</div>
+                    <div class="med-field-value" id="extDiagnosis" style="color: var(--accent-blue);">Type 2 Diabetes Mellitus</div>
+                  </div>
+                  <div class="med-field-box">
+                    <div class="med-field-label">Pre-Existing Conditions</div>
+                    <div id="extPeds"><span class="ped-tag">⚠️ Diabetes</span><span class="ped-tag">⚠️ Hypertension</span></div>
+                  </div>
+                  <div class="med-field-box">
+                    <div class="med-field-label">Estimated Coverage</div>
+                    <div class="med-field-value" id="extCost" style="color: var(--accent-emerald);">₹6,50,000</div>
                   </div>
                 </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); background: var(--bg-surface); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-subtle);">
+                  <strong>💡 Clinical Note:</strong> <span id="extNote">Requires policy with short PED waiting period for metabolic disorders.</span>
+                </div>
+              </div>
 
-                <div class="ins-options-grid">
+              <!-- Results & Best Fit Card -->
+              <div id="medResultsArea">
+                <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 14px;">🎯 Recommended Best Fit Policy</h3>
+                <div class="policy-card top-match">
+                  <div class="best-match-ribbon">⭐ AI Best Match #1</div>
+                  <div class="policy-card-header">
+                    <div class="policy-provider" id="resBestProvider">Care Health Insurance</div>
+                    <h4 class="policy-name" id="resBestPolicy">Care Supreme Plan</h4>
+                    <div class="policy-fit-badge" id="resFitScore">🎯 96% Match Score</div>
+                  </div>
                   
-                  <!-- Card 1: Health Insurance -->
-                  <article class="ins-option-card" data-ins-type="health" tabindex="0" role="button">
-                    <div class="ins-option-icon-wrap ins-icon-health" aria-hidden="true">🛡️</div>
-                    <div class="ins-option-category-tag">Medical & Wellness</div>
-                    <h3 class="ins-option-title">Health Insurance</h3>
-                    <p class="ins-option-desc">Understand basic health insurance concepts, coverage, policy terms and claims.</p>
-                  </article>
+                  <div class="policy-features-mini">
+                    <div class="mini-feature-item">
+                      <span class="mini-feature-label">Annual Premium:</span>
+                      <strong style="color: var(--text-primary);" id="resPremium">₹14,500 / yr</strong>
+                    </div>
+                    <div class="mini-feature-item">
+                      <span class="mini-feature-label">PED Waiting Period:</span>
+                      <span style="color: var(--accent-emerald);" id="resPedWait">24 Months (12m with rider)</span>
+                    </div>
+                    <div class="mini-feature-item">
+                      <span class="mini-feature-label">Room Rent Limit:</span>
+                      <span id="resRoomRent">No Capping (Single Private Room)</span>
+                    </div>
+                  </div>
 
-                  <!-- Card 2: Life Insurance -->
-                  <article class="ins-option-card" data-ins-type="life" tabindex="0" role="button">
-                    <div class="ins-option-icon-wrap ins-icon-life" aria-hidden="true">👥</div>
-                    <div class="ins-option-category-tag">Family Protection</div>
-                    <h3 class="ins-option-title">Life Insurance</h3>
-                    <p class="ins-option-desc">Learn about life insurance concepts, policy terms, beneficiaries and the overall journey.</p>
-                  </article>
+                  <div class="ai-rationale-box">
+                    <div class="ai-rationale-title">Why Finora AI Recommends This:</div>
+                    <ul id="resRationale" class="ai-rationale-list">
+                      <li>PED rider reduces waiting period for Diabetes/BP down to 12 months.</li>
+                      <li>No room rent limit allows single private room stays without deduction penalties.</li>
+                    </ul>
+                  </div>
 
-                  <!-- Card 3: Vehicle Insurance -->
-                  <article class="ins-option-card" data-ins-type="vehicle" tabindex="0" role="button">
-                    <div class="ins-option-icon-wrap ins-icon-vehicle" aria-hidden="true">🚗</div>
-                    <div class="ins-option-category-tag">Motor & Mobility</div>
-                    <h3 class="ins-option-title">Vehicle Insurance</h3>
-                    <p class="ins-option-desc">Understand vehicle insurance coverage, policy terms and the claim process.</p>
-                  </article>
-
-                  <!-- Card 4: Home Insurance -->
-                  <article class="ins-option-card" data-ins-type="home" tabindex="0" role="button">
-                    <div class="ins-option-icon-wrap ins-icon-home" aria-hidden="true">🏠</div>
-                    <div class="ins-option-category-tag">Property & Asset</div>
-                    <h3 class="ins-option-title">Home Insurance</h3>
-                    <p class="ins-option-desc">Learn how home insurance works and understand common coverage concepts.</p>
-                  </article>
-
+                  <button type="button" class="btn-select-policy" onclick="alert('Policy selection registered! Your Finora AI application has been initiated.')">
+                    Select & Apply for Policy →
+                  </button>
                 </div>
-              </section>
+              </div>
+            </section>
 
-              <!-- TERMINOLOGY GRID -->
-              <section class="ins-section" id="terminologySection" aria-labelledby="terminologyHeading">
-                <div class="ins-section-header-flex">
-                  <div class="ins-section-title-wrap">
-                    <h2 id="terminologyHeading" class="ins-section-title">Insurance Key Terms</h2>
-                    <p class="ins-section-subhead">Understand important insurance terms without complicated language.</p>
+            <!-- EXPLORE INSURANCE JOURNEYS (4 CLEAN CARDS) -->
+            <section class="tools-section-wrap" id="exploreSection">
+              <h3 class="section-title-clean">Explore Insurance Journeys</h3>
+              <div class="tools-grid-clean">
+                <div class="clean-tool-card">
+                  <div class="tool-icon-circle">🛡️</div>
+                  <div class="tool-text-group">
+                    <span class="tool-name">Health Insurance</span>
+                    <span class="tool-tagline">Hospitalization & wellness</span>
                   </div>
                 </div>
-
-                <div class="ins-terms-grid">
-                  <div class="ins-term-card">
-                    <div class="ins-term-header">
-                      <div class="ins-term-icon">💳</div>
-                      <h3 class="ins-term-name">Premium</h3>
-                    </div>
-                    <p class="ins-term-explanation">The amount a policyholder pays to maintain insurance coverage.</p>
-                  </div>
-
-                  <div class="ins-term-card">
-                    <div class="ins-term-header">
-                      <div class="ins-term-icon">🛡️</div>
-                      <h3 class="ins-term-name">Coverage</h3>
-                    </div>
-                    <p class="ins-term-explanation">The specific risks, events, treatments, or situations protected by the policy.</p>
-                  </div>
-
-                  <div class="ins-term-card">
-                    <div class="ins-term-header">
-                      <div class="ins-term-icon">📄</div>
-                      <h3 class="ins-term-name">Policy</h3>
-                    </div>
-                    <p class="ins-term-explanation">The legal contract between the policyholder and the insurance company.</p>
-                  </div>
-
-                  <div class="ins-term-card">
-                    <div class="ins-term-header">
-                      <div class="ins-term-icon">📝</div>
-                      <h3 class="ins-term-name">Claim</h3>
-                    </div>
-                    <p class="ins-term-explanation">A formal request submitted to the insurer asking for payout when a covered event occurs.</p>
+                <div class="clean-tool-card">
+                  <div class="tool-icon-circle">👥</div>
+                  <div class="tool-text-group">
+                    <span class="tool-name">Life Insurance</span>
+                    <span class="tool-tagline">Term & family protection</span>
                   </div>
                 </div>
-              </section>
-
-            </div>
-
-            <!-- RIGHT COMPANION -->
-            <aside class="ins-side-column">
-              <div class="ins-ai-card">
-                <div class="ins-ai-card-header">
-                  <span class="ins-ai-title">Finora AI</span>
-                  <span class="ins-ai-status-pill">Online</span>
+                <div class="clean-tool-card">
+                  <div class="tool-icon-circle">🚗</div>
+                  <div class="tool-text-group">
+                    <span class="tool-name">Vehicle Insurance</span>
+                    <span class="tool-tagline">Motor & zero-dep cover</span>
+                  </div>
                 </div>
-                <div class="ins-ai-chat-body">
-                  <div class="ai-bubble-msg">
-                    <div class="ai-bubble-content">
-                      Hi! I'm Finora AI 👋 I can help you understand insurance policies, compare coverage, and clarify terminology.
-                    </div>
+                <div class="clean-tool-card">
+                  <div class="tool-icon-circle">🏠</div>
+                  <div class="tool-text-group">
+                    <span class="tool-name">Home Insurance</span>
+                    <span class="tool-tagline">Property & structure shield</span>
                   </div>
                 </div>
               </div>
-            </aside>
+            </section>
 
-          </div>
+            <!-- TERMINOLOGY BREAKDOWN -->
+            <section class="transparency-clean-card" id="terminologySection">
+              <div class="transparency-header">
+                <div class="transparency-icon">📖</div>
+                <div class="transparency-title-wrap">
+                  <h3 class="transparency-title">Insurance Key Terms Explained</h3>
+                  <span class="transparency-sub">Understanding key policy conditions without complicated legal jargon.</span>
+                </div>
+              </div>
+              <div class="transparency-grid-4">
+                <div class="transparency-item">
+                  <span class="transparency-item-title">Premium</span>
+                  <p class="transparency-item-desc">The periodic amount paid to maintain active policy protection.</p>
+                </div>
+                <div class="transparency-item">
+                  <span class="transparency-item-title">Sum Insured</span>
+                  <p class="transparency-item-desc">Maximum annual payout limit available for covered medical claims.</p>
+                </div>
+                <div class="transparency-item">
+                  <span class="transparency-item-title">Waiting Period</span>
+                  <p class="transparency-item-desc">Time duration required before pre-existing conditions become claimable.</p>
+                </div>
+                <div class="transparency-item">
+                  <span class="transparency-item-title">Room Rent Capping</span>
+                  <p class="transparency-item-desc">Daily limit on hospital room charges that avoids proportionate deductions.</p>
+                </div>
+              </div>
+            </section>
+
+          </main>
+
+          <!-- RIGHT COLUMN: FINORA AI COMPANION & INSIGHTS -->
+          <aside class="dashboard-right-column" id="aiSection">
+            
+            <div class="ai-companion-card">
+              <div class="ai-card-header">
+                <div class="ai-header-brand">
+                  <div class="ai-sparkle-dot">✦</div>
+                  <span class="ai-card-title">Finora AI</span>
+                </div>
+                <span class="ai-status-badge">
+                  <span class="ai-status-pulse"></span>
+                  <span>Online</span>
+                </span>
+              </div>
+
+              <div class="ai-dialogue-body">
+                <div class="ai-msg-bubble">
+                  Hi! I'm Finora AI 👋 I can help you evaluate medical document findings, compare insurance plans, and explain policy terms.
+                </div>
+              </div>
+
+              <div class="ai-chips-container">
+                <span class="ai-chips-label">Quick Actions</span>
+                <div class="ai-chips-list">
+                  <a href="#medicalOcrSection" class="ai-chip-pill">
+                    <span>Scan medical report</span>
+                    <span class="chip-arrow">→</span>
+                  </a>
+                  <a href="#terminologySection" class="ai-chip-pill">
+                    <span>Explain waiting period</span>
+                    <span class="chip-arrow">→</span>
+                  </a>
+                  <a href="#exploreSection" class="ai-chip-pill">
+                    <span>Compare room rent limits</span>
+                    <span class="chip-arrow">→</span>
+                  </a>
+                  <a href="#medicalOcrSection" class="ai-chip-pill">
+                    <span>Check PED riders</span>
+                    <span class="chip-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+
+              <form class="ai-chat-input-form" onsubmit="event.preventDefault(); alert('Finora AI: Analyzing your query against IRDAI guidelines.');">
+                <input type="text" class="ai-chat-text-input" placeholder="Ask about insurance terms...">
+                <button type="submit" class="ai-send-btn-black">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Finora Insights -->
+            <div class="insights-feed-card">
+              <div class="insights-card-title">Insurance Insights</div>
+              
+              <div class="insights-items-list">
+                <div class="insight-item-row">
+                  <div class="insight-icon-pill icon-blue">🛡️</div>
+                  <div class="insight-content-group">
+                    <span class="insight-heading">Coverage Restoration</span>
+                    <span class="insight-subtext">Automatic 100% reinstate active</span>
+                    <a href="#medicalOcrSection" class="insight-action-link">View guide →</a>
+                  </div>
+                </div>
+
+                <div class="insight-item-row">
+                  <div class="insight-icon-pill icon-amber">⏳</div>
+                  <div class="insight-content-group">
+                    <span class="insight-heading">Waiting Period Waiver</span>
+                    <span class="insight-subtext">Day-1 riders save up to 2 years</span>
+                    <a href="#medicalOcrSection" class="insight-action-link">Check rider →</a>
+                  </div>
+                </div>
+
+                <div class="insight-item-row">
+                  <div class="insight-icon-pill icon-amber">🏥</div>
+                  <div class="insight-content-group">
+                    <span class="insight-heading">Cashless Hospital Network</span>
+                    <span class="insight-subtext">14,200+ network hospitals</span>
+                    <a href="#exploreSection" class="insight-action-link">Hospital list →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </aside>
 
         </div>
 
-      </main>
-    </div>
+        <!-- FOOTER -->
+        <footer class="dashboard-site-footer">
+          <div class="footer-left-brand">
+            <span class="footer-brand-title">Finora</span>
+            <span>• Simpler Journeys. Brighter Futures.</span>
+          </div>
+          <div class="footer-nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="loan.html">Loans</a>
+            <a href="insurance.html">Insurance</a>
+            <a href="fintech.html">Fintech</a>
+            <span>© 2026 Finora Inc.</span>
+          </div>
+        </footer>
 
+      </div>
+    </div>
   </div>
 
+  <script src="js/main.js"></script>
   <script src="js/insurance.js"></script>
 </body>
 </html>

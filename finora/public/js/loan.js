@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
       bestType: 'Public Sector Bank',
       matchScore: '98%',
       roi: '8.40% p.a.',
-      emi: '₹38,767 / mo',
       fee: '0.15% (Min ₹2,000)',
       prepay: 'Nil (0% on floating)',
       speed: '5-7 working days',
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
       bestType: 'Private Sector Bank',
       matchScore: '96%',
       roi: '8.50% p.a.',
-      emi: '₹39,058 / mo',
       fee: '0.50% or ₹3,000',
       prepay: 'Nil on floating rates',
       speed: '3-5 days',
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
       bestType: 'Private Sector Bank',
       matchScore: '95%',
       roi: '8.60% p.a.',
-      emi: '₹39,350 / mo',
       fee: '0.50% of loan amount',
       prepay: 'Nil on floating rates',
       speed: '3-5 days',
@@ -90,6 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activePreset = PRESETS['tech-lead'];
 
+  function recalculateEmi() {
+    const rateVal = parseFloat(activePreset.roi) || 8.4;
+    const monthlyRate = rateVal / (12 * 100);
+    const months = currentTenure * 12;
+    const emi = (currentAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+    const rounded = Math.round(emi);
+    const emiEl = document.getElementById('resLenderEmi');
+    if (emiEl) {
+      emiEl.textContent = `₹${rounded.toLocaleString('en-IN')} / mo`;
+    }
+  }
+
   function updateDisplay() {
     if (!ocrLoader || !extractedCard || !resultsArea) return;
 
@@ -101,23 +110,38 @@ document.addEventListener('DOMContentLoaded', () => {
       ocrLoader.style.display = 'none';
 
       // Extracted Profile
-      document.getElementById('loanExtName').textContent = activePreset.name;
-      document.getElementById('loanExtEmployer').textContent = activePreset.employer;
-      document.getElementById('loanExtNetSalary').textContent = activePreset.netSalary;
-      document.getElementById('loanExtGrossSalary').textContent = activePreset.grossSalary;
-      document.getElementById('loanExtEmi').textContent = activePreset.existingEmi;
-      document.getElementById('loanExtCibil').textContent = activePreset.cibil;
-      document.getElementById('loanExtNotes').textContent = activePreset.notes;
+      const nameEl = document.getElementById('loanExtName');
+      if (nameEl) nameEl.textContent = activePreset.name;
+      const empEl = document.getElementById('loanExtEmployer');
+      if (empEl) empEl.textContent = activePreset.employer;
+      const netEl = document.getElementById('loanExtNetSalary');
+      if (netEl) netEl.textContent = activePreset.netSalary;
+      const grossEl = document.getElementById('loanExtGrossSalary');
+      if (grossEl) grossEl.textContent = activePreset.grossSalary;
+      const emiOblEl = document.getElementById('loanExtEmi');
+      if (emiOblEl) emiOblEl.textContent = activePreset.existingEmi;
+      const cibilEl = document.getElementById('loanExtCibil');
+      if (cibilEl) cibilEl.textContent = activePreset.cibil;
+      const notesEl = document.getElementById('loanExtNotes');
+      if (notesEl) notesEl.textContent = activePreset.notes;
 
       // Recommended Lender
-      document.getElementById('resBestLender').textContent = activePreset.bestLender;
-      document.getElementById('resLenderType').textContent = activePreset.bestType;
-      document.getElementById('resLenderMatch').textContent = `🎯 ${activePreset.matchScore} Match Score`;
-      document.getElementById('resLenderRoi').textContent = activePreset.roi;
-      document.getElementById('resLenderEmi').textContent = activePreset.emi;
-      document.getElementById('resLenderFee').textContent = activePreset.fee;
-      document.getElementById('resLenderPrepay').textContent = activePreset.prepay;
-      document.getElementById('resLenderSpeed').textContent = `⚡ ${activePreset.speed}`;
+      const lenderEl = document.getElementById('resBestLender');
+      if (lenderEl) lenderEl.textContent = `${activePreset.bestLender} — ${currentLoanType.toUpperCase()} Loan`;
+      const typeEl = document.getElementById('resLenderType');
+      if (typeEl) typeEl.textContent = activePreset.bestType;
+      const matchEl = document.getElementById('resLenderMatch');
+      if (matchEl) matchEl.textContent = `🎯 ${activePreset.matchScore} Match Score`;
+      const roiEl = document.getElementById('resLenderRoi');
+      if (roiEl) roiEl.textContent = activePreset.roi;
+      const feeEl = document.getElementById('resLenderFee');
+      if (feeEl) feeEl.textContent = activePreset.fee;
+      const prepayEl = document.getElementById('resLenderPrepay');
+      if (prepayEl) prepayEl.textContent = activePreset.prepay;
+      const speedEl = document.getElementById('resLenderSpeed');
+      if (speedEl) speedEl.textContent = `⚡ ${activePreset.speed}`;
+
+      recalculateEmi();
 
       const ratList = document.getElementById('resLenderRationale');
       if (ratList) {
@@ -126,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       extractedCard.style.display = 'block';
       resultsArea.style.display = 'block';
-    }, 1000);
+    }, 600);
   }
 
   // Bind Preset clicks
@@ -157,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     amountSlider.addEventListener('input', (e) => {
       currentAmount = Number(e.target.value);
       amountDisplay.textContent = `₹${(currentAmount / 100000).toFixed(1)} Lakhs`;
+      recalculateEmi();
     });
   }
 
@@ -164,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tenureSlider.addEventListener('input', (e) => {
       currentTenure = Number(e.target.value);
       tenureDisplay.textContent = `${currentTenure} Years`;
+      recalculateEmi();
     });
   }
 
@@ -185,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
           bestType: 'Public Sector Bank',
           matchScore: '97%',
           roi: '8.40% p.a.',
-          emi: '₹38,767 / mo',
           fee: '0.15% (Min ₹2,000)',
           prepay: 'Nil (0% on floating)',
           speed: '5-7 working days',

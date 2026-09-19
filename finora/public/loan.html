@@ -1,458 +1,709 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Finora Loans — AI-Powered Loan Journeys. Understand, prepare, and navigate personal, home, education, and car loans with transparent AI guidance.">
-  <meta name="theme-color" content="#0b1329">
+  <meta name="description" content="Finora Loans — AI-Powered Loan Journeys. Understand borrowing power, analyze payslips with AI OCR, evaluate FOIR, and match top banking institutions with transparent guidance.">
+  <meta name="theme-color" content="#F7F7F5">
   <title>Loans Journey — Finora | AI-Powered Financial Journeys</title>
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/loan.css">
-  <link rel="stylesheet" href="css/loans.css">
   <link rel="stylesheet" href="css/loan-scanner.css">
 </head>
 <body>
 
   <div class="app-container">
+    <div class="dashboard-viewport">
 
-    <!-- GLOBAL FIXED HEADER / NAVIGATION -->
-    <header class="top-header" role="banner">
-      <div class="header-inner">
-        
-        <!-- Brand Logo & Tagline -->
-        <a href="index.html" class="brand-wrapper" aria-label="Finora Home">
-          <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#brandGrad1)"/>
-            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#brandGrad2)" fill-opacity="0.9"/>
+      <!-- ==================================================================
+           LEFT FLOATING SIDEBAR DOCK (Reference Cilo Design)
+           ================================================================== -->
+      <aside class="sidebar-dock" aria-label="Finora Main Navigation">
+        <a href="dashboard.html" class="sidebar-logo-pill" aria-label="Finora Home">
+          <svg class="sidebar-brand-svg" viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z" fill="url(#loanLogoGrad1)"/>
+            <path d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z" fill="url(#loanLogoGrad2)" fill-opacity="0.9"/>
             <defs>
-              <linearGradient id="brandGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
+              <linearGradient id="loanLogoGrad1" x1="2" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#2563EB"/>
                 <stop offset="1" stop-color="#1D4ED8"/>
               </linearGradient>
-              <linearGradient id="brandGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+              <linearGradient id="loanLogoGrad2" x1="16" y1="12" x2="36" y2="32" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#06B6D4"/>
                 <stop offset="1" stop-color="#3B82F6"/>
               </linearGradient>
             </defs>
           </svg>
-          <div class="brand-text-group">
-            <span class="brand-name">Finora</span>
-            <span class="brand-tagline">Simpler Journeys. Brighter Futures.</span>
-          </div>
         </a>
 
-        <!-- Global Navigation Links -->
-        <nav class="nav-links" aria-label="Primary Navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="loan.html" class="nav-link active" aria-current="page">Loans</a>
-          <a href="insurance.html" class="nav-link">Insurance</a>
-          <a href="fintech.html" class="nav-link">Fintech</a>
-          <a href="index.html#ai-assistant" class="nav-link">AI Assistant</a>
-        </nav>
-
-        <!-- Header Actions / Profile -->
-        <div class="header-actions">
-          <div class="header-search">
-            <div class="search-input-wrapper">
-              <svg class="search-icon" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="9" cy="9" r="6"></circle>
-                <line x1="18" y1="18" x2="13.5" y2="13.5"></line>
-              </svg>
-              <input type="search" id="globalSearchInput" class="search-input" placeholder="Search financial topics..." aria-label="Search financial topics">
-              <span class="search-shortcut" aria-hidden="true">Ctrl K</span>
-            </div>
-          </div>
-
-          <button class="btn-icon" id="notificationBtn" aria-label="Notifications (1 unread)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        <nav class="sidebar-nav-container" aria-label="Platform Views">
+          <a href="index.html" class="sidebar-btn" data-tooltip="Dashboard Overview" aria-label="Home Overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
             </svg>
-            <span class="notification-badge" aria-hidden="true"></span>
-          </button>
+          </a>
 
-          <div class="user-profile-badge" id="userProfileBadge" role="button" tabindex="0" aria-label="User Profile Brightlin">
-            <div class="avatar-circle" aria-hidden="true">BB</div>
-            <div class="user-details">
-              <span class="user-greeting">Welcome</span>
-              <span class="user-name">Brightlin</span>
-            </div>
-          </div>
-        </div>
+          <!-- ACTIVE ON LOANS PAGE -->
+          <a href="loan.html" class="sidebar-btn active" data-tooltip="Loans Journey" aria-current="page" aria-label="Loans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="3" y1="21" x2="21" y2="21"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <polyline points="5 6 12 3 19 6"></polyline>
+              <line x1="6" y1="10" x2="6" y2="21"></line>
+              <line x1="10" y1="10" x2="10" y2="21"></line>
+              <line x1="14" y1="10" x2="14" y2="21"></line>
+              <line x1="18" y1="10" x2="18" y2="21"></line>
+            </svg>
+          </a>
 
-      </div>
-    </header>
+          <a href="insurance.html" class="sidebar-btn" data-tooltip="Insurance Journey" aria-label="Insurance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </a>
 
-    <!-- APP BODY LAYOUT -->
-    <div class="app-body">
+          <a href="fintech.html" class="sidebar-btn" data-tooltip="Fintech Services" aria-label="Fintech">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </a>
 
-      <!-- LEFT SIDEBAR -->
-      <aside class="sidebar" aria-label="Journey Sidebar Navigation">
-        <nav class="sidebar-nav">
-          <a href="index.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <span>Home</span>
-          </a>
-          <a href="loan.html" class="sidebar-link active" aria-current="page">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>Loans</span>
-          </a>
-          <a href="insurance.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <span>Insurance</span>
-          </a>
-          <a href="fintech.html" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <span>Fintech</span>
-          </a>
-          <a href="index.html#ai-assistant" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
-            <span>AI Assistant</span>
-          </a>
-          <a href="index.html#how-it-works" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            <span>My Journey</span>
+          <a href="#aiSection" class="sidebar-btn" data-tooltip="Finora AI" aria-label="AI Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
           </a>
         </nav>
 
-        <div class="sidebar-quote-card">
-          <p class="sidebar-quote-text">“Better financial decisions start with better understanding.”</p>
-          <p class="sidebar-quote-subtext">Finora — Simpler Journeys. Brighter Futures.</p>
+        <div class="sidebar-footer-nav" aria-label="Utility Controls">
+          <button type="button" class="sidebar-btn" data-tooltip="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <button type="button" class="sidebar-btn" data-tooltip="Help & FAQ" aria-label="Help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </button>
         </div>
       </aside>
 
-      <!-- MAIN CONTENT AREA -->
-      <main class="main-content" id="mainContent" role="main">
+      <!-- MAIN FLOW VIEWPORT -->
+      <div class="dashboard-main-flow">
 
-        <div class="loans-page-container">
-          
-          <!-- BREADCRUMB -->
-          <nav class="loans-breadcrumb-nav" aria-label="Breadcrumb">
-            <ol class="loans-breadcrumb-list">
-              <li class="loans-breadcrumb-item">
-                <a href="index.html" class="loans-breadcrumb-link">Home</a>
-              </li>
-              <li class="loans-breadcrumb-item">
-                <span class="loans-breadcrumb-separator" aria-hidden="true">></span>
-                <span class="loans-breadcrumb-current" aria-current="page">Loans</span>
-              </li>
-            </ol>
-          </nav>
+        <!-- TOP PILL HEADER -->
+        <header class="top-pill-header" role="banner">
+          <div class="header-left-search">
+            <div class="search-pill-container">
+              <svg class="search-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" class="search-pill-input" placeholder="Search home loans, rates, FOIR calculators, bank offers..." aria-label="Search loans">
+              <span class="search-shortcut-badge">⌘K</span>
+            </div>
+          </div>
 
-          <!-- 2-COLUMN LAYOUT -->
-          <div class="loans-layout-grid">
-            
-            <!-- LEFT MAIN CONTENT COLUMN -->
-            <div class="loans-main-column">
-              
-              <!-- HERO SECTION -->
-              <section class="loans-hero-card" aria-labelledby="loansHeroHeading">
-                <div class="loans-hero-glow-accent" aria-hidden="true"></div>
-
-                <div class="loans-hero-grid">
-                  
-                  <div class="loans-hero-content">
-                    <div class="loans-hero-eyebrow">
-                      <span>AI-POWERED LOAN JOURNEY</span>
-                    </div>
-
-                    <h1 id="loansHeroHeading" class="loans-hero-heading">
-                      Loans, made <span class="loans-heading-highlight">simpler.</span>
-                    </h1>
-
-                    <p class="loans-hero-supporting">
-                      Understand. Prepare. Navigate. All with AI guidance.
-                    </p>
-
-                    <p class="loans-hero-desc">
-                      Explore different types of loans, understand key concepts, get information on documentation and navigate your loan journey with clarity.
-                    </p>
-
-                    <div class="loans-hero-btn-group">
-                      <a href="#journeySection" class="btn-loans-primary">
-                        <span>Start Loan Journey</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div class="loans-hero-visual-wrapper">
-                    <div class="loans-hero-visual-container">
-                      <div class="loans-float-badge loans-float-badge-edu">🎓 Education Loan</div>
-                      <div class="loans-float-badge loans-float-badge-personal">👤 Personal Loan</div>
-                      <div class="loans-float-badge loans-float-badge-car">🚗 Car Loan</div>
-                      <div class="loans-float-badge loans-float-badge-home">🏠 Home Loan</div>
-                    </div>
-                  </div>
-
-                </div>
-              </section>
-
-              <!-- AI SALARY FINDER & LOAN LENDER RECOMMENDATION -->
-              <section class="loan-scanner-container" id="loanOcrSection">
-                <div class="loan-header">
-                  <div class="loan-title-group">
-                    <h2>💰 AI Salary Finder & Loan Lender Recommendation</h2>
-                    <p>Upload your salary slip, Form 16 or bank statement to find pre-approved limits and lowest interest rate lenders.</p>
-                  </div>
-                  <div class="loan-ai-pill">✨ Income OCR & FOIR Engine Active</div>
-                </div>
-
-                <!-- Intake Section -->
-                <div class="loan-intake-section">
-                  <div class="loan-upload-zone" onclick="document.getElementById('loanFileInputHTML').click()">
-                    <div style="font-size: 2.2rem; margin-bottom: 8px;">📑</div>
-                    <div style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px;">Upload Salary Slip / Form 16 / Bank Statement</div>
-                    <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 12px;">Supports PDF, images, or salary statements</div>
-                    <input type="file" id="loanFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
-                    <button type="button" class="btn-apply-loan" style="width: auto; padding: 6px 14px; font-size: 0.8rem;">📁 Select Salary File</button>
-                  </div>
-
-                  <div class="loan-presets-card">
-                    <div style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">Or test with Sample Income Profiles:</div>
-                    <div class="loan-preset-list">
-                      <button class="loan-preset-item active" data-preset-key="tech-lead">
-                        <div style="font-size: 1.3rem;">💻</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Staff Software Engineer (Tier-1 MNC)</div>
-                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹1,42,000 / mo • Google India</div>
-                        </div>
-                      </button>
-                      <button class="loan-preset-item" data-preset-key="analyst">
-                        <div style="font-size: 1.3rem;">📊</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Financial Analyst (Big-4 Corporate)</div>
-                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹64,500 / mo • KPMG Advisory</div>
-                        </div>
-                      </button>
-                      <button class="loan-preset-item" data-preset-key="business">
-                        <div style="font-size: 1.3rem;">🏢</div>
-                        <div>
-                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Digital Agency Owner (Self-Employed)</div>
-                          <div style="font-size: 0.75rem; color: #34d399;">Net: ₹2,15,000 / mo • Audited 3-Yr ITR</div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- OCR Loader -->
-                <div id="loanOcrLoader" style="display: none; text-align: center; padding: 20px; background: rgba(30,41,59,0.7); border-radius: 12px; margin-bottom: 20px;">
-                  <div style="color: #34d399; font-weight: 600; margin-bottom: 4px;">Analyzing Salary Document with AI OCR...</div>
-                  <div style="color: #94a3b8; font-size: 0.85rem;">Extracting net pay, employer categorization, debt obligations and matching loan offers...</div>
-                </div>
-
-                <!-- Extracted Card -->
-                <div class="loan-extracted-card" id="loanExtractedCard">
-                  <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
-                    <strong style="color: #10b981;">✅ Verified Financial Profile: <span id="loanExtName" style="color: #fff;">Brightlin Bright</span></strong>
-                    <span id="loanExtEmployer" style="font-size: 0.8rem; color: #cbd5e1;">Google India (Tier-1 MNC)</span>
-                  </div>
-                  <div class="loan-extracted-grid">
-                    <div class="loan-field-box">
-                      <div class="loan-field-label">Net In-Hand Salary</div>
-                      <div class="loan-field-value" id="loanExtNetSalary" style="color: #34d399;">₹1,42,000 / mo</div>
-                    </div>
-                    <div class="loan-field-box">
-                      <div class="loan-field-label">Gross Monthly Pay</div>
-                      <div class="loan-field-value" id="loanExtGrossSalary">₹1,85,000 / mo</div>
-                    </div>
-                    <div class="loan-field-box">
-                      <div class="loan-field-label">Existing EMIs</div>
-                      <div class="loan-field-value" id="loanExtEmi" style="color: #94a3b8;">₹2,000 / mo</div>
-                    </div>
-                    <div class="loan-field-box">
-                      <div class="loan-field-label">Assessed Credit Tier</div>
-                      <div class="loan-field-value" id="loanExtCibil" style="color: #38bdf8;">790 (Super-Prime)</div>
-                    </div>
-                  </div>
-                  <div style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
-                    <strong>💡 AI Insight:</strong> <span id="loanExtNotes">Super-prime borrower with high disposable income.</span>
-                  </div>
-                </div>
-
-                <!-- Loan Purpose Selector & Sliders -->
-                <div class="loan-config-card">
-                  <div style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">
-                    🎯 Choose Your Desired Loan:
-                  </div>
-                  <div class="loan-type-buttons-group">
-                    <button class="loan-type-btn active" data-loan-type="home">🏠 Home Loan</button>
-                    <button class="loan-type-btn" data-loan-type="personal">👤 Personal Loan</button>
-                    <button class="loan-type-btn" data-loan-type="car">🚗 Car Loan</button>
-                    <button class="loan-type-btn" data-loan-type="education">🎓 Education Loan</button>
-                    <button class="loan-type-btn" data-loan-type="business">🏢 Business Loan</button>
-                  </div>
-
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div>
-                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #94a3b8; margin-bottom: 4px;">
-                        <span>Requested Loan Amount:</span>
-                        <strong style="color: #38bdf8;" id="loanAmountDisplay">₹45.0 Lakhs</strong>
-                      </div>
-                      <input type="range" id="loanAmountSlider" min="200000" max="15000000" step="100000" value="4500000" style="width: 100%; accent-color: #2563eb;">
-                    </div>
-                    <div>
-                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #94a3b8; margin-bottom: 4px;">
-                        <span>Tenure Duration:</span>
-                        <strong style="color: #10b981;" id="loanTenureDisplay">20 Years</strong>
-                      </div>
-                      <input type="range" id="loanTenureSlider" min="1" max="30" step="1" value="20" style="width: 100%; accent-color: #10b981;">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Results & Best Fit Lender -->
-                <div id="loanResultsArea">
-                  <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 14px;">🏛️ Recommended Financial Institution</h3>
-                  <div class="lender-card top-match">
-                    <div class="lender-ribbon">⭐ AI Best Pick #1</div>
-                    <div style="font-size: 0.75rem; color: #94a3b8;" id="resLenderType">Public Sector Bank</div>
-                    <h4 style="font-size: 1.3rem; color: #fff; margin: 4px 0;" id="resBestLender">State Bank of India (SBI)</h4>
-                    <div style="color: #34d399; font-weight: 700; margin-bottom: 10px;" id="resLenderMatch">🎯 98% Match Score</div>
-                    
-                    <div style="display: flex; align-items: baseline; gap: 6px; margin: 10px 0;">
-                      <span style="font-size: 1.8rem; font-weight: 800; color: #38bdf8;" id="resLenderRoi">8.40% p.a.</span>
-                      <span style="font-size: 0.8rem; color: #94a3b8;">Floating (Repo Linked)</span>
-                    </div>
-
-                    <div style="background: rgba(15,23,42,0.7); border-radius: 8px; padding: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
-                      <div>
-                        <div style="font-size: 0.8rem; color: #94a3b8;">Monthly EMI:</div>
-                        <div style="font-size: 1.25rem; font-weight: 700; color: #10b981;" id="resLenderEmi">₹38,767 / mo</div>
-                      </div>
-                      <div style="text-align: right; font-size: 0.75rem; color: #94a3b8;">
-                        Disbursal Speed:<br>
-                        <strong style="color: #cbd5e1;" id="resLenderSpeed">⚡ 5-7 working days</strong>
-                      </div>
-                    </div>
-
-                    <div style="font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
-                      <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #94a3b8;">Processing Fee:</span>
-                        <span id="resLenderFee">0.15% (Min ₹2,000)</span>
-                      </div>
-                      <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #94a3b8;">Prepayment Fee:</span>
-                        <span style="color: #38bdf8;" id="resLenderPrepay">Nil (0% on floating)</span>
-                      </div>
-                    </div>
-
-                    <div style="background: rgba(15, 23, 42, 0.7); border-left: 3px solid #10b981; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
-                      <div style="font-size: 0.75rem; font-weight: 700; color: #10b981; margin-bottom: 4px;">Why Finora AI Recommends This:</div>
-                      <ul id="resLenderRationale" style="margin: 0; padding-left: 14px; font-size: 0.78rem; color: #cbd5e1;">
-                        <li>Lowest floating interest rate in India (8.40% linked to RBI EBLR).</li>
-                        <li>Zero prepayment penalties on floating rate loans.</li>
-                      </ul>
-                    </div>
-
-                    <button type="button" class="btn-apply-loan" onclick="alert('Congratulations! Your In-Principle Sanction request has been generated with Finora AI guidance.')">
-                      Select & Get Instant In-Principle Sanction →
-                    </button>
-                  </div>
-                </div>
-              </section>
-
-              <!-- EXPLORE LOAN OPTIONS -->
-              <section class="loans-section" id="exploreLoansSection" aria-labelledby="exploreHeading">
-                <div class="loans-section-header-flex">
-                  <div class="loans-section-title-wrap">
-                    <h2 id="exploreHeading" class="loans-section-title">Explore Loan Options</h2>
-                    <p class="loans-section-subhead">Different goals. Different journeys. Find the right loan for your needs.</p>
-                  </div>
-                </div>
-
-                <div class="loans-options-grid">
-                  <article class="loan-option-card" data-loan-type="personal">
-                    <div class="loan-option-icon-wrap" aria-hidden="true">👤</div>
-                    <h3 class="loan-option-title">Personal Loan</h3>
-                    <p class="loan-option-desc">For personal needs, emergencies or planned expenses.</p>
-                  </article>
-
-                  <article class="loan-option-card" data-loan-type="home">
-                    <div class="loan-option-icon-wrap" aria-hidden="true">🏠</div>
-                    <h3 class="loan-option-title">Home Loan</h3>
-                    <p class="loan-option-desc">For your dream home with longer tenure options.</p>
-                  </article>
-
-                  <article class="loan-option-card" data-loan-type="education">
-                    <div class="loan-option-icon-wrap" aria-hidden="true">🎓</div>
-                    <h3 class="loan-option-title">Education Loan</h3>
-                    <p class="loan-option-desc">For your higher education and future goals.</p>
-                  </article>
-
-                  <article class="loan-option-card" data-loan-type="car">
-                    <div class="loan-option-icon-wrap" aria-hidden="true">🚗</div>
-                    <h3 class="loan-option-title">Car Loan</h3>
-                    <p class="loan-option-desc">For your next journey on the road.</p>
-                  </article>
-                </div>
-              </section>
-
-              <!-- 5-STEP TIMELINE -->
-              <section class="loans-section" id="journeySection" aria-labelledby="journeyHeading">
-                <div class="loans-section-header-flex">
-                  <div class="loans-section-title-wrap">
-                    <h2 id="journeyHeading" class="loans-section-title">Your Loan Journey</h2>
-                    <p class="loans-section-subhead">A simpler, guided process from start to finish.</p>
-                  </div>
-                </div>
-
-                <div class="loans-journey-timeline">
-                  <div class="journey-step-item active-step">
-                    <div class="journey-step-circle">01</div>
-                    <span class="journey-step-title">Understand</span>
-                  </div>
-                  <div class="journey-step-item">
-                    <div class="journey-step-circle">02</div>
-                    <span class="journey-step-title">Prepare</span>
-                  </div>
-                  <div class="journey-step-item">
-                    <div class="journey-step-circle">03</div>
-                    <span class="journey-step-title">Apply</span>
-                  </div>
-                  <div class="journey-step-item">
-                    <div class="journey-step-circle">04</div>
-                    <span class="journey-step-title">Track</span>
-                  </div>
-                  <div class="journey-step-item">
-                    <div class="journey-step-circle">05</div>
-                    <span class="journey-step-title">Proceed</span>
-                  </div>
-                </div>
-              </section>
-
+          <div class="header-right-actions">
+            <div class="team-avatar-pill">
+              <div class="avatar-stack">
+                <div class="avatar-img-sm" style="background:#E2E8F0;">👨‍💼</div>
+                <div class="avatar-img-sm" style="background:#CBD5E1;">👩‍💼</div>
+              </div>
+              <span class="avatar-more-count">+2</span>
             </div>
 
-            <!-- RIGHT COMPANION -->
-            <aside class="loans-side-column">
-              <div class="loans-ai-card">
-                <div class="loans-ai-card-header">
-                  <span class="loans-ai-title">Finora AI</span>
-                  <span class="loans-ai-status-pill">Online</span>
+            <div class="theme-pill-toggle">
+              <button type="button" class="theme-mode-btn active" id="themeLightBtn" aria-label="Light Mode">☀️</button>
+              <button type="button" class="theme-mode-btn" id="themeDarkBtn" aria-label="Dark Mode">🌙</button>
+            </div>
+
+            <button type="button" class="header-icon-pill" aria-label="Notifications" onclick="alert('Notification: Repo rate linked interest update active.')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="unread-indicator"></span>
+            </button>
+
+            <div class="user-profile-pill">
+              <div class="user-avatar-circle">BB</div>
+              <span class="user-pill-name">Brightlin</span>
+            </div>
+
+            <a href="#loanOcrSection" class="header-action-btn-black">
+              <span>Find Best Lenders</span>
+              <span>→</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- DASHBOARD 2-COLUMN CONTAINER -->
+        <div class="dashboard-grid-container">
+
+          <!-- CENTER MAIN CONTENT COLUMN -->
+          <main class="dashboard-center-column" role="main">
+
+            <!-- HEADING ROW -->
+            <div class="dashboard-heading-row">
+              <div class="dashboard-heading-group">
+                <div class="dashboard-greeting-eyebrow">
+                  <span>💰</span>
+                  <span>Credit & Borrowing Journey</span>
                 </div>
-                <div class="loans-ai-chat-body">
-                  <div class="ai-bubble-msg">
-                    <div class="ai-bubble-content">
-                      Hi! I'm Finora AI 👋 I can help you understand loans, compare options, and guide you through your loan journey.
-                    </div>
+                <h1 class="dashboard-page-title">Loans Journey</h1>
+              </div>
+
+              <div class="dashboard-heading-controls">
+                <button type="button" class="pill-icon-control" title="Filter Lenders">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                  </svg>
+                </button>
+                <a href="#loanOcrSection" class="btn-black-compact">
+                  <span>+ AI Salary Scan</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 4-CARD KEY METRICS ROW -->
+            <section class="metrics-row-grid" aria-label="Key Loan Metrics">
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Max Borrowing Power</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">₹85.0 Lakhs</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">Tier-1 MNC</span>
+                    <span>CIBIL 790</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Lowest Benchmark ROI</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">8.40% p.a.</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-blue">SBI Repo EBLR</span>
+                    <span>Nil Prepay</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Assessed FOIR Debt</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">28.4% Ratio</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-green">Safe &lt; 50%</span>
+                    <span>₹2,000 Existing EMI</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-card-top">
+                  <span class="metric-label">Target Config</span>
+                  <span class="metric-arrow-badge">↗</span>
+                </div>
+                <div class="metric-value-group">
+                  <span class="metric-main-value">₹45L / 20 Yrs</span>
+                  <div class="metric-sub-delta">
+                    <span class="metric-delta-tag tag-amber">Home Loan</span>
+                    <span>₹38,767/mo</span>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <!-- 5-STEP PROCESS STEPPER -->
+            <section class="journey-stepper-card" aria-label="Finora Loan Step Progression">
+              <div class="stepper-header-row">
+                <div>
+                  <span class="stepper-title">5-Step Loan Journey</span>
+                  <p class="stepper-subtext">Clear, step-by-step guidance from income verification to instant sanction.</p>
+                </div>
+                <span class="step-counter-pill">Step 1 of 5 Active</span>
+              </div>
+
+              <div class="stepper-steps-track">
+                <div class="stepper-step active">
+                  <div class="step-indicator">
+                    <span class="step-num">1</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Understand</span>
+                    <span class="step-desc">Income & FOIR</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">2</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Explore</span>
+                    <span class="step-desc">Lender Matrix</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">3</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Prepare</span>
+                    <span class="step-desc">Payslip & ITR</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">4</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Navigate</span>
+                    <span class="step-desc">Sanction Letter</span>
+                  </div>
+                </div>
+
+                <div class="stepper-step">
+                  <div class="step-indicator">
+                    <span class="step-num">5</span>
+                  </div>
+                  <div class="step-text-wrap">
+                    <span class="step-name">Complete</span>
+                    <span class="step-desc">Fund Disbursal</span>
                   </div>
                 </div>
               </div>
-            </aside>
+            </section>
 
-          </div>
+            <!-- AI SALARY FINDER & MULTI-LENDER RECOMMENDATION ENGINE -->
+            <section class="loan-scanner-container" id="loanOcrSection" aria-labelledby="loanEngineHeading">
+              <div class="loan-header">
+                <div class="loan-title-group">
+                  <h2 id="loanEngineHeading">💰 AI Salary Finder & Multi-Lender Recommendation</h2>
+                  <p>Upload your salary slip or select a verified profile to assess FOIR, borrowing capacity, and match top banking partners.</p>
+                </div>
+                <div class="loan-ai-pill">✨ Income OCR & FOIR Engine Active</div>
+              </div>
+
+              <!-- Document Intake Section -->
+              <div class="loan-intake-section">
+                <div class="loan-upload-zone" onclick="document.getElementById('loanFileInputHTML').click()">
+                  <div style="font-size: 2.2rem; margin-bottom: 8px;">📑</div>
+                  <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Upload Salary Slip / Form 16 / Bank Statement</div>
+                  <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 12px;">Supports PDF, images, or salary statements</div>
+                  <input type="file" id="loanFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
+                  <button type="button" class="btn-apply-loan" style="width: auto; padding: 6px 14px; font-size: 0.8rem;">📁 Select Salary File</button>
+                </div>
+
+                <div class="loan-presets-card">
+                  <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Or test with Sample Income Profiles:</div>
+                  <div class="loan-preset-list">
+                    <button class="loan-preset-item active" data-preset-key="tech-lead">
+                      <div style="font-size: 1.3rem;">💻</div>
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Staff Software Engineer (Tier-1 MNC)</div>
+                        <div style="font-size: 0.75rem; color: var(--accent-emerald);">Net: ₹1,42,000 / mo • Google India</div>
+                      </div>
+                    </button>
+                    <button class="loan-preset-item" data-preset-key="analyst">
+                      <div style="font-size: 1.3rem;">📊</div>
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Financial Analyst (Big-4 Corporate)</div>
+                        <div style="font-size: 0.75rem; color: var(--accent-emerald);">Net: ₹64,500 / mo • KPMG Advisory</div>
+                      </div>
+                    </button>
+                    <button class="loan-preset-item" data-preset-key="business">
+                      <div style="font-size: 1.3rem;">🏢</div>
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Digital Agency Owner (Self-Employed)</div>
+                        <div style="font-size: 0.75rem; color: var(--accent-emerald);">Net: ₹2,15,000 / mo • Audited 3-Yr ITR</div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OCR Processing Loader -->
+              <div id="loanOcrLoader" style="display: none; text-align: center; padding: 20px; background: var(--bg-surface-subtle); border-radius: var(--radius-md); margin-bottom: 20px;">
+                <div style="color: var(--accent-emerald); font-weight: 600; margin-bottom: 4px;">Analyzing Salary Document with AI OCR...</div>
+                <div style="color: var(--text-secondary); font-size: 0.85rem;">Extracting net pay, employer categorization, debt obligations and matching loan offers...</div>
+              </div>
+
+              <!-- Extracted Profile Card -->
+              <div class="loan-extracted-card" id="loanExtractedCard">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+                  <strong style="color: var(--accent-emerald);">✅ Verified Financial Profile: <span id="loanExtName" style="color: var(--text-primary);">Brightlin Bright</span></strong>
+                  <span id="loanExtEmployer" style="font-size: 0.8rem; color: var(--text-secondary);">Google India (Tier-1 MNC)</span>
+                </div>
+                <div class="loan-extracted-grid">
+                  <div class="loan-field-box">
+                    <div class="loan-field-label">Net In-Hand Salary</div>
+                    <div class="loan-field-value" id="loanExtNetSalary" style="color: var(--accent-emerald);">₹1,42,000 / mo</div>
+                  </div>
+                  <div class="loan-field-box">
+                    <div class="loan-field-label">Gross Monthly Pay</div>
+                    <div class="loan-field-value" id="loanExtGrossSalary">₹1,85,000 / mo</div>
+                  </div>
+                  <div class="loan-field-box">
+                    <div class="loan-field-label">Existing EMIs</div>
+                    <div class="loan-field-value" id="loanExtEmi" style="color: var(--text-secondary);">₹2,000 / mo</div>
+                  </div>
+                  <div class="loan-field-box">
+                    <div class="loan-field-label">Assessed Credit Tier</div>
+                    <div class="loan-field-value" id="loanExtCibil" style="color: var(--text-primary);">790 (Super-Prime)</div>
+                  </div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 10px 14px; border-radius: var(--radius-sm);">
+                  <strong>💡 AI Insight:</strong> <span id="loanExtNotes">Super-prime borrower with high disposable income. Eligible for lowest rate brackets across all banks.</span>
+                </div>
+              </div>
+
+              <!-- Loan Purpose Selector & Sliders -->
+              <div class="loan-config-card">
+                <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px;">
+                  🎯 Choose Your Desired Loan:
+                </div>
+                <div class="loan-type-buttons-group">
+                  <button class="loan-type-btn active" data-loan-type="home">🏠 Home Loan</button>
+                  <button class="loan-type-btn" data-loan-type="personal">👤 Personal Loan</button>
+                  <button class="loan-type-btn" data-loan-type="car">🚗 Car Loan</button>
+                  <button class="loan-type-btn" data-loan-type="education">🎓 Education Loan</button>
+                  <button class="loan-type-btn" data-loan-type="business">🏢 Business Loan</button>
+                </div>
+
+                <div class="slider-group">
+                  <div class="slider-item">
+                    <div class="slider-label-row">
+                      <span>Requested Loan Amount:</span>
+                      <strong class="slider-val-highlight" id="loanAmountDisplay">₹45.0 Lakhs</strong>
+                    </div>
+                    <input type="range" id="loanAmountSlider" min="200000" max="15000000" step="100000" value="4500000" style="width: 100%; accent-color: var(--btn-primary-bg);">
+                  </div>
+                  <div class="slider-item">
+                    <div class="slider-label-row">
+                      <span>Tenure Duration:</span>
+                      <strong class="slider-val-highlight" id="loanTenureDisplay" style="color: var(--accent-emerald);">20 Years</strong>
+                    </div>
+                    <input type="range" id="loanTenureSlider" min="1" max="30" step="1" value="20" style="width: 100%; accent-color: var(--accent-emerald);">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Results & Best Fit Lender Card -->
+              <div id="loanResultsArea">
+                <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 14px; font-family: var(--font-display);">🏛️ Recommended Financial Institution</h3>
+                <div class="lender-card top-match">
+                  <div class="lender-ribbon">⭐ AI Best Pick #1</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);" id="resLenderType">Public Sector Bank</div>
+                  <h4 style="font-size: 1.3rem; color: var(--text-primary); margin: 4px 0;" id="resBestLender">State Bank of India (SBI)</h4>
+                  <div style="color: var(--accent-emerald); font-weight: 700; margin-bottom: 10px;" id="resLenderMatch">🎯 98% Match Score</div>
+                  
+                  <div class="lender-roi-highlight">
+                    <span class="lender-roi-value" id="resLenderRoi">8.40% p.a.</span>
+                    <span class="lender-roi-sub">Floating (Repo Linked EBLR)</span>
+                  </div>
+
+                  <div class="emi-preview-box">
+                    <div>
+                      <div class="emi-label">Monthly EMI:</div>
+                      <div class="emi-value" id="resLenderEmi">₹38,767 / mo</div>
+                    </div>
+                    <div style="text-align: right; font-size: 0.75rem; color: var(--text-secondary);">
+                      Disbursal Speed:<br>
+                      <strong style="color: var(--text-primary);" id="resLenderSpeed">⚡ 5-7 working days</strong>
+                    </div>
+                  </div>
+
+                  <div class="lender-details-list">
+                    <div class="lender-detail-row">
+                      <span style="color: var(--text-secondary);">Processing Fee:</span>
+                      <span id="resLenderFee" style="font-weight: 600;">0.15% (Min ₹2,000)</span>
+                    </div>
+                    <div class="lender-detail-row">
+                      <span style="color: var(--text-secondary);">Prepayment Penalty:</span>
+                      <span style="color: var(--accent-emerald); font-weight: 600;" id="resLenderPrepay">Nil (0% on floating)</span>
+                    </div>
+                  </div>
+
+                  <div style="background: var(--bg-surface-subtle); border-left: 3px solid var(--accent-emerald); padding: 12px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 16px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: var(--accent-emerald); margin-bottom: 6px;">Why Finora AI Recommends This:</div>
+                    <ul id="resLenderRationale" style="margin: 0; padding-left: 16px; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                      <li>Lowest floating interest rate in India (8.40% linked to RBI EBLR).</li>
+                      <li>Zero prepayment penalties on floating rate loans.</li>
+                      <li>High FOIR allowance up to 65% of net monthly income.</li>
+                    </ul>
+                  </div>
+
+                  <button type="button" class="btn-apply-loan" onclick="alert('Congratulations! Your In-Principle Sanction request has been generated with Finora AI guidance.')">
+                    Select & Get Instant In-Principle Sanction →
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- EXPLORE LOAN OPTIONS GRID -->
+            <section class="policy-explore-section" id="exploreLoansSection" style="margin-top: 32px;" aria-labelledby="exploreHeading">
+              <div class="explore-header-row">
+                <div>
+                  <h2 id="exploreHeading" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0 0 4px 0;">
+                    Explore Loan Categories
+                  </h2>
+                  <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
+                    Different life goals, optimized borrowing structures. Transparent guidance for every milestone.
+                  </p>
+                </div>
+              </div>
+
+              <div class="policy-cards-grid">
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Most Popular</span>
+                    <span class="policy-copay-tag">Floating ROI</span>
+                  </div>
+                  <h3 class="policy-name">🏠 Home Loan</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">8.40% – 9.15%</span>
+                    <span class="policy-sum-label">Tenure up to 30 Yrs</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Max Loan</span>
+                      <strong>₹15.00 Cr</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Tax Benefit</span>
+                      <strong>Sec 24(b) + 80C</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Turnaround</span>
+                      <strong>5–7 Days</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="document.querySelector('[data-loan-type=home]').click(); document.getElementById('loanOcrSection').scrollIntoView({behavior: 'smooth'})">
+                    Configure Home Loan →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Fast Disbursal</span>
+                    <span class="policy-copay-tag">Fixed ROI</span>
+                  </div>
+                  <h3 class="policy-name">👤 Personal Loan</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">10.25% – 13.50%</span>
+                    <span class="policy-sum-label">Tenure 1 to 5 Yrs</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Max Loan</span>
+                      <strong>₹40.00 Lakhs</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Collateral</span>
+                      <strong>Zero Required</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Turnaround</span>
+                      <strong>24 Hours</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="document.querySelector('[data-loan-type=personal]').click(); document.getElementById('loanOcrSection').scrollIntoView({behavior: 'smooth'})">
+                    Configure Personal Loan →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Future Builder</span>
+                    <span class="policy-copay-tag">Moratorium</span>
+                  </div>
+                  <h3 class="policy-name">🎓 Education Loan</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">8.65% – 9.75%</span>
+                    <span class="policy-sum-label">Course + 1 Yr Grace</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Max Loan</span>
+                      <strong>₹1.50 Cr</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Tax Benefit</span>
+                      <strong>Sec 80E (100%)</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Turnaround</span>
+                      <strong>4–6 Days</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="document.querySelector('[data-loan-type=education]').click(); document.getElementById('loanOcrSection').scrollIntoView({behavior: 'smooth'})">
+                    Configure Education Loan →
+                  </button>
+                </article>
+
+                <article class="policy-feature-card">
+                  <div class="policy-card-header">
+                    <span class="policy-insurer-tag">Drive Ahead</span>
+                    <span class="policy-copay-tag">On-Road 100%</span>
+                  </div>
+                  <h3 class="policy-name">🚗 Car Loan</h3>
+                  <div class="policy-metric-pill">
+                    <span class="policy-sum-val">8.75% – 9.50%</span>
+                    <span class="policy-sum-label">Tenure 3 to 7 Yrs</span>
+                  </div>
+                  <div class="policy-specs-list">
+                    <div class="spec-row">
+                      <span>Financing</span>
+                      <strong>Up to 100% On-Road</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Processing</span>
+                      <strong>₹1,500 Flat</strong>
+                    </div>
+                    <div class="spec-row">
+                      <span>Turnaround</span>
+                      <strong>48 Hours</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-select-policy" onclick="document.querySelector('[data-loan-type=car]').click(); document.getElementById('loanOcrSection').scrollIntoView({behavior: 'smooth'})">
+                    Configure Car Loan →
+                  </button>
+                </article>
+              </div>
+            </section>
+
+          </main>
+
+          <!-- RIGHT COMPANION COLUMN -->
+          <aside class="dashboard-right-column" id="aiSection" aria-label="Finora AI Companion & Insights">
+
+            <!-- FINORA AI COPILOT CARD -->
+            <div class="finora-ai-card">
+              <div class="ai-card-header">
+                <div class="ai-header-title-wrap">
+                  <div class="ai-logo-icon">✨</div>
+                  <div>
+                    <span class="ai-header-name">Finora AI</span>
+                    <span class="ai-header-role">Credit & Lending Copilot</span>
+                  </div>
+                </div>
+                <span class="ai-live-badge">Online</span>
+              </div>
+
+              <!-- AI Chat Body -->
+              <div class="ai-chat-body" id="loanAiChatBody">
+                <div class="ai-msg-bubble">
+                  <div class="ai-msg-avatar">🤖</div>
+                  <div class="ai-msg-text">
+                    Hi Brightlin! I'm your Finora AI Lending Copilot 👋. Upload your salary slip or Form 16, and I will evaluate your debt-to-income FOIR, loan eligibility, and match the lowest bank rates.
+                  </div>
+                </div>
+
+                <div class="ai-msg-bubble">
+                  <div class="ai-msg-avatar">🤖</div>
+                  <div class="ai-msg-text">
+                    💡 <strong>Pro Tip:</strong> Keeping your monthly EMI obligations below 40% of net income unlocks Super-Prime interest discounts of 0.25% at SBI and HDFC!
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Action Prompt Chips -->
+              <div class="ai-quick-prompts">
+                <button type="button" class="prompt-chip" onclick="document.getElementById('loanFileInputHTML').click()">
+                  📑 Scan Payslip
+                </button>
+                <button type="button" class="prompt-chip" onclick="alert('FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income that goes toward EMIs. Banks prefer FOIR under 50%.')">
+                  🧮 What is FOIR?
+                </button>
+                <button type="button" class="prompt-chip" onclick="alert('Floating loans allow zero-penalty prepayment at any time as mandated by the RBI, making them ideal for borrowers planning prepayments.')">
+                  ⚖️ Floating vs Fixed
+                </button>
+              </div>
+
+              <!-- Chat Input -->
+              <div class="ai-input-wrapper">
+                <input type="text" class="ai-chat-input" placeholder="Ask about loans, interest rates, or eligibility..." aria-label="Ask Finora AI">
+                <button type="button" class="ai-send-btn" aria-label="Send query">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- INSIGHTS & REPO RATE TRACKER CARD -->
+            <div class="insights-feed-card">
+              <div class="insights-card-header">
+                <span class="insights-title">Finora Lending Insights</span>
+                <span class="insights-badge">Live Market</span>
+              </div>
+
+              <div class="insights-items-list">
+                <div class="insight-item">
+                  <span class="insight-dot dot-green"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">RBI Repo Rate Steady at 6.50%</span>
+                    <span class="insight-desc">Floating home loan EBLR benchmarks remain favorable for prime borrowers.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <span class="insight-dot dot-blue"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">Zero Prepayment Advantage</span>
+                    <span class="insight-desc">Under RBI guidelines, no floating rate individual loan can incur foreclosure fees.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <span class="insight-dot dot-amber"></span>
+                  <div class="insight-text-wrap">
+                    <span class="insight-headline">Pre-Approved In-Principle Letters</span>
+                    <span class="insight-desc">Obtaining an in-principle sanction locks in your negotiated rate for 90 days.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </aside>
 
         </div>
 
-      </main>
+      </div>
     </div>
-
   </div>
 
+  <!-- Interactive Scripts -->
   <script src="js/main.js"></script>
   <script src="js/loan.js"></script>
 </body>

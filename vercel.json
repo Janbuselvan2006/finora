@@ -1,0 +1,5 @@
+{
+  "installCommand": "npm install && npm --prefix finora install --include=dev",
+  "buildCommand": "npm --prefix finora run build",
+  "outputDirectory": "finora/dist"
+}

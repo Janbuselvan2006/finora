@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FirebaseStatus from './components/FirebaseStatus';
+import MedicalDocScanner from './components/MedicalDocScanner';
 import './App.css';
 
 export default function App() {
@@ -333,6 +334,11 @@ export default function App() {
                 </div>
               </article>
             </div>
+          </section>
+
+          {/* SECTION: AI MEDICAL OCR DOCUMENT & POLICY FINDER */}
+          <section id="medical-ocr">
+            <MedicalDocScanner />
           </section>
 
           {/* SECTION 3: AI GUIDANCE INTERVIEW PREVIEW */}

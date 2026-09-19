@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/insurance.css">
+  <link rel="stylesheet" href="css/medical-scanner.css">
 </head>
 <body>
 
@@ -186,6 +187,126 @@
                     </div>
                   </div>
 
+              </section>
+
+              <!-- AI MEDICAL DOCUMENT OCR FINDER -->
+              <section class="med-scanner-container" id="medicalOcrSection">
+                <div class="med-header">
+                  <div class="med-title-group">
+                    <h2>📄 AI Medical Document OCR & Policy Recommendation</h2>
+                    <p>Upload a doctor certificate, discharge summary or prescription to find your best-fit insurance policy.</p>
+                  </div>
+                  <div class="med-ai-pill">✨ Gemini OCR Vision Active</div>
+                </div>
+
+                <div class="med-intake-section">
+                  <div class="med-upload-zone" onclick="document.getElementById('medFileInputHTML').click()">
+                    <div style="font-size: 2.2rem; margin-bottom: 8px;">🏥</div>
+                    <div style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px;">Upload Doctor Certificate / Prescriptions</div>
+                    <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 12px;">Supports PDF, PNG, JPG or clinical notes</div>
+                    <input type="file" id="medFileInputHTML" accept="image/*,.pdf,.txt" style="display: none;">
+                    <button type="button" class="btn-file-select">📁 Select Document File</button>
+                  </div>
+
+                  <div class="med-presets-card">
+                    <div style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1; margin-bottom: 10px;">Or test with Sample Certificates:</div>
+                    <div class="med-preset-list">
+                      <button class="med-preset-item active" data-preset-key="diabetes">
+                        <div style="font-size: 1.3rem;">🩸</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Type 2 Diabetes & Hypertension</div>
+                          <div style="font-size: 0.75rem; color: #94a3b8;">Brightlin Bright (44 yrs) • HbA1c 7.8%</div>
+                        </div>
+                      </button>
+                      <button class="med-preset-item" data-preset-key="knee">
+                        <div style="font-size: 1.3rem;">🦴</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Knee Replacement Discharge Summary</div>
+                          <div style="font-size: 0.75rem; color: #94a3b8;">Sunita Sharma (58 yrs) • Osteoarthritis</div>
+                        </div>
+                      </button>
+                      <button class="med-preset-item" data-preset-key="cardiac">
+                        <div style="font-size: 1.3rem;">🫀</div>
+                        <div>
+                          <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">Coronary Stent & Cardiac Report</div>
+                          <div style="font-size: 0.75rem; color: #94a3b8;">Rajesh Verma (52 yrs) • Single Vessel Stent</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- OCR Loader -->
+                <div id="medOcrLoader" style="display: none; text-align: center; padding: 20px; background: rgba(30,41,59,0.7); border-radius: 12px; margin-bottom: 20px;">
+                  <div style="color: #06b6d4; font-weight: 600; margin-bottom: 4px;">Scanning Doctor Certificate with AI OCR...</div>
+                  <div style="color: #94a3b8; font-size: 0.85rem;">Extracting diagnosis, pre-existing conditions & calculating 7-dimension criteria match...</div>
+                </div>
+
+                <!-- Extracted Card -->
+                <div class="med-extracted-card" id="medExtractedCard">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+                    <strong style="color: #10b981;">✅ Extracted Clinical Parameters</strong>
+                    <span id="extFacility" style="font-size: 0.8rem; color: #cbd5e1;">Apex Healthcare Super Speciality</span>
+                  </div>
+                  <div class="med-extracted-grid">
+                    <div class="med-field-box">
+                      <div class="med-field-label">Patient</div>
+                      <div class="med-field-value" id="extPatient">Brightlin Bright (44 yrs, Male)</div>
+                    </div>
+                    <div class="med-field-box">
+                      <div class="med-field-label">Primary Diagnosis</div>
+                      <div class="med-field-value" id="extDiagnosis" style="color: #38bdf8;">Type 2 Diabetes Mellitus</div>
+                    </div>
+                    <div class="med-field-box">
+                      <div class="med-field-label">Pre-Existing Conditions</div>
+                      <div id="extPeds"><span class="ped-tag">⚠️ Diabetes</span><span class="ped-tag">⚠️ Hypertension</span></div>
+                    </div>
+                    <div class="med-field-box">
+                      <div class="med-field-label">Estimated Coverage</div>
+                      <div class="med-field-value" id="extCost" style="color: #10b981;">₹6,50,000</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+                    <strong>💡 Clinical Note:</strong> <span id="extNote">Requires policy with short PED waiting period for metabolic disorders.</span>
+                  </div>
+                </div>
+
+                <!-- Results & Best Fit Card -->
+                <div id="medResultsArea">
+                  <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 14px;">🎯 Recommended Best Fit Policy</h3>
+                  <div class="policy-card top-match">
+                    <div class="best-match-ribbon">⭐ AI Best Match #1</div>
+                    <div style="font-size: 0.75rem; color: #94a3b8;" id="resBestProvider">Care Health Insurance</div>
+                    <h4 style="font-size: 1.2rem; color: #fff; margin: 4px 0;" id="resBestPolicy">Care Supreme Plan</h4>
+                    <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;" id="resFitScore">🎯 96% Match Score</div>
+                    
+                    <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+                      <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #94a3b8;">Annual Premium:</span>
+                        <strong style="color: #60a5fa;" id="resPremium">₹14,500 / yr</strong>
+                      </div>
+                      <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #94a3b8;">PED Waiting Period:</span>
+                        <span style="color: #34d399;" id="resPedWait">24 Months (12m with rider)</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #94a3b8;">Room Rent Limit:</span>
+                        <span id="resRoomRent">No Capping (Single Private Room)</span>
+                      </div>
+                    </div>
+
+                    <div style="background: rgba(15, 23, 42, 0.7); border-left: 3px solid #38bdf8; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
+                      <div style="font-size: 0.75rem; font-weight: 700; color: #38bdf8; margin-bottom: 4px;">Why Finora AI Recommends This:</div>
+                      <ul id="resRationale" style="margin: 0; padding-left: 14px; font-size: 0.78rem; color: #cbd5e1;">
+                        <li>PED rider reduces waiting period for Diabetes/BP down to 12 months.</li>
+                        <li>No room rent limit allows single private room stays.</li>
+                      </ul>
+                    </div>
+
+                    <button type="button" class="btn-select-policy" onclick="alert('Policy selection registered! Your Finora AI application has been initiated.')">
+                      Select & Apply for Policy →
+                    </button>
+                  </div>
                 </div>
               </section>
 
@@ -307,5 +428,6 @@
 
   </div>
 
+  <script src="js/insurance.js"></script>
 </body>
 </html>

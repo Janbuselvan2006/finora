@@ -1281,25 +1281,25 @@ export default function App() {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                            <tr onClick={() => navigateTo('loans')} style={{ cursor: 'pointer' }} title="Click to open Loans Journey">
                               <td className="strong-val">Home Loan</td>
                               <td><span className="metric-delta-tag tag-blue">In Review</span></td>
-                              <td className="strong-val">88%</td>
+                              <td className="strong-val">88% ↗</td>
                             </tr>
-                            <tr>
+                            <tr onClick={() => navigateTo('insurance')} style={{ cursor: 'pointer' }} title="Click to open Insurance Journey">
                               <td className="strong-val">Health Cover</td>
                               <td><span className="metric-delta-tag tag-green">Verified</span></td>
-                              <td className="strong-val">96%</td>
+                              <td className="strong-val">96% ↗</td>
                             </tr>
-                            <tr>
+                            <tr onClick={() => navigateTo('fintech')} style={{ cursor: 'pointer' }} title="Click to open Fintech Services">
                               <td className="strong-val">DigiLocker KYC</td>
                               <td><span className="metric-delta-tag tag-green">Done</span></td>
-                              <td className="strong-val">100%</td>
+                              <td className="strong-val">100% ↗</td>
                             </tr>
-                            <tr>
+                            <tr onClick={() => navigateTo('loans')} style={{ cursor: 'pointer' }} title="Click to open Loans Journey">
                               <td className="strong-val">Salary Proof</td>
                               <td><span className="metric-delta-tag tag-amber">Pending</span></td>
-                              <td className="strong-val">75%</td>
+                              <td className="strong-val">75% ↗</td>
                             </tr>
                           </tbody>
                         </table>
@@ -1308,14 +1308,95 @@ export default function App() {
 
                   </section>
 
-                  {/* FLAGSHIP AI SCANNERS IN OVERVIEW */}
-                  <div id="loan-scanner-widget">
-                    <LoanDocScanner />
-                  </div>
+                  {/* CONSOLIDATED FINANCIAL DOMAINS SUMMARY (Dashboard Consolidated Results) */}
+                  <section className="consolidated-domains-section" aria-label="Consolidated Financial Portfolios">
+                    <div className="explore-header-row" style={{ marginTop: '28px', marginBottom: '16px' }}>
+                      <div>
+                        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
+                          Consolidated Portfolio Snapshot
+                        </h2>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
+                          High-level consolidated readiness across borrowing, protection, and paperless digital onboarding.
+                        </p>
+                      </div>
+                    </div>
 
-                  <div id="insurance-scanner-widget">
-                    <MedicalDocScanner />
-                  </div>
+                    <div className="consolidated-cards-grid">
+                      {/* Domain Card 1: Loans & Borrowing */}
+                      <article className="consolidated-pillar-card">
+                        <div className="pillar-header">
+                          <div className="pillar-badge-group">
+                            <span className="pillar-icon">💰</span>
+                            <span className="pillar-domain-tag">Lending & Credit</span>
+                          </div>
+                          <span className="metric-delta-tag tag-green">88% Ready</span>
+                        </div>
+                        <h3 className="pillar-title">Loans & Borrowing Health</h3>
+                        <p className="pillar-desc">
+                          Assessed income from payslips, estimated FOIR borrowing limits, and pre-approved offers from 4 tier-1 lenders.
+                        </p>
+                        <div className="pillar-kpi-row">
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">Borrowing Cap</span>
+                            <strong className="kpi-value">₹85.0L</strong>
+                          </div>
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">Lowest ROI</span>
+                            <strong className="kpi-value">8.40% p.a.</strong>
+                          </div>
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">FOIR Ratio</span>
+                            <strong className="kpi-value">28.4% Safe</strong>
+                          </div>
+                        </div>
+                        <button 
+                          type="button" 
+                          className="btn-pillar-action"
+                          onClick={() => navigateTo('loans')}
+                        >
+                          <span>Open Loans Journey & AI Salary Scan</span>
+                          <span>→</span>
+                        </button>
+                      </article>
+
+                      {/* Domain Card 2: Insurance & Protection */}
+                      <article className="consolidated-pillar-card">
+                        <div className="pillar-header">
+                          <div className="pillar-badge-group">
+                            <span className="pillar-icon">🛡️</span>
+                            <span className="pillar-domain-tag">Protection & Health</span>
+                          </div>
+                          <span className="metric-delta-tag tag-green">96% Verified</span>
+                        </div>
+                        <h3 className="pillar-title">Insurance & Health Shield</h3>
+                        <p className="pillar-desc">
+                          OCR medical document evaluation, zero co-pay eligibility, and disease waiting period comparisons.
+                        </p>
+                        <div className="pillar-kpi-row">
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">Coverage</span>
+                            <strong className="kpi-value">₹1.00 Cr</strong>
+                          </div>
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">Co-Pay</span>
+                            <strong className="kpi-value">0% Zero</strong>
+                          </div>
+                          <div className="pillar-kpi-item">
+                            <span className="kpi-label">Claim Ratio</span>
+                            <strong className="kpi-value">99.1% High</strong>
+                          </div>
+                        </div>
+                        <button 
+                          type="button" 
+                          className="btn-pillar-action"
+                          onClick={() => navigateTo('insurance')}
+                        >
+                          <span>Open Insurance Journey & AI Medical OCR</span>
+                          <span>→</span>
+                        </button>
+                      </article>
+                    </div>
+                  </section>
                 </>
               )}
 

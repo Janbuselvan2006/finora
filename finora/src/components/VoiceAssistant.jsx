@@ -14,7 +14,7 @@ export default function VoiceAssistant({
   const [transcript, setTranscript] = useState(initialPrompt || '');
   const [analysisResult, setAnalysisResult] = useState(null);
   const [recognitionSupported, setRecognitionSupported] = useState(true);
-  const [manualInput, setManualInput] = useState('');
+
 
   const recognitionRef = useRef(null);
 
@@ -238,38 +238,17 @@ export default function VoiceAssistant({
           </div>
         )}
 
-        {/* Manual text fallback / typing option */}
-        <div style={{ display: 'flex', gap: '8px', width: '100%', maxWidth: '520px', marginTop: '12px' }}>
-          <input
-            type="text"
-            className="med-notes-textarea"
-            style={{ minHeight: '38px', height: '38px', padding: '6px 12px', fontSize: '12.5px', borderRadius: '8px' }}
-            placeholder="Or type your problem here (e.g., Apollo Hospital, diabetes)..."
-            value={manualInput}
-            onChange={(e) => setManualInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && manualInput.trim()) {
-                setTranscript(manualInput);
-                runVoiceAnalysis(manualInput);
-                setManualInput('');
-              }
-            }}
-          />
+        {/* Analyze button — runs on spoken transcript */}
+        {transcript && (
           <button
             type="button"
             className="btn-invalid-action primary"
-            style={{ whiteSpace: 'nowrap', padding: '6px 14px', borderRadius: '8px' }}
-            onClick={() => {
-              if (manualInput.trim()) {
-                setTranscript(manualInput);
-                runVoiceAnalysis(manualInput);
-                setManualInput('');
-              }
-            }}
+            style={{ marginTop: '12px', padding: '8px 28px', borderRadius: '8px', fontWeight: 700, fontSize: '13px' }}
+            onClick={() => runVoiceAnalysis(transcript)}
           >
-            Analyze
+            ⚡ Analyze
           </button>
-        </div>
+        )}
       </div>
 
       {/* 2. QUICK VOICE PROMPTS */}
@@ -387,7 +366,7 @@ export default function VoiceAssistant({
           </div>
 
           {/* SALARY-BASED ELIGIBILITY BANNER (Loan Queries) */}
-          {analysisResult.category === 'loan_banking' && (
+          {analysisResult.category === 'loan_banking' && !analysisResult.keyEntities?.loanAmountMissing && (
             <div style={{ margin: '0 0 12px 0' }}>
               {/* Salary & EMI Capacity Row */}
               {analysisResult.keyEntities?.salary && (

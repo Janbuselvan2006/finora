@@ -1221,7 +1221,7 @@ export default function App() {
               ) : (
                 <>
                   {/* DUAL PERFORMANCE CHART & JOURNEY MILESTONES GRID */}
-                  <section className="performance-grid-2col" aria-label="Finora Performance Analytics">
+                  <section className="dashboard-performance-grid performance-grid-2col" aria-label="Finora Performance Analytics">
                     
                     {/* Performance Overview Bar Chart */}
                     <article className="performance-card">
@@ -1239,8 +1239,8 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="performance-chart-canvas">
-                        <div className="chart-bars-container">
+                      <div className="performance-chart-wrap performance-chart-canvas">
+                        <div className="bar-chart-bars-container chart-bars-container">
                           {[
                             { month: 'Jan', black: 40, gray: 25 },
                             { month: 'Feb', black: 65, gray: 45 },

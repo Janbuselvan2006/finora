@@ -978,14 +978,17 @@ img, svg {
 /* --------------------------------------------------------------------------
    11. PERFORMANCE & MILESTONES SECTION
    -------------------------------------------------------------------------- */
-.dashboard-performance-grid {
+.dashboard-performance-grid,
+.performance-grid-2col {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 16px;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
-  .dashboard-performance-grid {
+  .dashboard-performance-grid,
+  .performance-grid-2col {
     grid-template-columns: 1fr;
   }
 }
@@ -1024,11 +1027,13 @@ img, svg {
   outline: none;
 }
 
-.performance-chart-wrap {
+.performance-chart-wrap,
+.performance-chart-canvas {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 10px 0;
+  width: 100%;
 }
 
 .chart-legend-row {
@@ -1059,34 +1064,41 @@ img, svg {
   background: var(--border-strong);
 }
 
-.bar-chart-bars-container {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+.bar-chart-bars-container,
+.chart-bars-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: space-around !important;
   height: 120px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
 }
 
 .chart-column-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   gap: 6px;
   flex: 1;
 }
 
 .bars-pair {
-  display: flex;
-  align-items: flex-end;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
   gap: 4px;
   height: 100px;
+  width: 100%;
 }
 
 .bar-rect-black {
   width: 14px;
   border-radius: 3px 3px 0 0;
   background: var(--text-primary);
+  display: block;
 }
 
 .bar-rect-gray {
@@ -1094,6 +1106,7 @@ img, svg {
   border-radius: 3px 3px 0 0;
   background: var(--bg-surface-hover);
   border: 1px solid var(--border-subtle);
+  display: block;
 }
 
 .column-month-label {

@@ -69,7 +69,7 @@ export default function App() {
 
           <nav className="nav-links" aria-label="Primary Navigation">
             <button className={`nav-link ${activeTab === 'home' ? 'active' : ''}`} onClick={() => setActiveTab('home')}>Home</button>
-            <button className={`nav-link ${activeTab === 'products' ? 'active' : ''}`} onClick={() => setActiveTab('products')}>Products</button>
+            <a href="loan.html" className="nav-link">Loans & Products</a>
             <button className={`nav-link ${activeTab === 'ai' ? 'active' : ''}`} onClick={() => setActiveTab('ai')}>AI Assistant</button>
             <button className={`nav-link ${activeTab === 'db' ? 'active' : ''}`} onClick={() => setActiveTab('db')}>Database Demo</button>
           </nav>
@@ -81,7 +81,7 @@ export default function App() {
                   <circle cx="9" cy="9" r="6"></circle>
                   <line x1="18" y1="18" x2="13.5" y2="13.5"></line>
                 </svg>
-                <input type="search" class="search-input" placeholder="Search financial topics..." />
+                <input type="search" className="search-input" placeholder="Search financial topics..." />
                 <span className="search-shortcut">Ctrl K</span>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function App() {
               </svg>
               <span>Home</span>
             </a>
-            <a href="#goals" className="sidebar-link">
+            <a href="loan.html" className="sidebar-link">
               <svg className="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="3" y1="21" x2="21" y2="21"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
@@ -285,7 +285,7 @@ export default function App() {
                   </div>
                 </div>
                 <div className="goal-card-footer">
-                  <a href="#ai-assistant" className="goal-card-cta cta-loans">Explore Loans →</a>
+                  <a href="loan.html" className="goal-card-cta cta-loans">Explore Loans →</a>
                 </div>
               </article>
 

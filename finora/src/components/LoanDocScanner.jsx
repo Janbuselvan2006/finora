@@ -90,10 +90,10 @@ export default function LoanDocScanner() {
         {/* Upload Zone */}
         <div className="loan-upload-zone" onClick={() => document.getElementById('salaryFileInput').click()}>
           <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>📑</div>
-          <div style={{ fontSize: '1rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '4px' }}>
+          <div className="loan-upload-title">
             Upload Salary Slip / Form 16 / Bank Statement
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '14px' }}>
+          <div className="loan-upload-subtitle">
             Supports PDF, images, or scanned income proofs
           </div>
           <input 
@@ -110,9 +110,9 @@ export default function LoanDocScanner() {
 
         {/* Preset Selector */}
         <div className="loan-presets-card">
-          <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '12px' }}>
-            <span>Or test with Sample Income Profiles:</span>
-            <span style={{ fontSize: '0.75rem', color: '#34d399', display: 'block', marginTop: '2px' }}>
+          <div className="loan-presets-header">
+            <span className="loan-presets-title">Or test with Sample Income Profiles:</span>
+            <span className="loan-presets-badge">
               Instant 1-click test with real-world Indian income brackets
             </span>
           </div>
@@ -129,9 +129,9 @@ export default function LoanDocScanner() {
               >
                 <div style={{ fontSize: '1.4rem' }}>{preset.icon}</div>
                 <div style={{ flexGrow: 1 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#f1f5f9' }}>{preset.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                    Net In-Hand: <strong style={{ color: '#34d399' }}>₹{preset.netMonthlySalary.toLocaleString('en-IN')}/mo</strong> • {preset.employerCategory}
+                  <div className="preset-item-title">{preset.title}</div>
+                  <div className="preset-item-sub">
+                    Net In-Hand: <strong style={{ color: '#059669' }}>₹{preset.netMonthlySalary.toLocaleString('en-IN')}/mo</strong> • {preset.employerCategory}
                   </div>
                 </div>
               </button>
@@ -145,8 +145,8 @@ export default function LoanDocScanner() {
       {isScanning && (
         <div className="med-ocr-loader">
           <div className="spinner-ring" style={{ borderTopColor: '#10b981' }}></div>
-          <h3 style={{ margin: '0 0 8px 0', color: '#34d399' }}>Analyzing Income Document with AI OCR...</h3>
-          <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.85rem' }}>
+          <h3 style={{ margin: '0 0 8px 0', color: 'var(--text-primary)' }}>Analyzing Income Document with AI OCR...</h3>
+          <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
             Extracting gross salary, net in-hand pay, employer risk categorization, calculating FOIR debt limit and CIBIL tier...
           </p>
         </div>
@@ -155,20 +155,20 @@ export default function LoanDocScanner() {
       {/* Step 2: Extracted Financial Metrics Card */}
       {!isScanning && extractedSalary && (
         <div className="loan-extracted-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
-            <div style={{ color: '#10b981', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div className="loan-profile-header">
+            <div className="loan-verified-title">
               <span>✅ Verified Financial Profile:</span>
-              <span style={{ color: '#fff' }}>{extractedSalary.employeeName}</span>
+              <span className="loan-emp-name">{extractedSalary.employeeName}</span>
             </div>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-              Employer: <strong style={{ color: '#e2e8f0' }}>{extractedSalary.employerName}</strong> ({extractedSalary.employerCategory})
+            <div className="loan-employer-tag">
+              Employer: <strong className="loan-employer-val">{extractedSalary.employerName}</strong> ({extractedSalary.employerCategory})
             </div>
           </div>
 
           <div className="loan-extracted-grid">
             <div className="loan-field-box">
               <div className="loan-field-label">Net In-Hand Salary</div>
-              <div className="loan-field-value" style={{ color: '#34d399' }}>
+              <div className="loan-field-value" style={{ color: '#059669' }}>
                 ₹{extractedSalary.netMonthlySalary.toLocaleString('en-IN')} / mo
               </div>
             </div>
@@ -182,20 +182,20 @@ export default function LoanDocScanner() {
 
             <div className="loan-field-box">
               <div className="loan-field-label">Existing EMI Commitments</div>
-              <div className="loan-field-value" style={{ color: extractedSalary.deductions.existingEmi > 0 ? '#fbbf24' : '#94a3b8' }}>
+              <div className="loan-field-value" style={{ color: extractedSalary.deductions.existingEmi > 0 ? '#d97706' : 'var(--text-secondary)' }}>
                 ₹{extractedSalary.deductions.existingEmi.toLocaleString('en-IN')} / mo
               </div>
             </div>
 
             <div className="loan-field-box">
               <div className="loan-field-label">Assessed Credit Score</div>
-              <div className="loan-field-value" style={{ color: '#38bdf8' }}>
+              <div className="loan-field-value" style={{ color: '#0284c7' }}>
                 ⭐ {extractedSalary.cibilEstimate} (Prime Tier)
               </div>
             </div>
           </div>
 
-          <div style={{ fontSize: '0.8rem', color: '#cbd5e1', background: 'rgba(0,0,0,0.2)', padding: '10px 14px', borderRadius: '8px' }}>
+          <div className="loan-ai-summary-box">
             <strong>💡 AI Financial Summary:</strong> {extractedSalary.notes}
           </div>
         </div>
@@ -285,17 +285,17 @@ export default function LoanDocScanner() {
               <span>🏛️ Financial Institutions Comparison ({selectedLoanType.name})</span>
             </div>
 
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div className="view-toggle-group">
               <button 
-                className={`btn-file-select ${activeTab === 'overview' ? 'active' : ''}`}
-                style={{ background: activeTab === 'overview' ? '#10b981' : 'rgba(255,255,255,0.05)', color: '#fff' }}
+                type="button"
+                className={`btn-view-toggle ${activeTab === 'overview' ? 'active' : ''}`}
                 onClick={() => setActiveTab('overview')}
               >
                 🏆 Ranked Offers
               </button>
               <button 
-                className={`btn-file-select ${activeTab === 'matrix' ? 'active' : ''}`}
-                style={{ background: activeTab === 'matrix' ? '#10b981' : 'rgba(255,255,255,0.05)', color: '#fff' }}
+                type="button"
+                className={`btn-view-toggle ${activeTab === 'matrix' ? 'active' : ''}`}
                 onClick={() => setActiveTab('matrix')}
               >
                 📊 Side-by-Side Table
@@ -316,16 +316,16 @@ export default function LoanDocScanner() {
                   )}
 
                   <div>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase' }}>
+                    <div className="lender-type">
                       {lender.type}
                     </div>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#ffffff', margin: '4px 0' }}>
+                    <div className="lender-name">
                       {lender.name}
                     </div>
 
-                    <div className="policy-fit-badge" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
+                    <div className="policy-fit-badge" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669' }}>
                       <span>🎯 {lender.matchScore}% Match Score</span>
-                      <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>• Rating {lender.rating}</span>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>• Rating {lender.rating}</span>
                     </div>
 
                     {/* Rate of Interest */}
@@ -340,37 +340,37 @@ export default function LoanDocScanner() {
                         <div className="emi-label">Monthly EMI:</div>
                         <div className="emi-value">₹{lender.monthlyEmi.toLocaleString('en-IN')}</div>
                       </div>
-                      <div style={{ textAlign: 'right', fontSize: '0.75rem', color: '#94a3b8' }}>
+                      <div style={{ textAlign: 'right', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                         Total Interest:<br/>
-                        <strong style={{ color: '#cbd5e1' }}>₹{(lender.totalInterest/100000).toFixed(1)} Lakhs</strong>
+                        <strong style={{ color: 'var(--text-primary)' }}>₹{(lender.totalInterest/100000).toFixed(1)} Lakhs</strong>
                       </div>
                     </div>
 
                     {/* Key Loan Parameters */}
                     <div className="lender-details-list">
                       <div className="lender-detail-row">
-                        <span style={{ color: '#94a3b8' }}>Max Loan Capacity:</span>
-                        <strong style={{ color: lender.isAffordable ? '#34d399' : '#f87171' }}>
+                        <span style={{ color: 'var(--text-secondary)' }}>Max Loan Capacity:</span>
+                        <strong style={{ color: lender.isAffordable ? '#059669' : '#dc2626' }}>
                           ₹{(lender.maxEligibility/100000).toFixed(1)} Lakhs
                         </strong>
                       </div>
                       <div className="lender-detail-row">
-                        <span style={{ color: '#94a3b8' }}>Processing Fee:</span>
+                        <span style={{ color: 'var(--text-secondary)' }}>Processing Fee:</span>
                         <span>{lender.processingFee.split('-')[0]}</span>
                       </div>
                       <div className="lender-detail-row">
-                        <span style={{ color: '#94a3b8' }}>Prepayment Charges:</span>
-                        <span style={{ color: '#38bdf8' }}>{lender.prepaymentFee}</span>
+                        <span style={{ color: 'var(--text-secondary)' }}>Prepayment Charges:</span>
+                        <span style={{ color: '#0284c7', fontWeight: 600 }}>{lender.prepaymentFee}</span>
                       </div>
                       <div className="lender-detail-row">
-                        <span style={{ color: '#94a3b8' }}>Approval Speed:</span>
+                        <span style={{ color: 'var(--text-secondary)' }}>Approval Speed:</span>
                         <span>⚡ {lender.disbursalTime}</span>
                       </div>
                     </div>
 
                     {/* AI Rationale Box */}
                     <div className="ai-rationale-box" style={{ borderLeftColor: '#10b981' }}>
-                      <div className="ai-rationale-title" style={{ color: '#10b981' }}>
+                      <div className="ai-rationale-title" style={{ color: '#059669' }}>
                         Why Finora AI Recommends This:
                       </div>
                       <ul className="ai-rationale-list">
@@ -403,9 +403,9 @@ export default function LoanDocScanner() {
                   <tr>
                     <th>Loan Parameters</th>
                     {rankedLenders.map((l) => (
-                      <th key={l.institutionId} style={{ color: l.matchScore > 90 ? '#34d399' : '#e2e8f0' }}>
-                        {l.shortName}
-                        <div style={{ fontSize: '0.7rem', color: '#38bdf8' }}>({l.matchScore}% Match)</div>
+                      <th key={l.institutionId} style={{ color: l.matchScore > 90 ? '#059669' : 'var(--text-primary)' }}>
+                        <div>{l.shortName}</div>
+                        <div style={{ fontSize: '0.7rem', color: '#0284c7' }}>({l.matchScore}% Match)</div>
                       </th>
                     ))}
                   </tr>
@@ -413,32 +413,32 @@ export default function LoanDocScanner() {
                 <tbody>
                   {/* 1. Interest Rate */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>1. Interest Rate (ROI)</span></td>
+                    <td><span className="dim-badge">1. Interest Rate (ROI)</span></td>
                     {rankedLenders.map(l => (
                       <td key={l.institutionId}>
-                        <strong style={{ fontSize: '1rem', color: '#38bdf8' }}>{l.interestRate}% p.a.</strong><br/>
-                        <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{l.rateType}</span>
+                        <strong style={{ fontSize: '1rem', color: '#0284c7' }}>{l.interestRate}% p.a.</strong><br/>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>{l.rateType}</span>
                       </td>
                     ))}
                   </tr>
 
                   {/* 2. Monthly EMI */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>2. Monthly EMI</span></td>
+                    <td><span className="dim-badge">2. Monthly EMI</span></td>
                     {rankedLenders.map(l => (
                       <td key={l.institutionId}>
-                        <strong style={{ color: '#10b981' }}>₹{l.monthlyEmi.toLocaleString('en-IN')}</strong><br/>
-                        <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Total Int: ₹{(l.totalInterest/100000).toFixed(1)}L</span>
+                        <strong style={{ color: '#059669' }}>₹{l.monthlyEmi.toLocaleString('en-IN')}</strong><br/>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Total Int: ₹{(l.totalInterest/100000).toFixed(1)}L</span>
                       </td>
                     ))}
                   </tr>
 
                   {/* 3. Max Loan Eligibility */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>3. Max Eligibility (FOIR)</span></td>
+                    <td><span className="dim-badge">3. Max Eligibility (FOIR)</span></td>
                     {rankedLenders.map(l => (
                       <td key={l.institutionId}>
-                        <strong style={{ color: l.isAffordable ? '#34d399' : '#f87171' }}>
+                        <strong style={{ color: l.isAffordable ? '#059669' : '#dc2626' }}>
                           ₹{(l.maxEligibility/100000).toFixed(1)} Lakhs
                         </strong>
                       </td>
@@ -447,7 +447,7 @@ export default function LoanDocScanner() {
 
                   {/* 4. Processing Fee */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>4. Processing Charges</span></td>
+                    <td><span className="dim-badge">4. Processing Charges</span></td>
                     {rankedLenders.map(l => (
                       <td key={l.institutionId} style={{ fontSize: '0.78rem' }}>
                         {l.processingFee}
@@ -457,9 +457,9 @@ export default function LoanDocScanner() {
 
                   {/* 5. Prepayment / Foreclosure */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>5. Prepayment Charges</span></td>
+                    <td><span className="dim-badge">5. Prepayment Charges</span></td>
                     {rankedLenders.map(l => (
-                      <td key={l.institutionId} style={{ fontSize: '0.78rem', color: '#38bdf8' }}>
+                      <td key={l.institutionId} style={{ fontSize: '0.78rem', color: '#0284c7', fontWeight: 600 }}>
                         {l.prepaymentFee}
                       </td>
                     ))}
@@ -467,7 +467,7 @@ export default function LoanDocScanner() {
 
                   {/* 6. Disbursal Speed */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>6. Approval & Disbursal</span></td>
+                    <td><span className="dim-badge">6. Approval & Disbursal</span></td>
                     {rankedLenders.map(l => (
                       <td key={l.institutionId} style={{ fontSize: '0.8rem' }}>
                         ⚡ {l.disbursalTime}
@@ -477,9 +477,9 @@ export default function LoanDocScanner() {
 
                   {/* 7. Special Perks */}
                   <tr>
-                    <td><span className="dim-badge" style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)' }}>7. Special Concessions</span></td>
+                    <td><span className="dim-badge">7. Special Concessions</span></td>
                     {rankedLenders.map(l => (
-                      <td key={l.institutionId} style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
+                      <td key={l.institutionId} style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                         {l.specialBenefit}
                       </td>
                     ))}

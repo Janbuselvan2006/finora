@@ -1,0 +1,593 @@
+/* ==========================================================================
+   Finora Google Assistant-Style Voice AI Assistant Styles
+   ========================================================================== */
+
+/* FLOATING TRIGGER BUTTON */
+.voice-assistant-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #111827;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(66, 133, 244, 0.3);
+  cursor: pointer;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.voice-assistant-fab:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.5), 0 0 22px rgba(66, 133, 244, 0.5);
+  background: #0f172a;
+}
+
+.voice-assistant-fab.listening {
+  border-color: #4285F4;
+  box-shadow: 0 0 25px rgba(66, 133, 244, 0.6);
+  animation: pulseFabGlow 1.8s infinite;
+}
+
+@keyframes pulseFabGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(66, 133, 244, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(66, 133, 244, 0.8); }
+}
+
+/* GOOGLE ASSISTANT 4-COLOR DOTS */
+.google-assistant-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ga-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.ga-dot.blue   { background-color: #4285F4; }
+.ga-dot.red    { background-color: #EA4335; }
+.ga-dot.yellow { background-color: #FBBC05; }
+.ga-dot.green  { background-color: #34A853; }
+
+/* DOTS ANIMATION WHEN LISTENING (Bouncy Wave) */
+.listening .ga-dot,
+.ga-dots-active .ga-dot {
+  animation: googleWave 1.2s infinite ease-in-out;
+}
+
+.listening .ga-dot.blue,   .ga-dots-active .ga-dot.blue   { animation-delay: 0.0s; }
+.listening .ga-dot.red,    .ga-dots-active .ga-dot.red    { animation-delay: 0.15s; }
+.listening .ga-dot.yellow, .ga-dots-active .ga-dot.yellow { animation-delay: 0.3s; }
+.listening .ga-dot.green,  .ga-dots-active .ga-dot.green  { animation-delay: 0.45s; }
+
+@keyframes googleWave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* MODAL OVERLAY */
+.voice-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeInModal 0.25s ease-out;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ASSISTANT CARD */
+.voice-assistant-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(20px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* HEADER */
+.va-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.va-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.va-brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.va-subtext {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.va-close-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.va-close-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* BODY CONTENT */
+.va-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ASSISTANT VISUALIZER STAGE */
+.va-visualizer-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* BIG PULSING MIC BUTTON */
+.va-mic-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.va-mic-btn:hover {
+  transform: scale(1.06);
+  border-color: #4285F4;
+}
+
+.va-mic-btn.active {
+  background: #0f172a;
+  border-color: #4285F4;
+  box-shadow: 0 0 25px rgba(66, 133, 244, 0.5);
+}
+
+.va-mic-btn.active::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid #4285F4;
+  animation: pulseMicRipple 1.6s infinite ease-out;
+}
+
+@keyframes pulseMicRipple {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* AUDIO WAVEFORM BARS */
+.va-waveform-bars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  margin-bottom: 12px;
+}
+
+.va-bar {
+  width: 3px;
+  border-radius: 3px;
+  background: #94a3b8;
+  height: 6px;
+  transition: height 0.1s ease;
+}
+
+.va-waveform-bars.animating .va-bar {
+  animation: waveBar 0.8s infinite alternate ease-in-out;
+}
+
+.va-waveform-bars.animating .va-bar:nth-child(1) { background: #4285F4; animation-delay: 0.05s; }
+.va-waveform-bars.animating .va-bar:nth-child(2) { background: #EA4335; animation-delay: 0.15s; }
+.va-waveform-bars.animating .va-bar:nth-child(3) { background: #FBBC05; animation-delay: 0.25s; }
+.va-waveform-bars.animating .va-bar:nth-child(4) { background: #34A853; animation-delay: 0.35s; }
+.va-waveform-bars.animating .va-bar:nth-child(5) { background: #4285F4; animation-delay: 0.45s; }
+.va-waveform-bars.animating .va-bar:nth-child(6) { background: #EA4335; animation-delay: 0.55s; }
+.va-waveform-bars.animating .va-bar:nth-child(7) { background: #FBBC05; animation-delay: 0.65s; }
+
+@keyframes waveBar {
+  0% { height: 6px; }
+  100% { height: 26px; }
+}
+
+/* STATUS TEXT */
+.va-status-text {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.va-instruction {
+  font-size: 12px;
+  color: #64748b;
+  max-width: 440px;
+}
+
+/* REALTIME TRANSCRIPT BOX */
+.va-transcript-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 14px;
+  width: 100%;
+  max-width: 520px;
+  text-align: left;
+}
+
+.va-transcript-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.va-transcript-text {
+  font-size: 13.5px;
+  color: #0f172a;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* QUICK VOICE PROMPTS CHIPS */
+.va-quick-prompts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.va-prompts-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.va-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.va-prompt-chip {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.va-prompt-chip:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.va-prompt-chip.warning {
+  border-color: #fca5a5;
+  color: #991b1b;
+  background: #fff5f5;
+}
+
+/* AI RESPONSE / RESULT CARD */
+.va-result-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.06);
+  animation: fadeInModal 0.3s ease-in-out;
+}
+
+.va-result-card.verified {
+  border-color: #a7f3d0;
+  background: #fcfdfd;
+}
+
+.va-result-card.invalid {
+  border-color: #fca5a5;
+  background: #fffafa;
+}
+
+/* RESULT HEADER */
+.va-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.va-category-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.03em;
+}
+
+.va-category-badge.medical {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.va-category-badge.loan {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.va-category-badge.invalid {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* AUDIO PLAYBACK BAR */
+.va-speech-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+
+.va-speech-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.va-speech-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.va-speech-btn:hover {
+  background: #f1f5f9;
+}
+
+/* COST ESTIMATE BANNER */
+.va-cost-banner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.va-cost-title {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.va-cost-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* AGENT TRAPS SHIELD ACCORDION */
+.va-traps-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.va-traps-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #991b1b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.va-trap-item {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.va-trap-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9b2c2c;
+}
+
+.va-trap-warn {
+  font-size: 11.5px;
+  color: #4a5568;
+}
+
+.va-trap-shield {
+  font-size: 11.5px;
+  color: #047857;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ACTION BUTTONS */
+.va-action-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.va-btn-primary {
+  flex: 1;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.va-btn-primary:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.va-btn-secondary {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.va-btn-secondary:hover {
+  background: #f8fafc;
+}
+
+/* EMBEDDED VARIANT (FOR USE INSIDE MEDICALDOCSCANNER) */
+.voice-embedded-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+@media (max-width: 640px) {
+  .voice-assistant-fab {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 12.5px;
+  }
+  .va-cost-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

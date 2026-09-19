@@ -94,11 +94,60 @@
   transform: translateY(-2px);
 }
 
+.loan-upload-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.loan-upload-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.btn-file-select {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+
+.btn-file-select:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--text-primary);
+}
+
 .loan-presets-card {
   background: var(--bg-surface-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 20px;
+}
+
+.loan-presets-header {
+  margin-bottom: 12px;
+}
+
+.loan-presets-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+}
+
+.loan-presets-badge {
+  font-size: 0.75rem;
+  color: var(--accent-emerald, #059669);
+  display: block;
+  margin-top: 2px;
+  font-weight: 600;
 }
 
 .loan-preset-list {
@@ -122,9 +171,21 @@
 }
 
 .loan-preset-item:hover, .loan-preset-item.active {
-  border-color: var(--btn-primary-bg);
+  border-color: var(--text-primary);
   background: var(--bg-surface-hover);
   transform: translateX(3px);
+}
+
+.preset-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.preset-item-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
 }
 
 /* Extracted Salary Card */
@@ -134,6 +195,78 @@
   border-radius: var(--radius-md);
   padding: 20px 24px;
   margin-bottom: 24px;
+}
+
+.loan-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.loan-verified-title {
+  color: var(--accent-emerald, #059669);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.loan-emp-name {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.loan-employer-tag {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.loan-employer-val {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.loan-ai-summary-box {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  line-height: 1.5;
+}
+
+.loan-config-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.loan-config-desc {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.lender-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 4px 0;
+}
+
+.lender-type {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .loan-extracted-grid {
@@ -342,3 +475,81 @@
   background: var(--btn-primary-hover);
   transform: translateY(-1px);
 }
+
+/* --------------------------------------------------------------------------
+   Matrix Table & Toggle Group Styles
+   -------------------------------------------------------------------------- */
+.view-toggle-group {
+  display: flex;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px;
+}
+
+.btn-view-toggle {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+
+.btn-view-toggle.active {
+  background: var(--text-primary);
+  color: var(--bg-surface);
+}
+
+.matrix-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.matrix-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.matrix-table th {
+  background: var(--bg-surface-subtle);
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-subtle);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.matrix-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.dim-badge {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+

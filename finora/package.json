@@ -15,6 +15,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "firebase": "^12.19.0",
     "oxlint": "^1.81.0",
+    "pdfjs-dist": "^6.3.289",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "vite": "^8.3.0"

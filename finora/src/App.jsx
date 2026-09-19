@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoanDocScanner from './components/LoanDocScanner';
 import MedicalDocScanner from './components/MedicalDocScanner';
+import VoiceAssistant from './components/VoiceAssistant';
 import './App.css';
 
 // Brand Logo Component with Finora Two-Circle Brand (as in reference pic)
@@ -935,154 +936,10 @@ export default function App() {
                 </>
               ) : currentView === 'insurance' ? (
                 <>
-                  {/* AI MEDICAL OCR SCANNER */}
-                  <div id="insurance-scanner-widget" style={{ marginTop: '24px' }}>
+                  {/* AI MEDICAL OCR & 7-DIMENSION POLICY FINDER */}
+                  <div id="insurance-scanner-widget" style={{ marginTop: '20px' }}>
                     <MedicalDocScanner />
                   </div>
-
-                  {/* Explore Insurance Grid */}
-                  <section className="policy-explore-section" style={{ marginTop: '32px' }}>
-                    <div className="explore-header-row">
-                      <div>
-                        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
-                          Explore Protection Policies
-                        </h2>
-                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
-                          Comprehensive medical coverage benchmarked across IRDAI claim settlement and zero co-pay rules.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="policy-cards-grid">
-                      <article className="policy-feature-card">
-                        <div className="policy-card-header">
-                          <span className="policy-insurer-tag">Best Value</span>
-                          <span className="policy-copay-tag">Zero Co-Pay</span>
-                        </div>
-                        <h3 className="policy-name">🛡️ Comprehensive Health</h3>
-                        <div className="policy-metric-pill">
-                          <span className="policy-sum-val">₹25L – ₹1 Crore</span>
-                          <span className="policy-sum-label">100% Unlimited Restore</span>
-                        </div>
-                        <div className="policy-specs-list">
-                          <div className="spec-row">
-                            <span>Room Rent</span>
-                            <strong>No Limit (Single Private)</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Day Care</span>
-                            <strong>540+ Procedures</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Pre/Post Hosp</span>
-                            <strong>60 / 180 Days</strong>
-                          </div>
-                        </div>
-                        <button type="button" className="btn-select-policy" onClick={() => {
-                          const el = document.getElementById('insurance-scanner-widget');
-                          if (el) el.scrollIntoView({ behavior: 'smooth' });
-                        }}>
-                          Select & Scan Certificate →
-                        </button>
-                      </article>
-
-                      <article className="policy-feature-card">
-                        <div className="policy-card-header">
-                          <span className="policy-insurer-tag">Specialized</span>
-                          <span className="policy-copay-tag">Lump Sum Payout</span>
-                        </div>
-                        <h3 className="policy-name">❤️ Critical Illness Rider</h3>
-                        <div className="policy-metric-pill">
-                          <span className="policy-sum-val">₹50.0 Lakhs</span>
-                          <span className="policy-sum-label">36 Major Conditions Covered</span>
-                        </div>
-                        <div className="policy-specs-list">
-                          <div className="spec-row">
-                            <span>Survival Period</span>
-                            <strong>15 Days Only</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Second Opinion</span>
-                            <strong>Global Expert Panel</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Premium Waiver</span>
-                            <strong>Included on Diagnosis</strong>
-                          </div>
-                        </div>
-                        <button type="button" className="btn-select-policy" onClick={() => {
-                          const el = document.getElementById('insurance-scanner-widget');
-                          if (el) el.scrollIntoView({ behavior: 'smooth' });
-                        }}>
-                          Configure Critical Cover →
-                        </button>
-                      </article>
-
-                      <article className="policy-feature-card">
-                        <div className="policy-card-header">
-                          <span className="policy-insurer-tag">Family Floater</span>
-                          <span className="policy-copay-tag">2A + 2C</span>
-                        </div>
-                        <h3 className="policy-name">👨‍👩‍👧‍👦 Family Shield Plan</h3>
-                        <div className="policy-metric-pill">
-                          <span className="policy-sum-val">₹50.0 Lakhs</span>
-                          <span className="policy-sum-label">Single Shared Sum Insured</span>
-                        </div>
-                        <div className="policy-specs-list">
-                          <div className="spec-row">
-                            <span>Maternity</span>
-                            <strong>Covered up to ₹1 Lakh</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>OPD Consults</span>
-                            <strong>Unlimited Tele-consults</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Annual Health Check</span>
-                            <strong>Free for all members</strong>
-                          </div>
-                        </div>
-                        <button type="button" className="btn-select-policy" onClick={() => {
-                          const el = document.getElementById('insurance-scanner-widget');
-                          if (el) el.scrollIntoView({ behavior: 'smooth' });
-                        }}>
-                          Configure Family Shield →
-                        </button>
-                      </article>
-
-                      <article className="policy-feature-card">
-                        <div className="policy-card-header">
-                          <span className="policy-insurer-tag">Income Security</span>
-                          <span className="policy-copay-tag">Sec 80C Benefit</span>
-                        </div>
-                        <h3 className="policy-name">☂️ Pure Term Life Cover</h3>
-                        <div className="policy-metric-pill">
-                          <span className="policy-sum-val">₹2.00 Crore</span>
-                          <span className="policy-sum-label">Coverage up to Age 75</span>
-                        </div>
-                        <div className="policy-specs-list">
-                          <div className="spec-row">
-                            <span>Claim Ratio</span>
-                            <strong>99.1% Verified</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Terminal Illness</span>
-                            <strong>100% Accelerated Payout</strong>
-                          </div>
-                          <div className="spec-row">
-                            <span>Cost</span>
-                            <strong>From ₹850 / month</strong>
-                          </div>
-                        </div>
-                        <button type="button" className="btn-select-policy" onClick={() => {
-                          const el = document.getElementById('insurance-scanner-widget');
-                          if (el) el.scrollIntoView({ behavior: 'smooth' });
-                        }}>
-                          Configure Term Life →
-                        </button>
-                      </article>
-                    </div>
-                  </section>
                 </>
               ) : currentView === 'fintech' ? (
                 <>
@@ -1861,6 +1718,24 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Google Assistant-Style Voice Assistant (Global) */}
+      <VoiceAssistant 
+        onApplyToInsurance={() => {
+          navigateTo('insurance');
+          setTimeout(() => {
+            const target = document.getElementById('medical-ocr-section');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }}
+        onApplyToLoans={() => {
+          navigateTo('loans');
+          setTimeout(() => {
+            const target = document.getElementById('loan-intelligence-section');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }}
+      />
 
     </div>
   );

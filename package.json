@@ -1,7 +1,11 @@
 {
   "name": "finora-root",
   "private": true,
+  "workspaces": [
+    "finora"
+  ],
   "scripts": {
+    "postinstall": "npm --prefix finora install",
     "dev": "npm --prefix finora run dev",
     "build": "npm --prefix finora run build",
     "preview": "npm --prefix finora run preview"

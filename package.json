@@ -8,7 +8,8 @@
     "postinstall": "npm --prefix finora install --include=dev",
     "dev": "npm --prefix finora run dev",
     "build": "npm --prefix finora run build",
-    "preview": "npm --prefix finora run preview"
+    "preview": "npm --prefix finora run preview",
+    "deploy:firebase": "npm run build && firebase deploy"
   },
   "dependencies": {
     "firebase": "^12.19.0"

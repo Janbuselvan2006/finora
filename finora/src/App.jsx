@@ -130,7 +130,7 @@ export default function App() {
               </svg>
               <span>Insurance</span>
             </a>
-            <a href="#goals" className="sidebar-link">
+            <a href="fintech.html" className="sidebar-link">
               <svg className="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="2" y="5" width="20" height="14" rx="2"></rect>
               </svg>
@@ -235,9 +235,9 @@ export default function App() {
                   <div className="hero-ai-chips-group">
                     <span className="chips-label">Quick actions:</span>
                     <div className="chips-container">
-                      <button className="ai-chip" onClick={() => handleQuickAction('I need a loan')}>🏦 I need a loan</button>
-                      <button className="ai-chip" onClick={() => handleQuickAction('I want insurance')}>🛡️ I want insurance</button>
-                      <button className="ai-chip" onClick={() => handleQuickAction('Financial question')}>💬 Have a question</button>
+                      <button className="ai-chip" onClick={() => window.location.href = 'loan.html'}>🏦 I need a loan</button>
+                      <button className="ai-chip" onClick={() => window.location.href = 'insurance.html'}>🛡️ I want insurance</button>
+                      <button className="ai-chip" onClick={() => window.location.href = 'fintech.html'}>💬 Have a question</button>
                     </div>
                   </div>
 
@@ -329,7 +329,7 @@ export default function App() {
                   </div>
                 </div>
                 <div className="goal-card-footer">
-                  <a href="#ai-assistant" className="goal-card-cta cta-fintech">Explore Fintech →</a>
+                  <a href="fintech.html" className="goal-card-cta cta-fintech">Explore Fintech →</a>
                 </div>
               </article>
             </div>

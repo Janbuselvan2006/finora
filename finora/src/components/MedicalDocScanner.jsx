@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { PRESET_MEDICAL_DOCUMENTS } from '../data/insurancePolicies';
 import { analyzeMedicalDocument, evaluatePoliciesForMedicalDoc } from '../utils/medicalOcr';
-import { getN8nWebhookUrl, setN8nWebhookUrl } from '../utils/n8nService';
+import { getN8nWebhookUrl } from '../utils/n8nService';
 import VoiceAssistant from './VoiceAssistant';
+import N8nConfigModal from './N8nConfigModal';
 import './MedicalDocScanner.css';
 
 export default function MedicalDocScanner() {
@@ -17,8 +18,6 @@ export default function MedicalDocScanner() {
   // n8n Webhook Integration State
   const [n8nWebhookUrl, setN8nWebhookState] = useState(getN8nWebhookUrl());
   const [showN8nModal, setShowN8nModal] = useState(false);
-  const [tempN8nUrl, setTempN8nUrl] = useState(getN8nWebhookUrl());
-  const [n8nTestStatus, setN8nTestStatus] = useState(null);
 
   // Step 1 Intake mode: 'upload' | 'paste' | 'preset' | 'voice'
   const [intakeMode, setIntakeMode] = useState('paste');
@@ -1166,138 +1165,12 @@ export default function MedicalDocScanner() {
       {/* ====================================================================
           n8n WEBHOOK CONFIGURATION MODAL
           ==================================================================== */}
-      {showN8nModal && (
-        <div className="med-modal-overlay" onClick={() => setShowN8nModal(false)}>
-          <div 
-            className="med-modal-card" 
-            style={{ maxWidth: '580px' }} 
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="med-modal-header">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '20px' }}>⚡</span>
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Connect n8n Automation Webhook
-                  </h3>
-                  <span style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                    Trigger custom AI pipelines, CRM sync, or WhatsApp notifications
-                  </span>
-                </div>
-              </div>
-              <button 
-                type="button" 
-                className="med-modal-close"
-                onClick={() => setShowN8nModal(false)}
-              >
-                ✕
-              </button>
-            </div>
-
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--text-primary)', display: 'block', marginBottom: '6px' }}>
-                  n8n Webhook URL (POST):
-                </label>
-                <input
-                  type="url"
-                  className="med-notes-textarea"
-                  style={{ minHeight: '42px', height: '42px', padding: '8px 12px', fontSize: '13px', borderRadius: '8px', width: '100%', boxSizing: 'border-box' }}
-                  placeholder="https://your-n8n-instance.com/webhook/finora-webhook"
-                  value={tempN8nUrl}
-                  onChange={(e) => setTempN8nUrl(e.target.value)}
-                />
-                <span style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px', display: 'block' }}>
-                  Paste your n8n Production or Test Webhook URL.
-                </span>
-              </div>
-
-              {n8nTestStatus && (
-                <div style={{
-                  padding: '10px 14px',
-                  borderRadius: '8px',
-                  fontSize: '12px',
-                  background: n8nTestStatus.success ? '#ecfdf5' : '#fef2f2',
-                  color: n8nTestStatus.success ? '#065f46' : '#991b1b',
-                  border: n8nTestStatus.success ? '1px solid #a7f3d0' : '1px solid #fecaca'
-                }}>
-                  {n8nTestStatus.message}
-                </div>
-              )}
-
-              <div style={{ background: 'var(--bg-surface-subtle)', border: '1px solid var(--border-subtle)', padding: '12px 14px', borderRadius: '10px', fontSize: '12px', color: 'var(--text-secondary)' }}>
-                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: '4px' }}>
-                  📥 Pre-built Workflow Template:
-                </strong>
-                Download our ready-to-import n8n workflow containing hospital verification, Gemini OCR extraction, and lead routing:
-                <div style={{ marginTop: '8px' }}>
-                  <a 
-                    href="/finora-n8n-workflow.json" 
-                    download="finora-n8n-workflow.json"
-                    className="btn-invalid-action secondary"
-                    style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11.5px', padding: '6px 12px' }}
-                  >
-                    ⬇️ Download finora-n8n-workflow.json
-                  </a>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '6px' }}>
-                {n8nWebhookUrl && (
-                  <button
-                    type="button"
-                    className="btn-invalid-action secondary"
-                    style={{ color: '#b91c1c', borderColor: '#fca5a5' }}
-                    onClick={() => {
-                      setN8nWebhookUrl('');
-                      setN8nWebhookState('');
-                      setTempN8nUrl('');
-                      setN8nTestStatus({ success: true, message: 'n8n webhook disconnected.' });
-                    }}
-                  >
-                    Disconnect
-                  </button>
-                )}
-                <button
-                  type="button"
-                  className="btn-invalid-action secondary"
-                  onClick={async () => {
-                    if (!tempN8nUrl.trim()) return;
-                    setN8nTestStatus({ success: true, message: 'Testing webhook connection...' });
-                    try {
-                      const res = await fetch(tempN8nUrl.trim(), {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ event: 'PING_TEST', source: 'Finora App' })
-                      });
-                      if (res.ok) {
-                        setN8nTestStatus({ success: true, message: '✓ Connection successful! n8n webhook is active and responding.' });
-                      } else {
-                        setN8nTestStatus({ success: false, message: `Webhook reached but responded with HTTP ${res.status}.` });
-                      }
-                    } catch (err) {
-                      setN8nTestStatus({ success: false, message: `Could not reach URL: ${err.message}` });
-                    }
-                  }}
-                >
-                  ⚡ Test Ping
-                </button>
-                <button
-                  type="button"
-                  className="btn-invalid-action primary"
-                  onClick={() => {
-                    setN8nWebhookUrl(tempN8nUrl);
-                    setN8nWebhookState(tempN8nUrl.trim());
-                    setShowN8nModal(false);
-                  }}
-                >
-                  Save & Apply
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Reusable n8n Configuration Modal */}
+      <N8nConfigModal 
+        isOpen={showN8nModal} 
+        onClose={() => setShowN8nModal(false)} 
+        onSave={(url) => setN8nWebhookState(url)} 
+      />
 
     </section>
   );

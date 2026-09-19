@@ -279,30 +279,44 @@ export default function VoiceAssistant({
           <button
             type="button"
             className="va-prompt-chip"
-            onClick={() => handleQuickPrompt('Patient: Rajesh, 54 yrs. Advised cardiac stent angioplasty at Fortis Hospital. Estimated cost ₹11 Lakhs.')}
+            onClick={() => handleQuickPrompt('Patient: Rajesh, 54 yrs. Advised cardiac stent angioplasty at Fortis Hospital. Estimated cost 11 Lakhs.')}
           >
             🫀 "Fortis Hospital: Heart Stent Surgery"
           </button>
           <button
             type="button"
             className="va-prompt-chip"
-            onClick={() => handleQuickPrompt('Patient: Sunita, 48 yrs. Apollo Health Center: Diabetes & Hypertension checkup, advised private room ₹4.5 Lakhs.')}
+            onClick={() => handleQuickPrompt('Patient: Sunita, 48 yrs. Apollo Health Center: Diabetes and Hypertension checkup, advised private room 4.5 Lakhs.')}
           >
             🩸 "Apollo Health: Diabetes & BP Consultation"
           </button>
           <button
             type="button"
             className="va-prompt-chip"
-            onClick={() => handleQuickPrompt('Patient: Meena, 61 yrs. Total knee replacement surgery at Max Hospital, cost ₹8.5 Lakhs.')}
+            onClick={() => handleQuickPrompt('Patient: Meena, 61 yrs. Total knee replacement surgery at Max Hospital, cost 8.5 Lakhs.')}
           >
             🦴 "Max Hospital: Knee Joint Replacement"
           </button>
           <button
             type="button"
             className="va-prompt-chip"
-            onClick={() => handleQuickPrompt('I need a ₹25 Lakhs home loan for 20 years at lowest interest rate, monthly salary ₹95,000.')}
+            onClick={() => handleQuickPrompt('My salary is 1 lakh, I want a 10 lakh personal loan.')}
           >
-            🏠 "₹25 Lakhs Home Loan Inquiry"
+            💳 "Salary 1L, Want 10L Personal Loan"
+          </button>
+          <button
+            type="button"
+            className="va-prompt-chip"
+            onClick={() => handleQuickPrompt('My monthly salary is 95000, I need a 25 lakh home loan for 20 years.')}
+          >
+            🏠 "Salary 95K, Want 25L Home Loan"
+          </button>
+          <button
+            type="button"
+            className="va-prompt-chip"
+            onClick={() => handleQuickPrompt('I earn 50000 per month and want a 40 lakh home loan.')}
+          >
+            ⚠️ "50K Salary, Want 40L Loan (Over Limit)"
           </button>
           <button
             type="button"
@@ -310,7 +324,7 @@ export default function VoiceAssistant({
             onClick={() => handleQuickPrompt('I have severe fever and stomach pain, need health insurance.')}
             title="Tests IRDAI rule requiring an accredited hospital/clinic name"
           >
-            ⚠️ "Test Invalid: Fever (No Hospital)"
+            🚫 "Test Invalid: Fever (No Hospital)"
           </button>
         </div>
       </div>
@@ -372,6 +386,78 @@ export default function VoiceAssistant({
             </div>
           </div>
 
+          {/* SALARY-BASED ELIGIBILITY BANNER (Loan Queries) */}
+          {analysisResult.category === 'loan_banking' && (
+            <div style={{ margin: '0 0 12px 0' }}>
+              {/* Salary & EMI Capacity Row */}
+              {analysisResult.keyEntities?.salary && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: '10px',
+                  padding: '14px',
+                  background: analysisResult.keyEntities.isAffordable ? '#f0fdf4' : '#fef2f2',
+                  border: `1px solid ${analysisResult.keyEntities.isAffordable ? '#bbf7d0' : '#fecaca'}`,
+                  borderRadius: '10px',
+                  marginBottom: '10px'
+                }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '10px', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>Monthly Salary</div>
+                    <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', marginTop: '2px' }}>₹{(analysisResult.keyEntities.salary / 1000).toFixed(0)}K</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '10px', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>Max EMI (60% FOIR)</div>
+                    <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#059669', marginTop: '2px' }}>₹{Math.round(analysisResult.keyEntities.salary * 0.6).toLocaleString('en-IN')}</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '10px', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>Your Loan EMI</div>
+                    <div style={{ fontSize: '1.15rem', fontWeight: 800, color: analysisResult.keyEntities.isAffordable ? '#0f172a' : '#dc2626', marginTop: '2px' }}>₹{analysisResult.keyEntities.estEmi?.toLocaleString('en-IN')}</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '10px', color: '#64748b', textTransform: 'uppercase', fontWeight: 700 }}>Eligibility</div>
+                    <div style={{ fontSize: '1rem', fontWeight: 800, marginTop: '4px', color: analysisResult.keyEntities.isAffordable ? '#16a34a' : '#dc2626' }}>
+                      {analysisResult.keyEntities.isAffordable ? '✅ Eligible' : '❌ Exceeds Limit'}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* FOIR Warning if over limit */}
+              {analysisResult.keyEntities?.foirWarning && (
+                <div style={{
+                  background: '#fff7ed',
+                  border: '1px solid #fed7aa',
+                  borderLeft: '4px solid #f97316',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  color: '#7c2d12',
+                  marginBottom: '6px'
+                }}>
+                  <strong>⚠️ Income Limit Alert:</strong> {analysisResult.keyEntities.foirWarning}
+                </div>
+              )}
+
+              {/* Max Eligible Loan Recommendation */}
+              {analysisResult.keyEntities?.maxEligibleLoan && !analysisResult.keyEntities.isAffordable && (
+                <div style={{
+                  background: '#ecfdf5',
+                  border: '1px solid #a7f3d0',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  color: '#065f46',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span><strong>💡 Recommended:</strong> Apply for ₹{(analysisResult.keyEntities.maxEligibleLoan / 100000).toFixed(1)} Lakhs instead.</span>
+                  <span style={{ fontWeight: 700, fontSize: '11px', background: '#d1fae5', padding: '2px 8px', borderRadius: '4px' }}>SAFE LIMIT</span>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* DETAILED COST BREAKDOWN LIST (IF CLINICAL) */}
           {analysisResult.analysisBreakdown.costBreakdownList && (
             <div style={{ background: '#f8fafc', padding: '12px 14px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
@@ -397,7 +483,7 @@ export default function VoiceAssistant({
               </div>
               {analysisResult.analysisBreakdown.criticalAgentTraps.map((t, idx) => (
                 <div key={idx} className="va-trap-item">
-                  <div className="va-trap-name">⚠️ Trap {idx + 1}: {t.trap}</div>
+                  <div className="va-trap-name">⚠️ {t.trap}</div>
                   <div className="va-trap-warn">{t.warning}</div>
                   <div className="va-trap-shield">✓ Finora Safeguard: {t.safeguard}</div>
                 </div>

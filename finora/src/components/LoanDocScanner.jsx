@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { LOAN_TYPES, PRESET_INCOME_DOCUMENTS } from '../data/loanInstitutions';
 import { analyzeSalaryDocument, evaluateLendersForLoan } from '../utils/salaryOcr';
+import { getN8nWebhookUrl, triggerN8nLoanApplication } from '../utils/n8nService';
+import N8nConfigModal from './N8nConfigModal';
 import './LoanDocScanner.css';
 
 export default function LoanDocScanner() {
@@ -13,13 +15,19 @@ export default function LoanDocScanner() {
   const [rankedLenders, setRankedLenders] = useState([]);
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' or 'matrix'
   const [selectedLoanModal, setSelectedLoanModal] = useState(null);
+  const [n8nWebhookUrl, setN8nWebhookState] = useState(getN8nWebhookUrl());
+  const [showN8nModal, setShowN8nModal] = useState(false);
 
   const handleScanSalary = async (docInput) => {
     setIsScanning(true);
     setExtractedSalary(null);
 
     try {
-      const parsed = await analyzeSalaryDocument(docInput);
+      const parsed = await analyzeSalaryDocument(docInput, {
+        loanType: selectedLoanType?.id,
+        loanAmount,
+        tenureYears
+      });
       setExtractedSalary(parsed);
 
       const evaluated = evaluateLendersForLoan(
@@ -79,8 +87,33 @@ export default function LoanDocScanner() {
           </h2>
           <p>Scan your payslip, Form 16 or bank statement to unlock pre-approved borrowing limits and compare lowest interest rate lenders.</p>
         </div>
-        <div className="loan-ai-pill">
-          <span>AI Income OCR & FOIR Engine Active</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button
+            type="button"
+            onClick={() => setShowN8nModal(true)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 14px',
+              borderRadius: '9999px',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              background: n8nWebhookUrl ? '#ecfdf5' : '#f8fafc',
+              color: n8nWebhookUrl ? '#065f46' : '#334155',
+              border: n8nWebhookUrl ? '1px solid #a7f3d0' : '1px solid #e2e8f0',
+              transition: 'all 0.2s',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+            }}
+            title="Configure n8n automation webhook for loan underwriting"
+          >
+            <span style={{ fontSize: '12px' }}>{n8nWebhookUrl ? '⚡' : '🔗'}</span>
+            <span>{n8nWebhookUrl ? 'n8n Connected' : 'Connect n8n'}</span>
+          </button>
+          <div className="loan-ai-pill">
+            <span>AI Income OCR & FOIR Engine Active</span>
+          </div>
         </div>
       </div>
 
@@ -159,6 +192,23 @@ export default function LoanDocScanner() {
             <div className="loan-verified-title">
               <span>✅ Verified Financial Profile:</span>
               <span className="loan-emp-name">{extractedSalary.employeeName}</span>
+              {extractedSalary.isN8nPowered && (
+                <span style={{
+                  background: '#ecfdf5',
+                  color: '#065f46',
+                  border: '1px solid #a7f3d0',
+                  padding: '2px 8px',
+                  borderRadius: '6px',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  marginLeft: '8px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}>
+                  ⚡ n8n AI Verified
+                </span>
+              )}
             </div>
             <div className="loan-employer-tag">
               Employer: <strong className="loan-employer-val">{extractedSalary.employerName}</strong> ({extractedSalary.employerCategory})
@@ -562,8 +612,22 @@ export default function LoanDocScanner() {
             <div style={{ display: 'flex', gap: '12px' }}>
               <button 
                 className="btn-apply-loan"
-                onClick={() => {
-                  alert(`Thank you! Your instant in-principle application for ${selectedLoanModal.name} (${selectedLoanType.name}) has been submitted.`);
+                onClick={async () => {
+                  if (n8nWebhookUrl) {
+                    await triggerN8nLoanApplication({
+                      applicantName: extractedSalary?.employeeName || 'Applicant',
+                      employerName: extractedSalary?.employerName || 'Corporate',
+                      employerCategory: extractedSalary?.employerCategory,
+                      netMonthlySalary: extractedSalary?.netMonthlySalary,
+                      loanType: selectedLoanType?.name,
+                      loanAmount: loanAmount,
+                      tenureYears: tenureYears,
+                      selectedLender: selectedLoanModal?.name,
+                      interestRate: selectedLoanModal?.interestRate,
+                      monthlyEmi: selectedLoanModal?.monthlyEmi
+                    });
+                  }
+                  alert(`🎉 In-Principle Sanction Submitted!\n\nYour application for ${selectedLoanModal.name} (${selectedLoanType.name}) has been pre-approved${n8nWebhookUrl ? ' and dispatched to your n8n workflow pipeline' : ''}.`);
                   setSelectedLoanModal(null);
                 }}
               >
@@ -579,6 +643,13 @@ export default function LoanDocScanner() {
           </div>
         </div>
       )}
+
+      {/* Reusable n8n Configuration Modal */}
+      <N8nConfigModal 
+        isOpen={showN8nModal} 
+        onClose={() => setShowN8nModal(false)} 
+        onSave={(url) => setN8nWebhookState(url)} 
+      />
 
     </section>
   );

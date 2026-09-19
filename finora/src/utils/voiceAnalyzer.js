@@ -115,69 +115,165 @@ export function analyzeVoiceProblem(rawTranscript) {
   // SCENARIO 1: LOAN / BANKING QUERY
   // =========================================================================
   if (isLoanQuery) {
+    // ---- STEP A: Detect Loan Type ----
     let loanType = 'Personal Loan';
-    if (lower.includes('home') || lower.includes('house') || lower.includes('flat') || lower.includes('property')) {
+    if (lower.includes('home') || lower.includes('house') || lower.includes('flat') || lower.includes('property') || lower.includes('apartment')) {
       loanType = 'Home Loan';
-    } else if (lower.includes('car') || lower.includes('auto') || lower.includes('vehicle')) {
+    } else if (lower.includes('car') || lower.includes('auto') || lower.includes('vehicle') || lower.includes('bike')) {
       loanType = 'Vehicle Loan';
-    } else if (lower.includes('business') || lower.includes('msme') || lower.includes('working capital')) {
+    } else if (lower.includes('business') || lower.includes('msme') || lower.includes('working capital') || lower.includes('startup')) {
       loanType = 'Business Loan';
-    } else if (lower.includes('education') || lower.includes('study') || lower.includes('college')) {
+    } else if (lower.includes('education') || lower.includes('study') || lower.includes('college') || lower.includes('university')) {
       loanType = 'Education Loan';
     }
 
-    const amountMatch = text.match(/(?:₹|rs\.?|inr)?\s*(\d+[\d,.]*)\s*(?:lakh|lac|cr|crore|k)?/i);
-    let estimatedAmount = 1500000;
-    if (amountMatch) {
-      const num = parseFloat(amountMatch[1].replace(/,/g, ''));
-      if (!isNaN(num)) {
-        if (lower.includes('cr') || lower.includes('crore')) estimatedAmount = num * 10000000;
-        else if (lower.includes('lakh') || lower.includes('lac') || num <= 100) estimatedAmount = num * 100000;
-        else estimatedAmount = num;
+    // ---- STEP B: Extract SALARY from voice query ----
+    // Handles: "my salary is 1 lakh", "earning 80000", "income 50k", "I earn 1.5 lakh"
+    let salary = null;
+    const salaryPatterns = [
+      /(?:my\s+)?(?:salary|income|earning|earn|take\s+home|net\s+pay|in.?hand)[^\d]*([\d,.]+)\s*(lakh|lac|k|thousand)?/i,
+      /(?:earn|earning|making|getting)[^\d]*([\d,.]+)\s*(lakh|lac|k|thousand)?/i,
+      /(?:₹|rs\.?|inr)\s*([\d,.]+)\s*(lakh|lac|k|thousand)?(?:[^\d]*salary|income|earning)?/i,
+    ];
+    for (const pattern of salaryPatterns) {
+      const m = text.match(pattern);
+      if (m) {
+        const num = parseFloat(m[1].replace(/,/g, ''));
+        if (!isNaN(num)) {
+          const unit = (m[2] || '').toLowerCase();
+          if (unit === 'lakh' || unit === 'lac') salary = num * 100000;
+          else if (unit === 'k' || unit === 'thousand') salary = num * 1000;
+          else if (num <= 200) salary = num * 1000; // "80" likely means ₹80,000
+          else salary = num;
+          break;
+        }
       }
     }
 
-    const estRate = loanType === 'Home Loan' ? 8.4 : loanType === 'Vehicle Loan' ? 8.8 : 10.75;
-    const estTenureYears = loanType === 'Home Loan' ? 20 : 5;
+    // ---- STEP C: Extract LOAN AMOUNT from voice query ----
+    // Handles: "10 lakh loan", "want 15 lakhs", "need 50 lakh home loan", "₹2500000"
+    let loanAmount = null;
+    const loanPatterns = [
+      /(?:need|want|require|get|borrow|take|looking for)[^\d]*([\d,.]+)\s*(lakh|lac|crore|cr|k|thousand)?/i,
+      /(?:loan|borrow)[^\d\w](?:of\s+)?([\d,.]+)\s*(lakh|lac|crore|cr|k|thousand)?/i,
+      /([\d,.]+)\s*(lakh|lac|crore|cr)[^\w]/i,
+    ];
+    for (const pattern of loanPatterns) {
+      const m = text.match(pattern);
+      if (m) {
+        const num = parseFloat(m[1].replace(/,/g, ''));
+        if (!isNaN(num)) {
+          const unit = (m[2] || '').toLowerCase();
+          if (unit === 'crore' || unit === 'cr') loanAmount = num * 10000000;
+          else if (unit === 'lakh' || unit === 'lac') loanAmount = num * 100000;
+          else if (unit === 'k' || unit === 'thousand') loanAmount = num * 1000;
+          else if (num <= 200) loanAmount = num * 100000; // bare "10" likely means 10 lakh
+          else loanAmount = num;
+          break;
+        }
+      }
+    }
+
+    // ---- STEP D: Interest Rate and Tenure by Loan Type ----
+    const estRate = loanType === 'Home Loan' ? 8.4 : loanType === 'Vehicle Loan' ? 8.8 : loanType === 'Education Loan' ? 8.0 : 10.75;
+    const estTenureYears = loanType === 'Home Loan' ? 20 : loanType === 'Education Loan' ? 7 : 5;
     const monthlyRate = estRate / (12 * 100);
     const months = estTenureYears * 12;
-    const estEmi = Math.round((estimatedAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
 
-    const speechText = `I've analyzed your ${loanType} requirement for ₹${(estimatedAmount / 100000).toFixed(1)} Lakhs. Your estimated monthly EMI would be approximately ₹${estEmi.toLocaleString('en-IN')} at ${estRate}% interest rate. Beware of hidden processing charges and prepayment penalty traps. I'm opening your custom loan offer comparison now.`;
+    // ---- STEP E: Use sensible defaults if not extracted ----
+    if (!loanAmount) loanAmount = 1000000; // Default ₹10L if not specified
+
+    // ---- STEP F: Calculate EMI for requested amount ----
+    const requestedEmi = Math.round(
+      (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1)
+    );
+
+    // ---- STEP G: FOIR-based eligibility check (if salary provided) ----
+    let isAffordable = true;
+    let maxEligibleLoan = null;
+    let foirWarning = null;
+    let salaryBasedEmiLimit = null;
+
+    if (salary && salary > 0) {
+      // 60% FOIR: max affordable EMI = 60% of salary
+      salaryBasedEmiLimit = Math.round(salary * 0.60);
+      // Max loan they can get based on salary
+      maxEligibleLoan = Math.round(
+        (salaryBasedEmiLimit * (Math.pow(1 + monthlyRate, months) - 1)) /
+        (monthlyRate * Math.pow(1 + monthlyRate, months)) / 10000
+      ) * 10000;
+
+      isAffordable = requestedEmi <= salaryBasedEmiLimit;
+
+      if (!isAffordable) {
+        foirWarning = `Based on your ₹${(salary / 1000).toFixed(0)}K salary, your maximum affordable EMI is ₹${salaryBasedEmiLimit.toLocaleString('en-IN')}/mo (60% FOIR limit). The ₹${(loanAmount / 100000).toFixed(1)}L loan would cost ₹${requestedEmi.toLocaleString('en-IN')}/mo which exceeds your limit. You are eligible for up to ₹${(maxEligibleLoan / 100000).toFixed(1)} Lakhs.`;
+      }
+    }
+
+    // ---- STEP H: Build response speech ----
+    let speechText;
+    if (salary && !isAffordable) {
+      speechText = `Based on your monthly salary of ₹${(salary / 1000).toFixed(0)} thousand, your maximum EMI capacity is ₹${salaryBasedEmiLimit.toLocaleString('en-IN')} per month under the 60% FOIR rule. A ₹${(loanAmount / 100000).toFixed(1)} Lakh ${loanType} would cost ₹${requestedEmi.toLocaleString('en-IN')} per month, which is beyond your current income limit. Based on your salary, you are eligible for up to ₹${(maxEligibleLoan / 100000).toFixed(1)} Lakhs. I recommend applying for a lower amount or a longer tenure to reduce your EMI.`;
+    } else if (salary && isAffordable) {
+      speechText = `Great news! Based on your monthly salary of ₹${(salary / 1000).toFixed(0)} thousand, you are fully eligible for the ₹${(loanAmount / 100000).toFixed(1)} Lakh ${loanType} you asked for. Your estimated EMI is ₹${requestedEmi.toLocaleString('en-IN')} per month at ${estRate}% interest over ${estTenureYears} years, which is within your 60% income limit. I am opening your pre-approved lender offers now. Watch out for hidden processing charges and prepayment penalties.`;
+    } else {
+      // No salary mentioned – give EMI info and ask for salary to confirm eligibility
+      speechText = `For a ₹${(loanAmount / 100000).toFixed(1)} Lakh ${loanType} at ${estRate}% interest over ${estTenureYears} years, your estimated monthly EMI would be ₹${requestedEmi.toLocaleString('en-IN')}. To check if you are eligible, please tell me your monthly salary and I will calculate your exact borrowing power.`;
+    }
+
+    // ---- STEP I: Build analysis card ----
+    const agentTraps = [
+      {
+        trap: 'Hidden Processing Fee (1%–2.5%)',
+        warning: `On a ₹${(loanAmount / 100000).toFixed(1)}L loan that's ₹${Math.round(loanAmount * 0.015).toLocaleString('en-IN')} charged upfront.`,
+        safeguard: 'Finora negotiates institutional zero-processing-fee waivers.'
+      },
+      {
+        trap: 'Prepayment & Foreclosure Lock-in',
+        warning: 'Some lenders charge 3–5% penalty for early repayment, costing you lakhs.',
+        safeguard: 'We only route to RBI floating-rate lenders with 0% foreclosure charges.'
+      }
+    ];
+
+    if (!isAffordable && salary) {
+      agentTraps.unshift({
+        trap: '⚠️ Loan Amount Exceeds Your FOIR Limit',
+        warning: `₹${(loanAmount / 100000).toFixed(1)}L EMI (₹${requestedEmi.toLocaleString('en-IN')}/mo) exceeds 60% of your ₹${(salary / 1000).toFixed(0)}K salary.`,
+        safeguard: `You qualify for up to ₹${(maxEligibleLoan / 100000).toFixed(1)} Lakhs. Consider reducing loan amount or increasing tenure.`
+      });
+    }
 
     return {
       category: 'loan_banking',
       isValid: true,
-      userProblemSummary: `Inquiry for ₹${(estimatedAmount / 100000).toFixed(1)}L ${loanType}`,
+      userProblemSummary: salary
+        ? `₹${(loanAmount / 100000).toFixed(1)}L ${loanType} | Salary: ₹${(salary / 1000).toFixed(0)}K/mo | ${isAffordable ? '✅ Eligible' : '⚠️ Exceeds Limit'}`
+        : `₹${(loanAmount / 100000).toFixed(1)}L ${loanType} Inquiry`,
       keyEntities: {
         loanType,
-        amount: estimatedAmount,
+        amount: loanAmount,
+        salary: salary,
         estRate,
         tenureYears: estTenureYears,
-        estEmi
+        estEmi: requestedEmi,
+        maxEligibleLoan,
+        isAffordable,
+        foirWarning
       },
       aiSpeechResponse: speechText,
       analysisBreakdown: {
-        heading: `Finora AI ${loanType} Assessment`,
-        costEstimate: `₹${(estimatedAmount / 100000).toFixed(1)} Lakhs Principal`,
-        subheading: `Estimated Monthly EMI: ₹${estEmi.toLocaleString('en-IN')}/mo at ${estRate}% APR`,
-        criticalAgentTraps: [
-          {
-            trap: 'Inflated Upfront Processing Charges',
-            warning: 'Direct agents often charge 1.5% to 2.5% upfront origination fees.',
-            safeguard: 'Finora negotiates zero-processing fee institutional waivers.'
-          },
-          {
-            trap: 'Pre-payment & Foreclosure Lock-in Penalties',
-            warning: 'Certain lenders enforce 3%–5% penalties on early principal clearance.',
-            safeguard: 'We route exclusively to RBI floating-rate schemes with 0% foreclosure charges.'
-          }
-        ],
-        recommendedAction: 'View loan eligibility and pre-approved offers.'
+        heading: `Finora AI ${loanType} Eligibility Assessment`,
+        salaryInfo: salary ? `Monthly Salary: ₹${(salary / 1000).toFixed(0)}K | Max EMI Capacity: ₹${(salaryBasedEmiLimit || 0).toLocaleString('en-IN')}/mo` : 'Salary not provided — eligibility cannot be fully verified.',
+        costEstimate: `Loan: ₹${(loanAmount / 100000).toFixed(1)} Lakhs @ ${estRate}%`,
+        subheading: `Monthly EMI: ₹${requestedEmi.toLocaleString('en-IN')}/mo over ${estTenureYears} years`,
+        eligibilityStatus: salary ? (isAffordable ? '✅ Eligible — EMI within FOIR limit' : `⚠️ Max Eligible Loan: ₹${(maxEligibleLoan / 100000).toFixed(1)} Lakhs`) : '❓ Share your salary to confirm eligibility',
+        criticalAgentTraps: agentTraps,
+        recommendedAction: isAffordable || !salary ? 'View pre-approved lender offers.' : `Apply for ₹${(maxEligibleLoan / 100000).toFixed(1)}L or reduce EMI with longer tenure.`
       },
       navigationTarget: 'loans',
       autoFillPayload: {
-        amount: estimatedAmount,
+        amount: isAffordable ? loanAmount : (maxEligibleLoan || loanAmount),
         rate: estRate,
         tenure: estTenureYears
       }

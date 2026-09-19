@@ -1,0 +1,1784 @@
+/* ==========================================================================
+   FINORA — LOANS PAGE STYLESHEET
+   File: /css/loans.css
+   Project: Finora - AI-Powered Financial Journeys
+   Hackathon Prototype Edition 2026
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LOANS CONTAINER & 2-COLUMN DESKTOP GRID
+   -------------------------------------------------------------------------- */
+.loans-page-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* Breadcrumb Navigation */
+.loans-breadcrumb-nav {
+    margin-bottom: 20px;
+}
+
+.loans-breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.loans-breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loans-breadcrumb-link {
+    color: var(--color-primary-600);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.loans-breadcrumb-link:hover {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+}
+
+.loans-breadcrumb-separator {
+    color: var(--color-text-light);
+    font-size: 0.8rem;
+    user-select: none;
+}
+
+.loans-breadcrumb-current {
+    color: var(--color-text-main);
+    font-weight: 600;
+}
+
+/* 2-Column Split: Main Content + Right Sticky Companion */
+.loans-layout-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 28px;
+    align-items: start;
+}
+
+.loans-main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+}
+
+.loans-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    z-index: 20;
+}
+
+/* --------------------------------------------------------------------------
+   2. SECTION 1 — HERO SECTION
+   -------------------------------------------------------------------------- */
+.loans-hero-card {
+    position: relative;
+    background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 50%, #e6f2fe 100%);
+    border: 1px solid #dbeafe;
+    border-radius: var(--radius-2xl);
+    padding: 32px 32px 28px;
+    box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 4px 12px -2px rgba(11, 19, 41, 0.04);
+    overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.loans-hero-glow-accent {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(38, 99, 235, 0.15) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.loans-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.loans-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.loans-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(37, 99, 235, 0.09);
+    color: var(--color-primary-700);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+.loans-hero-heading {
+    font-family: var(--font-family-display);
+    font-size: clamp(1.85rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-navy-darkest);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+}
+
+.loans-heading-highlight {
+    color: var(--color-primary-600);
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.loans-hero-supporting {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--color-navy-surface);
+    margin-bottom: 8px;
+}
+
+.loans-hero-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    line-height: 1.55;
+    margin-bottom: 22px;
+    max-width: 500px;
+}
+
+.loans-hero-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-loans-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+    color: #ffffff;
+    font-family: var(--font-family-display);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    transition: all var(--transition-normal);
+}
+
+.btn-loans-primary:hover {
+    background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    color: #ffffff;
+}
+
+.btn-loans-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #ffffff;
+    color: var(--color-navy-primary);
+    font-family: var(--font-family-display);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 11px 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color-default);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+}
+
+.btn-loans-secondary:hover {
+    background-color: var(--color-bg-subtle);
+    border-color: var(--color-primary-300);
+    color: var(--color-primary-700);
+    transform: translateY(-1px);
+}
+
+/* Hero Visual Composition */
+.loans-hero-visual-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 10px;
+}
+
+.loans-hero-visual-container {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.loans-hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 24px -6px rgba(15, 28, 63, 0.12);
+    display: block;
+    transition: transform var(--transition-smooth);
+}
+
+.loans-hero-visual-container:hover .loans-hero-img {
+    transform: scale(1.015);
+}
+
+/* Floating Badges over Hero Image - Clean Non-Overlapping Coordinates */
+.loans-float-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px -2px rgba(15, 28, 63, 0.12);
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--color-navy-darkest);
+    z-index: 2;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Precise positioning to match reference layout perfectly */
+.loans-float-badge-edu {
+    top: 8%;
+    right: 18%;
+}
+
+.loans-float-badge-personal {
+    top: 24%;
+    right: 6%;
+}
+
+.loans-float-badge-car {
+    bottom: 22%;
+    right: 14%;
+}
+
+.loans-float-badge-home {
+    top: 28%;
+    left: 4%;
+}
+
+.loans-float-quote-top {
+    position: absolute;
+    top: -10px;
+    left: 2%;
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-navy-surface);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: var(--shadow-xs);
+    z-index: 3;
+    white-space: nowrap;
+}
+
+.loans-float-quote-right {
+    position: absolute;
+    top: 42%;
+    right: -8px;
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--color-primary-800);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(6px);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: var(--shadow-xs);
+    z-index: 3;
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   3. SECTION 2 — EXPLORE LOAN OPTIONS
+   -------------------------------------------------------------------------- */
+.loans-section {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-xl);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+.loans-section-header-flex {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.loans-section-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.loans-section-title {
+    font-family: var(--font-family-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    letter-spacing: -0.01em;
+}
+
+.loans-section-subhead {
+    font-size: 0.86rem;
+    color: var(--color-text-muted);
+}
+
+.loans-view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-primary-600);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+}
+
+.loans-view-all-link:hover {
+    color: var(--color-primary-800);
+    text-decoration: underline;
+}
+
+/* 4 Options Grid */
+.loans-options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.loan-option-card {
+    background-color: var(--color-bg-page);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+}
+
+.loan-option-card:hover {
+    background-color: #ffffff;
+    border-color: var(--color-primary-300);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px -4px rgba(37, 99, 235, 0.12);
+}
+
+.loan-option-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary-100);
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    transition: all var(--transition-fast);
+}
+
+.loan-option-card:hover .loan-option-icon-wrap {
+    background: var(--color-primary-600);
+    color: #ffffff;
+    transform: scale(1.06);
+}
+
+.loan-option-title {
+    font-family: var(--font-family-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    margin-bottom: 6px;
+}
+
+.loan-option-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-body);
+    line-height: 1.48;
+    margin-bottom: 14px;
+    flex-grow: 1;
+}
+
+.loan-option-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-primary-600);
+    transition: gap var(--transition-fast);
+}
+
+.loan-option-card:hover .loan-option-action {
+    gap: 7px;
+    color: var(--color-primary-700);
+}
+
+/* --------------------------------------------------------------------------
+   4. SECTION 3 — YOUR LOAN JOURNEY (5-STEP HORIZONTAL TIMELINE)
+   -------------------------------------------------------------------------- */
+.loans-journey-timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    position: relative;
+    margin-top: 10px;
+}
+
+/* Connecting Line Across Desktop Steps */
+.loans-journey-timeline::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 36px;
+    right: 36px;
+    height: 2px;
+    background-image: repeating-linear-gradient(to right, #93c5fd 0, #93c5fd 6px, transparent 6px, transparent 12px);
+    z-index: 0;
+}
+
+.journey-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 4px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: transform var(--transition-fast);
+}
+
+.journey-step-item:hover {
+    transform: translateY(-2px);
+}
+
+.journey-step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-display);
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: #ffffff;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(11, 19, 41, 0.1);
+    transition: all var(--transition-fast);
+}
+
+/* Specific step circle color accents */
+.journey-step-item:nth-child(1) .journey-step-circle {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.journey-step-item:nth-child(2) .journey-step-circle {
+    background: #60a5fa;
+    color: #ffffff;
+}
+
+.journey-step-item:nth-child(3) .journey-step-circle {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+.journey-step-item:nth-child(4) .journey-step-circle {
+    background: #60a5fa;
+    color: #ffffff;
+}
+
+.journey-step-item:nth-child(5) .journey-step-circle {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.journey-step-item:hover .journey-step-circle {
+    transform: scale(1.1);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.journey-step-item.active-step .journey-step-circle {
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+    transform: scale(1.08);
+}
+
+.journey-step-title {
+    font-family: var(--font-family-display);
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    margin-bottom: 5px;
+}
+
+.journey-step-desc {
+    font-size: 0.76rem;
+    color: var(--color-text-body);
+    line-height: 1.4;
+}
+
+/* Expandable Step Detail Box */
+.journey-step-detail-card {
+    margin-top: 22px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.journey-detail-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.journey-detail-icon-pill {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary-600);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.journey-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.journey-detail-title {
+    font-family: var(--font-family-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.journey-detail-text {
+    font-size: 0.82rem;
+    color: var(--color-text-body);
+    line-height: 1.45;
+}
+
+.btn-journey-action {
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-primary-300);
+    background: #ffffff;
+    color: var(--color-primary-700);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.btn-journey-action:hover {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-500);
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION 4 — HELPFUL TOOLS
+   -------------------------------------------------------------------------- */
+.loans-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.loan-tool-card {
+    background-color: var(--color-bg-page);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-lg);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.loan-tool-card:hover {
+    background-color: #ffffff;
+    border-color: var(--color-primary-300);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px -3px rgba(37, 99, 235, 0.1);
+}
+
+.loan-tool-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: #eff6ff;
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    transition: all var(--transition-fast);
+}
+
+.loan-tool-card:hover .loan-tool-icon-wrap {
+    background: var(--color-primary-600);
+    color: #ffffff;
+}
+
+.loan-tool-title {
+    font-family: var(--font-family-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    margin-bottom: 5px;
+}
+
+.loan-tool-desc {
+    font-size: 0.78rem;
+    color: var(--color-text-body);
+    line-height: 1.42;
+    margin-bottom: 12px;
+    flex-grow: 1;
+}
+
+.loan-tool-action {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary-600);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.loan-tool-card:hover .loan-tool-action {
+    color: var(--color-primary-700);
+    gap: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SECTION 5 — UNDERSTAND BEFORE YOU APPLY (EDUCATIONAL)
+   -------------------------------------------------------------------------- */
+.loans-education-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.edu-concept-card {
+    background-color: var(--color-bg-page);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.edu-concept-card:hover {
+    background-color: #ffffff;
+    border-color: var(--color-primary-200);
+    box-shadow: var(--shadow-sm);
+}
+
+.edu-concept-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edu-concept-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary-50);
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.edu-concept-title {
+    font-family: var(--font-family-display);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.edu-concept-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-body);
+    line-height: 1.48;
+}
+
+.edu-concept-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: var(--color-primary-700);
+    background: var(--color-primary-50);
+    padding: 6px 8px;
+    border-radius: var(--radius-xs);
+    margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTION 6 — DOCUMENT ASSISTANCE / AI ANALYZER
+   -------------------------------------------------------------------------- */
+.loans-doc-assistance-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-xl);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+.doc-assist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    align-items: center;
+}
+
+.doc-assist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.doc-assist-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.74rem;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.doc-assist-title {
+    font-family: var(--font-family-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    line-height: 1.25;
+}
+
+.doc-assist-desc {
+    font-size: 0.86rem;
+    color: var(--color-text-body);
+    line-height: 1.5;
+}
+
+.doc-assist-feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.doc-assist-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--color-navy-surface);
+    font-weight: 500;
+}
+
+.doc-assist-check-icon {
+    color: var(--color-emerald-600);
+    font-weight: 700;
+}
+
+.doc-assist-privacy-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Dropzone interactive UI */
+.doc-dropzone-box {
+    background: #f8fafc;
+    border: 2px dashed #93c5fd;
+    border-radius: var(--radius-lg);
+    padding: 22px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+}
+
+.doc-dropzone-box.drag-over,
+.doc-dropzone-box:hover {
+    background: #eff6ff;
+    border-color: var(--color-primary-600);
+    transform: translateY(-2px);
+}
+
+.doc-dropzone-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: #dbeafe;
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-dropzone-title {
+    font-family: var(--font-family-display);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.doc-dropzone-subtitle {
+    font-size: 0.76rem;
+    color: var(--color-text-muted);
+}
+
+.doc-sample-pills {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.doc-sample-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-primary-700);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.doc-sample-btn:hover {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-400);
+}
+
+.doc-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.doc-scan-results-box {
+    display: none;
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-top: 14px;
+}
+
+.doc-scan-results-box.active {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.doc-scan-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+}
+
+.doc-scan-title {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.doc-scan-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 600;
+}
+
+.doc-scan-item {
+    font-size: 0.78rem;
+    color: var(--color-text-body);
+    line-height: 1.45;
+    background: #f8fafc;
+    padding: 8px 10px;
+    border-radius: var(--radius-xs);
+    border-left: 3px solid var(--color-primary-500);
+}
+
+/* --------------------------------------------------------------------------
+   8. RIGHT STICKY COMPANION COLUMN
+   -------------------------------------------------------------------------- */
+
+/* CARD 1: FINORA AI CHAT COMPANION */
+.loans-ai-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 16px -2px rgba(11, 19, 41, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.loans-ai-card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.12);
+}
+
+.loans-ai-card-header {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid #f1f5f9;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loans-ai-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loans-ai-sparkle-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-cyan-500) 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+.loans-ai-title-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.loans-ai-title {
+    font-family: var(--font-family-display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.loans-ai-subtitle {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+}
+
+.loans-ai-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.loans-ai-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px #10b981;
+    animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+/* Chat Messages Container */
+.loans-ai-chat-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 260px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.ai-bubble-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.ai-bubble-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-primary-100);
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ai-bubble-content {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 2px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    color: var(--color-navy-darkest);
+    line-height: 1.48;
+}
+
+.user-bubble-msg {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-bubble-content {
+    background: var(--color-primary-600);
+    color: #ffffff;
+    border-radius: var(--radius-md) var(--radius-md) 2px var(--radius-md);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    max-width: 85%;
+}
+
+/* Quick Action Chips */
+.loans-ai-chips-area {
+    padding: 0 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.loans-ai-chips-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.loans-ai-chips-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ai-quick-chip-btn {
+    background: #f0f7ff;
+    border: 1px solid #dbeafe;
+    color: var(--color-primary-700);
+    border-radius: var(--radius-md);
+    padding: 7px 10px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ai-quick-chip-btn:hover {
+    background: var(--color-primary-100);
+    border-color: var(--color-primary-300);
+    color: var(--color-primary-900);
+    transform: translateX(2px);
+}
+
+/* Chat Input Bar */
+.loans-ai-input-form {
+    padding: 10px 16px 12px;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loans-ai-text-input {
+    flex-grow: 1;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-family: var(--font-family-base);
+    color: var(--color-text-main);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.loans-ai-text-input:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+}
+
+.btn-ai-send {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-600);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.btn-ai-send:hover {
+    background: var(--color-primary-700);
+    transform: scale(1.05);
+}
+
+.loans-ai-disclaimer-text {
+    padding: 0 16px 10px;
+    font-size: 0.66rem;
+    color: var(--color-text-light);
+    line-height: 1.35;
+    border-top: 1px dashed #f1f5f9;
+    padding-top: 6px;
+}
+
+/* CARD 2: NEED HELP CHOOSING CTA */
+.loans-cta-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-xl);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--shadow-sm);
+}
+
+.loans-cta-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loans-cta-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: #dbeafe;
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loans-cta-title {
+    font-family: var(--font-family-display);
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.loans-cta-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-body);
+    line-height: 1.45;
+}
+
+.btn-cta-full {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--color-primary-600);
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-display);
+    font-size: 0.86rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.btn-cta-full:hover {
+    background: var(--color-primary-700);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
+}
+
+/* CARD 3: IMPORTANT NOTE CARD */
+.loans-disclaimer-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    box-shadow: var(--shadow-xs);
+}
+
+.loans-disclaimer-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-navy-light);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.loans-disclaimer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.loans-disclaimer-title {
+    font-family: var(--font-family-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.loans-disclaimer-body {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    line-height: 1.38;
+}
+
+/* --------------------------------------------------------------------------
+   9. INTERACTIVE MODALS
+   -------------------------------------------------------------------------- */
+.loans-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 19, 41, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    padding: 16px;
+}
+
+.loans-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loans-modal-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 600px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px -10px rgba(11, 19, 41, 0.3);
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.loans-modal-overlay.active .loans-modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.loans-modal-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.loans-modal-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loans-modal-icon-pill {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-md);
+    background: #eff6ff;
+    color: var(--color-primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loans-modal-title {
+    font-family: var(--font-family-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-navy-darkest);
+}
+
+.loans-modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.loans-modal-close-btn:hover {
+    background: #e2e8f0;
+    color: var(--color-navy-darkest);
+}
+
+.loans-modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* EMI Calculator Inside Modal */
+.calc-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calc-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-navy-darkest);
+}
+
+.calc-value-badge {
+    font-family: var(--font-family-display);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-primary-700);
+    background: #eff6ff;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid #bfdbfe;
+}
+
+.calc-range-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: #e2e8f0;
+    accent-color: var(--color-primary-600);
+    cursor: pointer;
+}
+
+.calc-results-card {
+    background: linear-gradient(135deg, #091124 0%, #0f1c3f 100%);
+    color: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.calc-emi-primary-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+}
+
+.calc-emi-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #93c5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.calc-emi-amount {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.calc-breakdown-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 12px;
+}
+
+.calc-breakdown-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.calc-breakdown-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+
+.calc-breakdown-value {
+    font-family: var(--font-family-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.calc-disclaimer-note {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .loans-layout-grid {
+        grid-template-columns: minmax(0, 1fr) 290px;
+        gap: 20px;
+    }
+
+    .loans-options-grid,
+    .loans-tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .loans-education-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .loans-layout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .loans-side-column {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .loans-ai-card {
+        grid-column: 1 / -1;
+    }
+
+    .loans-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .loans-hero-visual-wrapper {
+        order: -1;
+        max-width: 440px;
+        margin: 0 auto;
+    }
+
+    .doc-assist-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Mobile Devices & Phones (<768px) */
+@media (max-width: 768px) {
+    .loans-page-container {
+        padding-bottom: 80px;
+        /* Space for mobile bottom nav dock */
+    }
+
+    .loans-hero-card {
+        padding: 22px 16px;
+        border-radius: var(--radius-xl);
+    }
+
+    .loans-hero-heading {
+        font-size: 1.85rem;
+    }
+
+    .loans-hero-btn-group {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-loans-primary,
+    .btn-loans-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* On mobile phones, render hero illustration & badges cleanly */
+    .loans-hero-visual-container {
+        max-width: 100%;
+    }
+
+    .loans-float-quote-top,
+    .loans-float-quote-right {
+        display: none;
+        /* Hide decorative tiny italic quotes on narrow screens */
+    }
+
+    .loans-float-badge {
+        padding: 3px 8px;
+        font-size: 0.68rem;
+    }
+
+    .loans-float-badge-edu {
+        top: 6px;
+        right: 6px;
+    }
+
+    .loans-float-badge-personal {
+        display: none;
+    }
+
+    .loans-float-badge-home {
+        top: 6px;
+        left: 6px;
+    }
+
+    .loans-float-badge-car {
+        bottom: 6px;
+        right: 6px;
+    }
+
+    .loans-section {
+        padding: 20px 16px;
+    }
+
+    .loans-section-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .loans-options-grid,
+    .loans-tools-grid,
+    .loans-education-grid,
+    .loans-side-column {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Vertical Step-by-Step Layout on Mobile */
+    .loans-journey-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: relative;
+        padding-left: 0;
+    }
+
+    .loans-journey-timeline::before {
+        top: 20px;
+        bottom: 20px;
+        left: 19px;
+        right: auto;
+        width: 2px;
+        height: calc(100% - 40px);
+        background-image: repeating-linear-gradient(to bottom, #93c5fd 0, #93c5fd 6px, transparent 6px, transparent 12px);
+    }
+
+    .journey-step-item {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 14px;
+        padding: 0;
+        width: 100%;
+    }
+
+    .journey-step-circle {
+        margin-bottom: 0;
+        flex-shrink: 0;
+        width: 38px;
+        height: 38px;
+        font-size: 0.82rem;
+    }
+
+    .journey-step-title {
+        font-size: 0.95rem;
+    }
+
+    .journey-step-detail-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .btn-journey-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .loans-modal-card {
+        max-width: 100%;
+        border-radius: var(--radius-lg);
+    }
+}

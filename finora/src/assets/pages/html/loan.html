@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Finora Loans — AI-Powered Loan Journeys. Understand, prepare, and navigate personal, home, education, and car loans with transparent AI guidance.">
+    <meta name="theme-color" content="#0b1329">
+    <title>Loans Journey — Finora | AI-Powered Financial Journeys</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/loans.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- ====================================================================
+         GLOBAL FIXED HEADER / NAVIGATION
+         ==================================================================== -->
+        <header class="top-header" role="banner">
+            <div class="header-inner">
+
+                <!-- Brand Logo & Tagline -->
+                <a href="index.html" class="brand-wrapper" aria-label="Finora Home">
+                    <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path
+                            d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z"
+                            fill="url(#brandGrad1)" />
+                        <path
+                            d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z"
+                            fill="url(#brandGrad2)" fill-opacity="0.9" />
+                        <defs>
+                            <linearGradient id="brandGrad1" x1="2" y1="8" x2="22" y2="28"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#2563EB" />
+                                <stop offset="1" stop-color="#1D4ED8" />
+                            </linearGradient>
+                            <linearGradient id="brandGrad2" x1="16" y1="12" x2="36" y2="32"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#06B6D4" />
+                                <stop offset="1" stop-color="#3B82F6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="brand-text-group">
+                        <span class="brand-name">Finora</span>
+                        <span class="brand-tagline">Simpler Journeys. Brighter Futures.</span>
+                    </div>
+                </a>
+
+                <!-- Global Navigation Links -->
+                <nav class="nav-links" aria-label="Primary Navigation">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="loans.html" class="nav-link active" aria-current="page">Products</a>
+                    <a href="ai-assistant.html" class="nav-link">AI Assistant</a>
+                    <a href="knowledge-hub.html" class="nav-link">Resources</a>
+                    <a href="#about" class="nav-link">About</a>
+                </nav>
+
+                <!-- Header Actions / Profile -->
+                <div class="header-actions">
+
+                    <!-- Search Bar -->
+                    <div class="header-search">
+                        <div class="search-input-wrapper">
+                            <svg class="search-icon" viewBox="0 0 20 20" width="16" height="16" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <circle cx="9" cy="9" r="6"></circle>
+                                <line x1="18" y1="18" x2="13.5" y2="13.5"></line>
+                            </svg>
+                            <input type="search" id="globalSearchInput" class="search-input"
+                                placeholder="Search financial topics..." aria-label="Search financial topics">
+                            <span class="search-shortcut" aria-hidden="true">Ctrl K</span>
+                        </div>
+                    </div>
+
+                    <!-- Notification Bell -->
+                    <button class="btn-icon" id="notificationBtn" aria-label="Notifications (1 unread)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="notification-badge" aria-hidden="true"></span>
+                    </button>
+
+                    <!-- User Profile Area -->
+                    <div class="user-profile-badge" id="userProfileBadge" role="button" tabindex="0"
+                        aria-label="User Profile Brightlin">
+                        <div class="avatar-circle" aria-hidden="true">BB</div>
+                        <div class="user-details">
+                            <span class="user-greeting">Welcome</span>
+                            <span class="user-name">Brightlin</span>
+                        </div>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+
+                    <!-- Mobile Hamburger Toggle -->
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile navigation menu"
+                        aria-expanded="false">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Mobile Drawer Backdrop & Drawer -->
+        <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+        <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+            <div class="mobile-drawer-header">
+                <div class="brand-wrapper">
+                    <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path
+                            d="M12 28C17.5228 28 22 23.5228 22 18C22 12.4772 17.5228 8 12 8C6.47715 8 2 12.4772 2 18C2 23.5228 6.47715 28 12 28Z"
+                            fill="url(#brandGradDrawer1)" />
+                        <path
+                            d="M26 32C31.5228 32 36 27.5228 36 22C36 16.4772 31.5228 12 26 12C20.4772 12 16 16.4772 16 22C16 27.5228 20.4772 32 26 32Z"
+                            fill="url(#brandGradDrawer2)" fill-opacity="0.9" />
+                        <defs>
+                            <linearGradient id="brandGradDrawer1" x1="2" y1="8" x2="22" y2="28"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#2563EB" />
+                                <stop offset="1" stop-color="#1D4ED8" />
+                            </linearGradient>
+                            <linearGradient id="brandGradDrawer2" x1="16" y1="12" x2="36" y2="32"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#06B6D4" />
+                                <stop offset="1" stop-color="#3B82F6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="brand-text-group">
+                        <span class="brand-name">Finora</span>
+                        <span class="brand-tagline">Simpler Journeys. Brighter Futures.</span>
+                    </div>
+                </div>
+                <button class="mobile-drawer-close-btn" id="mobileDrawerClose" aria-label="Close menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mobile-drawer-search">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" viewBox="0 0 20 20" width="16" height="16" fill="none"
+                        stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="9" cy="9" r="6"></circle>
+                        <line x1="18" y1="18" x2="13.5" y2="13.5"></line>
+                    </svg>
+                    <input type="search" class="search-input" placeholder="Search topics..." aria-label="Mobile search">
+                </div>
+            </div>
+
+            <nav class="mobile-drawer-nav">
+                <a href="index.html" class="mobile-nav-link">
+                    <span>🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="loans.html" class="mobile-nav-link active" aria-current="page">
+                    <span>🏦</span>
+                    <span>Loans Journey</span>
+                </a>
+                <a href="insurance.html" class="mobile-nav-link">
+                    <span>🛡️</span>
+                    <span>Insurance Journey</span>
+                </a>
+                <a href="fintech.html" class="mobile-nav-link">
+                    <span>💳</span>
+                    <span>Fintech Services</span>
+                </a>
+                <a href="ai-assistant.html" class="mobile-nav-link">
+                    <span>✨</span>
+                    <span>AI Assistant</span>
+                </a>
+                <a href="my-journey.html" class="mobile-nav-link">
+                    <span>🗺️</span>
+                    <span>My Journey</span>
+                </a>
+                <a href="knowledge-hub.html" class="mobile-nav-link">
+                    <span>📚</span>
+                    <span>Knowledge Hub</span>
+                </a>
+            </nav>
+
+            <div class="mobile-drawer-footer">
+                <a href="ai-assistant.html" class="btn btn-primary btn-hero-glow">
+                    <span>Start Your Journey</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ====================================================================
+         APP BODY LAYOUT: PERSISTENT SIDEBAR + MAIN LOANS CONTENT
+         ==================================================================== -->
+        <div class="app-body">
+
+            <!-- LEFT SIDEBAR -->
+            <aside class="sidebar" aria-label="Journey Sidebar Navigation">
+                <nav class="sidebar-nav">
+
+                    <a href="index.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+
+                    <a href="loans.html" class="sidebar-link active" aria-current="page">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <line x1="3" y1="21" x2="21" y2="21"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <polyline points="5 6 12 3 19 6"></polyline>
+                            <line x1="6" y1="10" x2="6" y2="21"></line>
+                            <line x1="10" y1="10" x2="10" y2="21"></line>
+                            <line x1="14" y1="10" x2="14" y2="21"></line>
+                            <line x1="18" y1="10" x2="18" y2="21"></line>
+                        </svg>
+                        <span>Loans</span>
+                    </a>
+
+                    <a href="insurance.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Insurance</span>
+                    </a>
+
+                    <a href="fintech.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                        </svg>
+                        <span>Fintech</span>
+                    </a>
+
+                    <a href="ai-assistant.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                            </path>
+                        </svg>
+                        <span>AI Assistant</span>
+                    </a>
+
+                    <a href="my-journey.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        <span>My Journey</span>
+                    </a>
+
+                    <a href="knowledge-hub.html" class="sidebar-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <span>Knowledge Hub</span>
+                    </a>
+
+                </nav>
+
+                <!-- Sidebar Inspiration Quote Card -->
+                <div class="sidebar-quote-card">
+                    <p class="sidebar-quote-text">“Better financial decisions start with better understanding.”</p>
+                    <p class="sidebar-quote-subtext">Finora — Simpler Journeys. Brighter Futures.</p>
+                </div>
+            </aside>
+
+            <!-- ==================================================================
+           MAIN CONTENT AREA
+           ================================================================== -->
+            <main class="main-content" id="mainContent" role="main">
+
+                <div class="loans-page-container">
+
+                    <!-- BREADCRUMB -->
+                    <nav class="loans-breadcrumb-nav" aria-label="Breadcrumb">
+                        <ol class="loans-breadcrumb-list">
+                            <li class="loans-breadcrumb-item">
+                                <a href="index.html" class="loans-breadcrumb-link">Home</a>
+                            </li>
+                            <li class="loans-breadcrumb-item">
+                                <span class="loans-breadcrumb-separator" aria-hidden="true">></span>
+                                <span class="loans-breadcrumb-current" aria-current="page">Loans</span>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <!-- 2-COLUMN LAYOUT: MAIN JOURNEY + RIGHT AI SIDEBAR -->
+                    <div class="loans-layout-grid">
+
+                        <!-- LEFT MAIN CONTENT COLUMN -->
+                        <div class="loans-main-column">
+
+                            <!-- ==========================================================
+                   SECTION 1 — HERO SECTION
+                   ========================================================== -->
+                            <section class="loans-hero-card" aria-labelledby="loansHeroHeading">
+                                <div class="loans-hero-glow-accent" aria-hidden="true"></div>
+
+                                <div class="loans-hero-grid">
+
+                                    <!-- Left Text & Actions -->
+                                    <div class="loans-hero-content">
+                                        <div class="loans-hero-eyebrow">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                                <path
+                                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                </path>
+                                            </svg>
+                                            <span>AI-POWERED LOAN JOURNEY</span>
+                                        </div>
+
+                                        <h1 id="loansHeroHeading" class="loans-hero-heading">
+                                            Loans, made <span class="loans-heading-highlight">simpler.</span>
+                                        </h1>
+
+                                        <p class="loans-hero-supporting">
+                                            Understand. Prepare. Navigate. All with AI guidance.
+                                        </p>
+
+                                        <p class="loans-hero-desc">
+                                            Explore different types of loans, understand key concepts, get information
+                                            on documentation and navigate your loan journey with clarity.
+                                        </p>
+
+                                        <div class="loans-hero-btn-group">
+                                            <a href="#journeySection" class="btn-loans-primary">
+                                                <span>Start Loan Journey</span>
+                                                <span aria-hidden="true">→</span>
+                                            </a>
+                                            <button type="button" class="btn-loans-secondary" id="watchGuideBtn"
+                                                aria-label="Watch video guide">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                                    stroke-linejoin="round" aria-hidden="true">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                                </svg>
+                                                <span>Watch Guide</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Hero Visual with 3D Image & Floating Badges -->
+                                    <div class="loans-hero-visual-wrapper">
+                                        <div class="loans-hero-visual-container">
+                                            <img src="assets/images/loans-hero-visual.jpg"
+                                                alt="3D illustration representing home loan, car loan, education loan and financial guidance"
+                                                class="loans-hero-img">
+
+                                            <!-- Overlay Quotes -->
+                                            <div class="loans-float-quote-top" aria-hidden="true">Your goals deserve the
+                                                right support.</div>
+                                            <div class="loans-float-quote-right" aria-hidden="true">Same dreams. More
+                                                possibilities.</div>
+
+                                            <!-- Floating Badges -->
+                                            <div class="loans-float-badge loans-float-badge-edu" aria-hidden="true">
+                                                <span>🎓</span>
+                                                <span>Education Loan</span>
+                                            </div>
+
+                                            <div class="loans-float-badge loans-float-badge-personal"
+                                                aria-hidden="true">
+                                                <span>👤</span>
+                                                <span>Personal Loan</span>
+                                            </div>
+
+                                            <div class="loans-float-badge loans-float-badge-car" aria-hidden="true">
+                                                <span>🚗</span>
+                                                <span>Car Loan</span>
+                                            </div>
+
+                                            <div class="loans-float-badge loans-float-badge-home" aria-hidden="true">
+                                                <span>🏠</span>
+                                                <span>Home Loan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <!-- ==========================================================
+                   SECTION 2 — EXPLORE LOAN OPTIONS
+                   ========================================================== -->
+                            <section class="loans-section" id="exploreLoansSection" aria-labelledby="exploreHeading">
+                                <div class="loans-section-header-flex">
+                                    <div class="loans-section-title-wrap">
+                                        <h2 id="exploreHeading" class="loans-section-title">Explore Loan Options</h2>
+                                        <p class="loans-section-subhead">Different goals. Different journeys. Find the
+                                            right loan for your needs.</p>
+                                    </div>
+                                    <a href="#journeySection" class="loans-view-all-link">
+                                        <span>View all</span>
+                                        <span aria-hidden="true">→</span>
+                                    </a>
+                                </div>
+
+                                <div class="loans-options-grid">
+
+                                    <!-- Card 1: Personal Loan -->
+                                    <article class="loan-option-card" data-loan-type="personal" tabindex="0"
+                                        role="button" aria-label="Explore Personal Loan">
+                                        <div class="loan-option-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-option-title">Personal Loan</h3>
+                                        <p class="loan-option-desc">For personal needs, emergencies or planned expenses.
+                                        </p>
+                                        <span class="loan-option-action">
+                                            <span>Learn More</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Card 2: Home Loan -->
+                                    <article class="loan-option-card" data-loan-type="home" tabindex="0" role="button"
+                                        aria-label="Explore Home Loan">
+                                        <div class="loan-option-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-option-title">Home Loan</h3>
+                                        <p class="loan-option-desc">For your dream home with longer tenure options.</p>
+                                        <span class="loan-option-action">
+                                            <span>Learn More</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Card 3: Education Loan -->
+                                    <article class="loan-option-card" data-loan-type="education" tabindex="0"
+                                        role="button" aria-label="Explore Education Loan">
+                                        <div class="loan-option-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-option-title">Education Loan</h3>
+                                        <p class="loan-option-desc">For your higher education and future goals.</p>
+                                        <span class="loan-option-action">
+                                            <span>Learn More</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Card 4: Car Loan -->
+                                    <article class="loan-option-card" data-loan-type="car" tabindex="0" role="button"
+                                        aria-label="Explore Car Loan">
+                                        <div class="loan-option-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="1" y="3" width="15" height="13"></rect>
+                                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-option-title">Car Loan</h3>
+                                        <p class="loan-option-desc">For your next journey on the road.</p>
+                                        <span class="loan-option-action">
+                                            <span>Learn More</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- ==========================================================
+                   SECTION 3 — YOUR LOAN JOURNEY (5-STEP TIMELINE)
+                   ========================================================== -->
+                            <section class="loans-section" id="journeySection" aria-labelledby="journeyHeading">
+                                <div class="loans-section-header-flex">
+                                    <div class="loans-section-title-wrap">
+                                        <h2 id="journeyHeading" class="loans-section-title">Your Loan Journey</h2>
+                                        <p class="loans-section-subhead">A simpler, guided process from start to finish.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="loans-journey-timeline" role="tablist" aria-label="Loan Journey Steps">
+
+                                    <!-- Step 01 -->
+                                    <button type="button" class="journey-step-item active-step" data-step-index="0"
+                                        role="tab" aria-selected="true" aria-label="Step 1 Understand">
+                                        <div class="journey-step-circle">01</div>
+                                        <span class="journey-step-title">Understand</span>
+                                        <span class="journey-step-desc">Learn about loan types, eligibility and key
+                                            concepts.</span>
+                                    </button>
+
+                                    <!-- Step 02 -->
+                                    <button type="button" class="journey-step-item" data-step-index="1" role="tab"
+                                        aria-selected="false" aria-label="Step 2 Prepare">
+                                        <div class="journey-step-circle">02</div>
+                                        <span class="journey-step-title">Prepare</span>
+                                        <span class="journey-step-desc">Know the required documents and
+                                            information.</span>
+                                    </button>
+
+                                    <!-- Step 03 -->
+                                    <button type="button" class="journey-step-item" data-step-index="2" role="tab"
+                                        aria-selected="false" aria-label="Step 3 Apply">
+                                        <div class="journey-step-circle">03</div>
+                                        <span class="journey-step-title">Apply</span>
+                                        <span class="journey-step-desc">Complete the application with guidance.</span>
+                                    </button>
+
+                                    <!-- Step 04 -->
+                                    <button type="button" class="journey-step-item" data-step-index="3" role="tab"
+                                        aria-selected="false" aria-label="Step 4 Track">
+                                        <div class="journey-step-circle">04</div>
+                                        <span class="journey-step-title">Track</span>
+                                        <span class="journey-step-desc">Check your application status and next
+                                            steps.</span>
+                                    </button>
+
+                                    <!-- Step 05 -->
+                                    <button type="button" class="journey-step-item" data-step-index="4" role="tab"
+                                        aria-selected="false" aria-label="Step 5 Proceed">
+                                        <div class="journey-step-circle">05</div>
+                                        <span class="journey-step-title">Proceed</span>
+                                        <span class="journey-step-desc">Understand the approval outcome and what's
+                                            next.</span>
+                                    </button>
+
+                                </div>
+
+                                <!-- Interactive Step Detail Card -->
+                                <div class="journey-step-detail-card" id="journeyStepDetailCard">
+                                    <div class="journey-detail-left">
+                                        <div class="journey-detail-icon-pill" id="journeyDetailStepNum">01</div>
+                                        <div class="journey-detail-content">
+                                            <h4 class="journey-detail-title" id="journeyDetailTitle">01 — Understanding
+                                                Loan Types & Eligibility</h4>
+                                            <p class="journey-detail-text" id="journeyDetailText">Start by clarifying
+                                                your exact financial requirement, whether you need a secured or
+                                                unsecured loan, and understand how interest rates and loan tenures
+                                                impact your monthly budget. (AI Guidance Tip: Compare Fixed vs Floating
+                                                interest before making any commitments.)</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-journey-action" id="journeyDetailBtn">Explore Loan
+                                        Options</button>
+                                </div>
+                            </section>
+
+                            <!-- ==========================================================
+                   SECTION 4 — HELPFUL TOOLS
+                   ========================================================== -->
+                            <section class="loans-section" id="toolsSection" aria-labelledby="toolsHeading">
+                                <div class="loans-section-header-flex">
+                                    <div class="loans-section-title-wrap">
+                                        <h2 id="toolsHeading" class="loans-section-title">Helpful Tools</h2>
+                                        <p class="loans-section-subhead">Use these tools to understand and plan better.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="loans-tools-grid">
+
+                                    <!-- Tool 1: EMI Calculator -->
+                                    <article class="loan-tool-card" id="toolEmiCard" tabindex="0" role="button"
+                                        aria-label="Open EMI Calculator">
+                                        <div class="loan-tool-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                                                <line x1="8" y1="6" x2="16" y2="6"></line>
+                                                <line x1="16" y1="14" x2="16" y2="14.01"></line>
+                                                <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                                                <line x1="8" y1="14" x2="8" y2="14.01"></line>
+                                                <line x1="16" y1="18" x2="16" y2="18.01"></line>
+                                                <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                                                <line x1="8" y1="18" x2="8" y2="18.01"></line>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-tool-title">EMI Calculator</h3>
+                                        <p class="loan-tool-desc">Estimate your monthly repayments based on amount, rate
+                                            and tenure.</p>
+                                        <span class="loan-tool-action">
+                                            <span>Open Calculator</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Tool 2: Eligibility Guide -->
+                                    <article class="loan-tool-card" id="toolEligibilityCard" tabindex="0" role="button"
+                                        aria-label="Explore Eligibility Guide">
+                                        <div class="loan-tool-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-tool-title">Eligibility Guide</h3>
+                                        <p class="loan-tool-desc">Understand common eligibility factors considered by
+                                            financial institutions.</p>
+                                        <span class="loan-tool-action">
+                                            <span>Explore Guide</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Tool 3: Document Checklist -->
+                                    <article class="loan-tool-card" id="toolDocChecklistCard" tabindex="0" role="button"
+                                        aria-label="View Document Checklist">
+                                        <div class="loan-tool-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                                </path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                <polyline points="10 9 9 9 8 9"></polyline>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-tool-title">Document Checklist</h3>
+                                        <p class="loan-tool-desc">Know what documents may be required across different
+                                            loan categories.</p>
+                                        <span class="loan-tool-action">
+                                            <span>View Checklist</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                    <!-- Tool 4: Interest & Repayment -->
+                                    <article class="loan-tool-card" id="toolRepaymentCard" tabindex="0" role="button"
+                                        aria-label="Learn About Interest and Repayment">
+                                        <div class="loan-tool-icon-wrap" aria-hidden="true">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <line x1="19" y1="5" x2="5" y2="19"></line>
+                                                <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                                                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                                            </svg>
+                                        </div>
+                                        <h3 class="loan-tool-title">Interest & Repayment</h3>
+                                        <p class="loan-tool-desc">Learn about interest rates, repayment concepts, and
+                                            amortization.</p>
+                                        <span class="loan-tool-action">
+                                            <span>Learn More</span>
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- ==========================================================
+                   SECTION 5 — UNDERSTAND BEFORE YOU APPLY (EDUCATIONAL)
+                   ========================================================== -->
+                            <section class="loans-section" id="educationSection" aria-labelledby="eduHeading">
+                                <div class="loans-section-header-flex">
+                                    <div class="loans-section-title-wrap">
+                                        <h2 id="eduHeading" class="loans-section-title">Understand Before You Apply</h2>
+                                        <p class="loans-section-subhead">Key financial concepts explained in simple,
+                                            human language.</p>
+                                    </div>
+                                </div>
+
+                                <div class="loans-education-grid">
+
+                                    <div class="edu-concept-card" data-topic="interest" tabindex="0" role="button"
+                                        aria-label="Learn about Interest Rate">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">%</div>
+                                            <h3 class="edu-concept-title">Interest Rate</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">Represents the annual cost of borrowing. Fixed rates
+                                            remain steady; floating rates fluctuate with economic benchmarks.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: Look at the Annual Percentage Rate (APR) for total cost.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="edu-concept-card" data-topic="emi" tabindex="0" role="button"
+                                        aria-label="Learn about EMI">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">📅</div>
+                                            <h3 class="edu-concept-title">EMI (Monthly Repayment)</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">Equated Monthly Installment is the regular fixed
+                                            payment split between principal payback and interest fees.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: Keep your EMI under 40% of net monthly income.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="edu-concept-card" data-topic="tenure" tabindex="0" role="button"
+                                        aria-label="Learn about Loan Tenure">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">⏳</div>
+                                            <h3 class="edu-concept-title">Loan Tenure</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">The repayment duration. Longer tenure lowers your
+                                            monthly EMI but increases the cumulative total interest paid.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: Balance monthly affordability with total interest.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="edu-concept-card" data-topic="fees" tabindex="0" role="button"
+                                        aria-label="Learn about Processing Fees">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">🏷️</div>
+                                            <h3 class="edu-concept-title">Processing Fees</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">Upfront administrative expenses charged by lenders
+                                            for verification, underwriting, and loan disbursement.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: Always verify non-refundable fee clauses.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="edu-concept-card" data-topic="eligibility" tabindex="0" role="button"
+                                        aria-label="Learn about Eligibility">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">🎯</div>
+                                            <h3 class="edu-concept-title">Eligibility Factors</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">Lenders evaluate income stability, credit score,
+                                            age, and existing liabilities to assess repayment ability.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: A credit score above 700 expands lender choices.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="edu-concept-card" data-topic="documents" tabindex="0" role="button"
+                                        aria-label="Learn about Documents">
+                                        <div class="edu-concept-header">
+                                            <div class="edu-concept-badge" aria-hidden="true">📋</div>
+                                            <h3 class="edu-concept-title">Documentation</h3>
+                                        </div>
+                                        <p class="edu-concept-desc">Required verification paperwork including identity
+                                            proofs, address validation, bank statements, and tax records.</p>
+                                        <div class="edu-concept-tip">
+                                            <span>💡</span>
+                                            <span>Tip: Verify names match across all submitted IDs.</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <!-- ==========================================================
+                   SECTION 6 — DOCUMENT ASSISTANCE / AI ANALYZER
+                   ========================================================== -->
+                            <section class="loans-doc-assistance-card" id="docAssistanceSection"
+                                aria-labelledby="docAssistHeading">
+                                <div class="doc-assist-grid">
+
+                                    <!-- Left Info & Capabilities -->
+                                    <div class="doc-assist-info">
+                                        <div class="doc-assist-badge">
+                                            <span>🤖 AI-POWERED DOCUMENT ASSISTANT</span>
+                                        </div>
+                                        <h2 id="docAssistHeading" class="doc-assist-title">Not sure what a document
+                                            means?</h2>
+                                        <p class="doc-assist-desc">
+                                            Use Finora AI to understand financial documents, demystify complex terms,
+                                            and identify information you may need to review.
+                                        </p>
+
+                                        <ul class="doc-assist-feature-list">
+                                            <li class="doc-assist-feature-item">
+                                                <span class="doc-assist-check-icon">✓</span>
+                                                <span>Explain difficult terminology in plain English</span>
+                                            </li>
+                                            <li class="doc-assist-feature-item">
+                                                <span class="doc-assist-check-icon">✓</span>
+                                                <span>Identify important repayment & penalty sections</span>
+                                            </li>
+                                            <li class="doc-assist-feature-item">
+                                                <span class="doc-assist-check-icon">✓</span>
+                                                <span>Summarise financial obligations and tenure clauses</span>
+                                            </li>
+                                            <li class="doc-assist-feature-item">
+                                                <span class="doc-assist-check-icon">✓</span>
+                                                <span>Highlight information you may need to verify before signing</span>
+                                            </li>
+                                        </ul>
+
+                                        <div class="doc-assist-privacy-note">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                            </svg>
+                                            <span>Only upload documents you are comfortable processing through the
+                                                prototype. Finora does not store personal financial files.</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Interactive Upload Dropzone UI -->
+                                    <div>
+                                        <div class="doc-dropzone-box" id="docDropzoneBox" role="region"
+                                            aria-label="Document Upload Area">
+                                            <input type="file" id="docFileInput" class="doc-file-input"
+                                                accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                                                aria-label="Select financial document to analyze">
+
+                                            <div class="doc-dropzone-icon" aria-hidden="true">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                                </svg>
+                                            </div>
+
+                                            <h3 class="doc-dropzone-title">Upload document or drop file here</h3>
+                                            <p class="doc-dropzone-subtitle">Supported formats: PDF, DOCX, PNG (Max
+                                                15MB)</p>
+
+                                            <div class="doc-sample-pills">
+                                                <span class="doc-dropzone-subtitle">Try sample:</span>
+                                                <button type="button" class="doc-sample-btn"
+                                                    data-doc-name="Sample_Sanction_Letter.pdf">📄 Sample Sanction
+                                                    Letter</button>
+                                                <button type="button" class="doc-sample-btn"
+                                                    data-doc-name="Sample_Salary_Slip.pdf">📊 Sample Salary
+                                                    Slip</button>
+                                                <button type="button" class="doc-sample-btn"
+                                                    data-doc-name="Loan_Agreement_Terms.pdf">📝 Loan Agreement</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- AI Document Scan Results (Simulated Prototype) -->
+                                        <div class="doc-scan-results-box" id="docScanResultsBox" aria-live="polite">
+                                            <div class="doc-scan-header">
+                                                <span class="doc-scan-title">
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                                        <path
+                                                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                                                        </path>
+                                                    </svg>
+                                                    <span id="scanDocName">Document_Analysis</span>
+                                                </span>
+                                                <span class="doc-scan-badge">AI Analyzed</span>
+                                            </div>
+                                            <p class="doc-scan-item" id="scanSummary">Summary will appear here...</p>
+                                            <div id="scanClauses"></div>
+                                            <div id="scanTerms"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <!-- ==========================================================
+                 RIGHT STICKY SIDEBAR (FINORA AI + CTA + DISCLAIMER)
+                 ========================================================== -->
+                        <aside class="loans-side-column" aria-label="Finora AI Loan Companion">
+
+                            <!-- CARD 1: FINORA AI CONVERSATIONAL COMPANION -->
+                            <div class="loans-ai-card" role="region" aria-label="Finora AI Assistant">
+                                <div class="loans-ai-card-header">
+                                    <div class="loans-ai-header-brand">
+                                        <div class="loans-ai-sparkle-wrap" aria-hidden="true">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.5">
+                                                <path
+                                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="loans-ai-title-wrap">
+                                            <span class="loans-ai-title">Finora AI</span>
+                                            <span class="loans-ai-subtitle">Your loan journey companion</span>
+                                        </div>
+                                    </div>
+                                    <div class="loans-ai-status-pill">
+                                        <span class="loans-ai-status-dot" aria-hidden="true"></span>
+                                        <span>Online</span>
+                                    </div>
+                                </div>
+
+                                <!-- Live Chat Dialogue Stream -->
+                                <div class="loans-ai-chat-body" id="loansAiChatBody">
+                                    <div class="ai-bubble-msg">
+                                        <div class="ai-bubble-avatar">🤖</div>
+                                        <div class="ai-bubble-content">
+                                            Hi! I'm Finora AI 👋 I can help you understand loans, compare options,
+                                            explain terminology, and guide you through your loan journey.<br><br>
+                                            What would you like to know?
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Action Buttons -->
+                                <div class="loans-ai-chips-area">
+                                    <span class="loans-ai-chips-label">Quick Actions:</span>
+                                    <div class="loans-ai-chips-group">
+                                        <button type="button" class="ai-quick-chip-btn"
+                                            data-intent="What loan suits my needs?">
+                                            <span>What loan suits my needs?</span>
+                                            <span aria-hidden="true">→</span>
+                                        </button>
+                                        <button type="button" class="ai-quick-chip-btn" data-intent="Explain EMI">
+                                            <span>Explain EMI</span>
+                                            <span aria-hidden="true">→</span>
+                                        </button>
+                                        <button type="button" class="ai-quick-chip-btn"
+                                            data-intent="What documents are required?">
+                                            <span>What documents may be required?</span>
+                                            <span aria-hidden="true">→</span>
+                                        </button>
+                                        <button type="button" class="ai-quick-chip-btn" data-intent="Explain interest">
+                                            <span>Explain interest</span>
+                                            <span aria-hidden="true">→</span>
+                                        </button>
+                                        <button type="button" class="ai-quick-chip-btn"
+                                            data-intent="I have a specific question">
+                                            <span>I have a specific question</span>
+                                            <span aria-hidden="true">💬</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Chat Input Form -->
+                                <form class="loans-ai-input-form" id="loansAiForm">
+                                    <input type="text" id="loansAiInput" class="loans-ai-text-input"
+                                        placeholder="Ask Finora AI..." aria-label="Type message for Finora AI">
+                                    <button type="submit" class="btn-ai-send" aria-label="Send message">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                            stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </form>
+
+                                <!-- Disclaimer -->
+                                <div class="loans-ai-disclaimer-text">
+                                    Finora AI provides general information and guidance. Loan products, eligibility,
+                                    rates, documentation and terms vary by financial institution. Refer to the relevant
+                                    authorised institution for specific details.
+                                </div>
+                            </div>
+
+                            <!-- CARD 2: NEED HELP CHOOSING? CTA CARD -->
+                            <div class="loans-cta-card">
+                                <div class="loans-cta-top">
+                                    <div class="loans-cta-icon-wrap" aria-hidden="true">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="loans-cta-title">Need help choosing?</h3>
+                                </div>
+                                <p class="loans-cta-desc">
+                                    Not sure which loan is right for you? Tell Finora AI what you're trying to
+                                    accomplish and let the guided journey help you understand the next step.
+                                </p>
+                                <a href="ai-assistant.html" class="btn-cta-full">
+                                    <span>Talk to Finora AI</span>
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+
+                            <!-- CARD 3: IMPORTANT NOTE DISCLAIMER -->
+                            <div class="loans-disclaimer-card" role="note">
+                                <svg class="loans-disclaimer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                                <div class="loans-disclaimer-content">
+                                    <span class="loans-disclaimer-title">Important Note</span>
+                                    <p class="loans-disclaimer-body">
+                                        Finora is a hackathon prototype designed to provide general educational
+                                        information and journey guidance. Financial products, eligibility requirements,
+                                        rates, fees, documentation and approval decisions vary by financial institution
+                                        and individual circumstances.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+        <!-- ====================================================================
+         GLOBAL FOOTER (MATCHING HOME PAGE)
+         ==================================================================== -->
+        <footer class="site-footer" id="about" role="contentinfo">
+            <div class="footer-inner">
+
+                <div class="footer-top-grid">
+
+                    <!-- Column 1: Brand -->
+                    <div class="footer-brand-column">
+                        <span class="footer-brand-title">Finora</span>
+                        <span class="footer-brand-tagline">Simpler Journeys. Brighter Futures.</span>
+                        <p class="footer-brand-mission">
+                            Leveraging intelligent AI to make financial journeys across lending, insurance, and digital
+                            services simpler, faster, and more human.
+                        </p>
+                    </div>
+
+                    <!-- Column 2: Platform -->
+                    <div>
+                        <h3 class="footer-column-title">Platform</h3>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html" class="footer-link">Home</a></li>
+                            <li><a href="loans.html" class="footer-link">Loans</a></li>
+                            <li><a href="insurance.html" class="footer-link">Insurance</a></li>
+                            <li><a href="fintech.html" class="footer-link">Fintech</a></li>
+                            <li><a href="ai-assistant.html" class="footer-link">AI Assistant</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Resources -->
+                    <div>
+                        <h3 class="footer-column-title">Resources</h3>
+                        <ul class="footer-links-list">
+                            <li><a href="my-journey.html" class="footer-link">My Journey</a></li>
+                            <li><a href="knowledge-hub.html" class="footer-link">Knowledge Hub</a></li>
+                            <li><a href="knowledge-hub.html#basics" class="footer-link">Financial Basics</a></li>
+                            <li><a href="knowledge-hub.html#faqs" class="footer-link">FAQs</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Company -->
+                    <div>
+                        <h3 class="footer-column-title">Company</h3>
+                        <ul class="footer-links-list">
+                            <li><a href="#about" class="footer-link">About</a></li>
+                            <li><a href="#contact" class="footer-link">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 5: Legal -->
+                    <div>
+                        <h3 class="footer-column-title">Legal</h3>
+                        <ul class="footer-links-list">
+                            <li><a href="#privacy" class="footer-link">Privacy Policy</a></li>
+                            <li><a href="#terms" class="footer-link">Terms of Service</a></li>
+                            <li><a href="#trust" class="footer-link">Responsible AI</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Copyright & Prototype Disclaimer -->
+                <div class="footer-bottom">
+                    <p class="footer-copyright">
+                        © 2026 Finora — A simpler, more inclusive financial future.
+                    </p>
+
+                    <div class="footer-prototype-tag">
+                        <span class="prototype-pulse-dot" aria-hidden="true"></span>
+                        <span>National Hackathon Prototype — For Demonstration Purposes</span>
+                    </div>
+
+                    <div class="footer-social-links" aria-label="Social links">
+                        <a href="#" class="social-icon-btn" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon-btn" aria-label="Twitter / X">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon-btn" aria-label="YouTube">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+        <!-- ====================================================================
+         MOBILE BOTTOM NAVIGATION DOCK
+         ==================================================================== -->
+        <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
+            <a href="index.html" class="mobile-bottom-nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Home</span>
+            </a>
+
+            <a href="loans.html" class="mobile-bottom-nav-item active" aria-current="page">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="21" x2="21" y2="21"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <polyline points="5 6 12 3 19 6"></polyline>
+                    <line x1="6" y1="10" x2="6" y2="21"></line>
+                    <line x1="10" y1="10" x2="10" y2="21"></line>
+                    <line x1="14" y1="10" x2="14" y2="21"></line>
+                    <line x1="18" y1="10" x2="18" y2="21"></line>
+                </svg>
+                <span>Loans</span>
+            </a>
+
+            <a href="ai-assistant.html" class="mobile-bottom-nav-item center-ai-btn" aria-label="Finora AI Assistant">
+                <div class="ai-nav-bubble">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        aria-hidden="true">
+                        <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                        </path>
+                    </svg>
+                </div>
+                <span>AI Guide</span>
+            </a>
+
+            <a href="insurance.html" class="mobile-bottom-nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Insurance</span>
+            </a>
+
+            <a href="fintech.html" class="mobile-bottom-nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                </svg>
+                <span>Fintech</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- ====================================================================
+       INTERACTIVE MODALS
+       ==================================================================== -->
+
+    <!-- MODAL 1: EMI CALCULATOR -->
+    <div class="loans-modal-overlay" id="modalEmiCalculator" role="dialog" aria-modal="true"
+        aria-labelledby="emiModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                            <line x1="8" y1="6" x2="16" y2="6"></line>
+                            <line x1="16" y1="14" x2="16" y2="14.01"></line>
+                            <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                            <line x1="8" y1="14" x2="8" y2="14.01"></line>
+                            <line x1="16" y1="18" x2="16" y2="18.01"></line>
+                            <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                            <line x1="8" y1="18" x2="8" y2="18.01"></line>
+                        </svg>
+                    </div>
+                    <h3 class="loans-modal-title" id="emiModalTitle">Interactive EMI Calculator</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+
+                <!-- Input 1: Loan Amount -->
+                <div class="calc-input-group">
+                    <div class="calc-label-row">
+                        <span>Loan Amount</span>
+                        <span class="calc-value-badge" id="emiAmountVal">₹5,00,000 (5 Lakhs)</span>
+                    </div>
+                    <input type="range" id="emiAmountSlider" class="calc-range-slider" min="50000" max="10000000"
+                        step="25000" value="500000" aria-label="Loan Amount Slider">
+                </div>
+
+                <!-- Input 2: Interest Rate -->
+                <div class="calc-input-group">
+                    <div class="calc-label-row">
+                        <span>Interest Rate (Annual)</span>
+                        <span class="calc-value-badge" id="emiRateVal">8.5%</span>
+                    </div>
+                    <input type="range" id="emiRateSlider" class="calc-range-slider" min="3" max="24" step="0.1"
+                        value="8.5" aria-label="Interest Rate Slider">
+                </div>
+
+                <!-- Input 3: Tenure -->
+                <div class="calc-input-group">
+                    <div class="calc-label-row">
+                        <span>Loan Tenure (Years)</span>
+                        <span class="calc-value-badge" id="emiTenureVal">5 Years</span>
+                    </div>
+                    <input type="range" id="emiTenureSlider" class="calc-range-slider" min="1" max="30" step="1"
+                        value="5" aria-label="Loan Tenure Slider">
+                </div>
+
+                <!-- Results Display Card -->
+                <div class="calc-results-card">
+                    <div class="calc-emi-primary-display">
+                        <span class="calc-emi-label">Estimated EMI</span>
+                        <span class="calc-emi-amount" id="calcResultEmi">₹10,258/mo</span>
+                    </div>
+
+                    <div class="calc-breakdown-row">
+                        <div class="calc-breakdown-item">
+                            <span class="calc-breakdown-label">Principal Amount</span>
+                            <span class="calc-breakdown-value" id="calcResultPrincipal">₹5,00,000</span>
+                        </div>
+                        <div class="calc-breakdown-item">
+                            <span class="calc-breakdown-label">Total Interest</span>
+                            <span class="calc-breakdown-value" id="calcResultInterest">₹1,15,497</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-breakdown-row">
+                        <div class="calc-breakdown-item">
+                            <span class="calc-breakdown-label">Total Payment</span>
+                            <span class="calc-breakdown-value" id="calcResultTotal">₹6,15,497</span>
+                        </div>
+                    </div>
+
+                    <p class="calc-disclaimer-note">
+                        This is an illustrative calculation and not a loan offer. Actual interest rates, processing fees
+                        and terms vary by lending institution.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: LOAN DETAIL DEEP-DIVE -->
+    <div class="loans-modal-overlay" id="modalLoanDetail" role="dialog" aria-modal="true"
+        aria-labelledby="loanDetailModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="3" y1="21" x2="21" y2="21"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <polyline points="5 6 12 3 19 6"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="loans-modal-title" id="loanDetailModalTitle">Loan Details</h3>
+                        <p class="loans-section-subhead" id="loanDetailModalSubtitle">Understand key concepts and
+                            typical requirements</p>
+                    </div>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <div>
+                    <h4 class="journey-detail-title">Key Journey Concepts</h4>
+                    <ul class="doc-assist-feature-list" id="loanDetailFeaturesList"></ul>
+                </div>
+
+                <div>
+                    <h4 class="journey-detail-title">Common Documents Requested</h4>
+                    <ul class="doc-assist-feature-list" id="loanDetailDocsList"></ul>
+                </div>
+
+                <div>
+                    <h4 class="journey-detail-title">Key Assessment Factors</h4>
+                    <ul class="doc-assist-feature-list" id="loanDetailFactorsList"></ul>
+                </div>
+
+                <button type="button" class="btn-cta-full" id="loanDetailAskAiBtn">
+                    <span>Ask Finora AI about this loan</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ELIGIBILITY GUIDE -->
+    <div class="loans-modal-overlay" id="modalEligibilityGuide" role="dialog" aria-modal="true"
+        aria-labelledby="eligibilityModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">📊</div>
+                    <h3 class="loans-modal-title" id="eligibilityModalTitle">Eligibility Assessment Factors</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <p class="loans-hero-desc">Lenders evaluate multiple criteria to understand repayment reliability:</p>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">1. Credit Score & Bureau History</h4>
+                    <p class="edu-concept-desc">Scores typically range from 300 to 900 (e.g. CIBIL, Experian). A score
+                        of 700–750+ demonstrates strong credit discipline and unlocks lower interest rates.</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">2. Debt-to-Income (FOIR / DTI) Ratio</h4>
+                    <p class="edu-concept-desc">The Fixed Obligation to Income Ratio (FOIR). Indian lenders prefer your
+                        total monthly EMI outgo to stay under 40–50% of net monthly income.</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">3. Employment & Income Stability</h4>
+                    <p class="edu-concept-desc">Salaried individuals typically require 1-2 years continuous work
+                        experience; self-employed individuals provide 2-3 years audited business accounts / ITR.</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">4. Age & Career Longevity</h4>
+                    <p class="edu-concept-desc">Borrowers typically range between 21 and 65 years. The remaining working
+                        years determine maximum allowable loan tenure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: DOCUMENT CHECKLIST -->
+    <div class="loans-modal-overlay" id="modalDocChecklist" role="dialog" aria-modal="true"
+        aria-labelledby="docChecklistModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">📋</div>
+                    <h3 class="loans-modal-title" id="docChecklistModalTitle">Comprehensive Document Checklist</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <p class="loans-hero-desc">Common documentation requested by authorized Indian financial institutions:
+                </p>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Identity & KYC Proof</h4>
+                    <p class="edu-concept-desc">✓ PAN Card (Mandatory) / Aadhaar Card / Passport / Voter ID / Driving
+                        License</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Address & Residence Proof</h4>
+                    <p class="edu-concept-desc">✓ Aadhaar Card / Electricity Bill (within 3 months) / Registered Rent
+                        Agreement / Passport</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Income & Financial Records</h4>
+                    <p class="edu-concept-desc">✓ Latest 3–6 months salary slips / Last 6 months bank account statements
+                        / Form 16 or 2–3 years ITR (Income Tax Returns)</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Asset / Collateral Specifics</h4>
+                    <p class="edu-concept-desc">✓ Home Loan: Sale deed, approved building blueprint, NOC, Encumbrance
+                        Certificate (EC)<br>✓ Car Loan: Proforma dealer quotation / invoice<br>✓ Education Loan: College
+                        admission letter and detailed fee schedule</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 5: REPAYMENT & AMORTIZATION -->
+    <div class="loans-modal-overlay" id="modalRepayment" role="dialog" aria-modal="true"
+        aria-labelledby="repaymentModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">%</div>
+                    <h3 class="loans-modal-title" id="repaymentModalTitle">Interest & Repayment Explained</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Fixed vs Floating Rates</h4>
+                    <p class="edu-concept-desc">Fixed rates guarantee exact monthly payments regardless of market
+                        changes. Floating rates fluctuate with central bank benchmark rates.</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Amortization Schedule Dynamics</h4>
+                    <p class="edu-concept-desc">Early monthly payments consist predominantly of interest. As the
+                        principal balances drop over time, a greater share of each payment goes directly towards
+                        reducing principal.</p>
+                </div>
+
+                <div class="edu-concept-card">
+                    <h4 class="edu-concept-title">Prepayment & Foreclosure</h4>
+                    <p class="edu-concept-desc">Making part-prepayments reduces total interest significantly. Many
+                        regulatory bodies mandate zero foreclosure penalties for individual floating-rate loans.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 6: EDUCATIONAL CONCEPT GENERAL -->
+    <div class="loans-modal-overlay" id="modalEduGeneral" role="dialog" aria-modal="true"
+        aria-labelledby="eduGeneralTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">💡</div>
+                    <h3 class="loans-modal-title" id="eduGeneralTitle">Financial Concept</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <p class="loans-hero-desc" id="eduGeneralDesc">Explore financial principles with clarity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 7: WATCH GUIDE -->
+    <div class="loans-modal-overlay" id="modalWatchGuide" role="dialog" aria-modal="true"
+        aria-labelledby="guideModalTitle">
+        <div class="loans-modal-card">
+            <div class="loans-modal-header">
+                <div class="loans-modal-title-group">
+                    <div class="loans-modal-icon-pill" aria-hidden="true">▶</div>
+                    <h3 class="loans-modal-title" id="guideModalTitle">Guided Tour: Navigating Your Loan Journey</h3>
+                </div>
+                <button type="button" class="loans-modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="loans-modal-body">
+                <div class="calc-results-card">
+                    <h4 class="calc-breakdown-value">How Finora Simplifies Lending with AI</h4>
+                    <p class="doc-assist-desc">
+                        1. <strong>Goal Clarity</strong>: Identify the right loan category for personal, home, student,
+                        or automobile goals.<br><br>
+                        2. <strong>AI Document Simplification</strong>: Scan sanction letters and complex clauses to
+                        understand obligations.<br><br>
+                        3. <strong>Transparent Calculations</strong>: Estimate monthly EMIs and total interest burden
+                        without confusing formulas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/loans.js"></script>
+</body>
+
+</html>

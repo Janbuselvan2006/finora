@@ -1,0 +1,317 @@
+/* ==========================================================================
+   FINORA — LOANS PAGE STYLESHEET
+   ========================================================================== */
+
+.loans-page-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.loans-breadcrumb-nav {
+  margin-bottom: 20px;
+}
+
+.loans-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.loans-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loans-breadcrumb-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.loans-breadcrumb-current {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.loans-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+.loans-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+.loans-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 90px;
+  z-index: 20;
+}
+
+.loans-hero-card {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 50%, #e6f2fe 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
+  overflow: hidden;
+}
+
+.loans-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.loans-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(37, 99, 235, 0.09);
+  color: #1d4ed8;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.loans-hero-heading {
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0b1329;
+  margin-bottom: 10px;
+}
+
+.loans-heading-highlight {
+  color: #2563eb;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.loans-hero-supporting {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.loans-hero-desc {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+
+.btn-loans-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-loans-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.loans-float-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 12px -2px rgba(15, 28, 63, 0.12);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 4px;
+}
+
+.loans-section {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 26px 28px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.loans-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0b1329;
+}
+
+.loans-section-subhead {
+  font-size: 0.86rem;
+  color: #64748b;
+}
+
+.loans-options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.loan-option-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.loan-option-card:hover {
+  background-color: #ffffff;
+  border-color: #93c5fd;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px -4px rgba(37, 99, 235, 0.12);
+}
+
+.loan-option-icon-wrap {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.loan-option-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0b1329;
+  margin-bottom: 6px;
+}
+
+.loan-option-desc {
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.48;
+}
+
+.loans-journey-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.journey-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.journey-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.86rem;
+  background: #2563eb;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.journey-step-title {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.loans-ai-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px -2px rgba(11, 19, 41, 0.08);
+}
+
+.loans-ai-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.loans-ai-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.loans-ai-status-pill {
+  background: #ecfdf5;
+  color: #059669;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.ai-bubble-content {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.82rem;
+  color: #1e293b;
+  line-height: 1.48;
+}
+
+@media (max-width: 992px) {
+  .loans-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .loans-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .loans-options-grid,
+  .loans-journey-timeline {
+    grid-template-columns: 1fr;
+  }
+}

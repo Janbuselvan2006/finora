@@ -1556,7 +1556,6 @@ svg {
   --wa-chip-border: #374248;
 }
 
-/* WhatsApp Master Card Container */
 .ai-companion-card,
 .whatsapp-chat-card {
   background: var(--wa-chat-bg);
@@ -1570,6 +1569,110 @@ svg {
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   min-height: 490px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Foldable / Collapsible Chatbot State */
+.ai-companion-card.folded,
+.whatsapp-chat-card.folded,
+.finora-ai-card.folded {
+  min-height: 58px !important;
+  max-height: 58px !important;
+  height: 58px !important;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.ai-companion-card.folded .wa-header,
+.whatsapp-chat-card.folded .wa-header,
+.finora-ai-card.folded .ai-card-header {
+  border-radius: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ai-companion-card.folded:hover .wa-header,
+.whatsapp-chat-card.folded:hover .wa-header {
+  filter: brightness(1.05);
+}
+
+/* Hide chat body, footer, menus when folded */
+.ai-companion-card.folded .wa-chat-body,
+.whatsapp-chat-card.folded .wa-chat-body,
+.ai-companion-card.folded .ai-dialogue-body,
+.whatsapp-chat-card.folded .ai-dialogue-body,
+.finora-ai-card.folded .ai-chat-body,
+.ai-companion-card.folded .wa-chat-footer,
+.whatsapp-chat-card.folded .wa-chat-footer,
+.ai-companion-card.folded .ai-chat-input-form,
+.whatsapp-chat-card.folded .ai-chat-input-form,
+.finora-ai-card.folded .ai-quick-prompts,
+.finora-ai-card.folded .ai-input-wrapper,
+.whatsapp-chat-card.folded .wa-dropdown-menu,
+.whatsapp-chat-card.folded .wa-popup-drawer {
+  display: none !important;
+}
+
+/* Fold Toggle Button */
+.wa-fold-btn,
+.wa-fold-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+.wa-fold-btn:hover,
+.wa-fold-toggle:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(1.08);
+}
+
+.wa-fold-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* In folded state, chevron flips */
+.folded .wa-fold-icon,
+.folded .wa-fold-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* Folded Badge */
+.wa-folded-badge {
+  display: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+  letter-spacing: 0.2px;
+  backdrop-filter: blur(4px);
+}
+
+.folded .wa-folded-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  animation: waFadeIn 0.2s ease;
+}
+
+@keyframes waFadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* WhatsApp Header Bar */

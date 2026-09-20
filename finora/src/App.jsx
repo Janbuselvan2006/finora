@@ -45,6 +45,7 @@ export default function App() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showAttachMenu, setShowAttachMenu] = useState(false);
   const [showWaMenu, setShowWaMenu] = useState(false);
+  const [isChatFolded, setIsChatFolded] = useState(false);
   const [isListeningMic, setIsListeningMic] = useState(false);
   const chatBodyRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -1398,11 +1399,16 @@ export default function App() {
             <aside className="dashboard-right-column" id="ai-companion">
               
               {/* Card 1: Finora AI WhatsApp Chat Copilot */}
-              <div className="ai-companion-card whatsapp-chat-card">
+              <div 
+                className={`ai-companion-card whatsapp-chat-card ${isChatFolded ? 'folded' : ''}`}
+                onClick={() => {
+                  if (isChatFolded) setIsChatFolded(false);
+                }}
+              >
                 
                 {/* WhatsApp Chat Header */}
                 <div className="wa-header">
-                  <div className="wa-header-left" onClick={() => setShowWaMenu(prev => !prev)}>
+                  <div className="wa-header-left" onClick={() => !isChatFolded && setShowWaMenu(prev => !prev)}>
                     <div className="wa-avatar-wrap">
                       <div className="wa-avatar">
                         <span>FA</span>
@@ -1420,6 +1426,9 @@ export default function App() {
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                           </svg>
                         </span>
+                        {isChatFolded && (
+                          <span className="wa-folded-badge">Folded • Tap to open</span>
+                        )}
                       </span>
                       <span className={`wa-contact-status ${isAiTyping ? 'typing' : ''}`}>
                         {isAiTyping ? 'typing...' : 'online'}
@@ -1462,6 +1471,35 @@ export default function App() {
                         <circle cx="12" cy="12" r="1"></circle>
                         <circle cx="12" cy="5" r="1"></circle>
                         <circle cx="12" cy="19" r="1"></circle>
+                      </svg>
+                    </button>
+                    <button 
+                      type="button" 
+                      className="wa-header-btn wa-fold-toggle" 
+                      title={isChatFolded ? "Unfold Chat (Expand)" : "Fold Chat (Minimize)"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsChatFolded(prev => !prev);
+                      }}
+                      aria-label={isChatFolded ? "Unfold Chat" : "Fold Chat"}
+                      aria-expanded={!isChatFolded}
+                    >
+                      <svg 
+                        className="wa-fold-icon" 
+                        width="18" 
+                        height="18" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        style={{
+                          transform: isChatFolded ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.3s ease'
+                        }}
+                      >
+                        <polyline points="18 15 12 9 6 15"></polyline>
                       </svg>
                     </button>
 
